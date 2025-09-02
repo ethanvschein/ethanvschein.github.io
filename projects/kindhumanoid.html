@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kind Humanoid: Bio inspired Skin & Tactile Sensing</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kind Humanoid: Bio-Inspired Skin & Tactile Sensing</title>
+
+  <!-- Site styles & fonts -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Optional: small page-specific tweaks (safe if you want to keep everything in style.css instead) -->
+  <style>
+    .project-toc { display:flex; gap:1rem; flex-wrap:wrap; margin:1rem 0 2rem; }
+    .project-toc a { padding:.4rem .7rem; border:1px solid var(--border, #e5e7eb); border-radius:.5rem; font-size:.9rem; }
+    .project-section details { border:1px solid var(--border, #e5e7eb); border-radius:.75rem; padding:1rem; background:#fff; }
+    .project-section details + details { margin-top:1rem; }
+    .project-section summary { cursor:pointer; font-weight:600; }
+    .key-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1rem; }
+    .metric { border:1px solid var(--border, #e5e7eb); border-radius:.75rem; padding:1rem; background:#fff; }
+    .metric h4 { margin:.2rem 0 .3rem; font-size:1rem; }
+    .project-images { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:.75rem; }
+    .project-images img { width:100%; height:auto; border-radius:.5rem; }
+    .callout { padding:.85rem 1rem; border-left:4px solid #0ea5e9; background:#f0f9ff; border-radius:.5rem; }
+    .codeish { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+  </style>
 </head>
 <body>
 
 <!-- Navigation -->
 <nav class="navbar">
   <div class="nav-container">
-    <div class="nav-logo">
-      <a href="../index.html">Ethan Schein</a>
-    </div>
+    <div class="nav-logo"><a href="../index.html">Ethan Schein</a></div>
     <ul class="nav-menu">
       <li><a href="../index.html" class="nav-link">Home</a></li>
       <li><a href="../about.html" class="nav-link">About</a></li>
@@ -24,11 +40,7 @@
       <li><a href="../projects.html" class="nav-link active">Projects</a></li>
       <li><a href="../skills.html" class="nav-link">Skills</a></li>
     </ul>
-    <div class="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <div class="hamburger"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
@@ -40,7 +52,7 @@
     </div>
 
     <div class="project-header">
-      <h1 class="project-title">Kind Humanoid: Bio inspired Skin & Tactile Sensing</h1>
+      <h1 class="project-title">Kind Humanoid: Bio-Inspired Skin & Tactile Sensing</h1>
       <div class="project-tags">
         <span class="tag">Dragon Skin FX Pro</span>
         <span class="tag">Flex-Foam VIII</span>
@@ -52,156 +64,237 @@
         <span class="tag">PCB Design</span>
         <span class="tag">Arduino / RP2040</span>
       </div>
+
+      <!-- quick metrics -->
+      <div class="key-metrics">
+        <div class="metric">
+          <h4>Skin Stack</h4>
+          <p>1 mm Dragon Skin FX Pro + porous PU foam (Flex-Foam VIII, tuned 1:1.6 A:B)</p>
+        </div>
+        <div class="metric">
+          <h4>Target Properties</h4>
+          <p>Friction ~ finger skin; Shore ~2A shell; high elongation (≤763%); thermal −60 °C → 230 °C</p>
+        </div>
+        <div class="metric">
+          <h4>Electronics</h4>
+          <p>Capacitive grid (mux + capacitive ADC + RP2040 + RS-485); resistive Velostat prototypes</p>
+        </div>
+        <div class="metric">
+          <h4>Scope</h4>
+          <p>Silicone/foam mold design, nib arrays, finger wraps, PCB layouts, test harness + protocol</p>
+        </div>
+      </div>
+
+      <!-- Table of contents (anchors jump to sections) -->
+      <div class="project-toc">
+        <a href="#overview">Overview</a>
+        <a href="#manufacturing">Manufacturing</a>
+        <a href="#materials">Materials</a>
+        <a href="#designs">Designs</a>
+        <a href="#electronics">Electronics</a>
+        <a href="#testing">Testing</a>
+        <a href="#prototypes">Prototypes</a>
+        <a href="#results">Results</a>
+      </div>
     </div>
 
     <div class="project-content">
 
-      <!-- Situation -->
-      <div class="project-section">
-        <h2>Situation</h2>
+      <!-- Overview -->
+      <div id="overview" class="project-section">
+        <h2>Overview</h2>
         <p>
-          Achieving human-like touch sensing in humanoid robots requires not only accurate electronics, but also
-          carefully engineered <strong>multilayer skin systems</strong>. The <em>Kind Humanoid</em> project sought to design,
-          fabricate, and evaluate such a system by layering durable silicone, lightweight foam, and
-          sensor-integrated PCBs. The goal was to replicate the <strong>friction, elasticity, and hardness</strong> of human skin
-          while enabling <strong>capacitive and resistive force detection</strong> across robotic fingers and surfaces:contentReference[oaicite:1]{index=1}.
+          Human-like touch requires both sensitive electronics <em>and</em> bio-mechanically realistic skins. Kind Humanoid
+          develops a multilayer tactile skin with a soft outer silicone (durability + skin-like friction), a lightweight
+          elastic foam (deformability + compliance), and embedded electrode patterns for capacitive or resistive sensing
+          across flat panels and articulated fingers.
         </p>
+        <div class="callout">
+          <strong>What changed vs. a typical e-skin?</strong> We optimized foam mixing for structure (1:1.6 A:B), used luer-injection
+          silicone molds for bubble-free 1 mm sheets, and iterated between capacitive and resistive stacks to understand
+          hysteresis, latency, and wiring-induced shorts.
+        </div>
       </div>
 
       <!-- Manufacturing -->
-      <div class="project-section">
-        <h2>Manufacturing Process</h2>
-        <h3>Silicone Layer (Dragon Skin FX Pro)</h3>
-        <p>
-          The outer silicone skin was cast in custom 3D-printed molds with threaded luer lock injection ports
-          and vent holes for uniform filling. The mixture (1:1 of Part A and B) was vacuum-degassed before
-          being injected with a syringe to avoid air bubbles. Curing took ~40 minutes, producing a
-          <strong>1 mm thick flexible sheet</strong>:contentReference[oaicite:2]{index=2}.
-        </p>
-        <div class="project-images">
-          <img src="../assets/images/KindHumanoid/siliconeformation.jpg" alt="Silicone Mold Setup">
-          <img src="../assets/images/KindHumanoid/siliconesheet.jpg" alt="Cured Dragon Skin FX Pro layer">
-        </div>
+      <div id="manufacturing" class="project-section">
+        <h2>Manufacturing</h2>
 
-        <h3>Foam Layer (Flex-Foam VIII)</h3>
-        <p>
-          Polyurethane Flex-Foam VIII was used for its light weight and elastic deformation.
-          A custom ratio of <strong>1:1.6 (Part A: Part B)</strong> was optimized to achieve a porous yet resilient foam.
-          Molds included vent holes to allow expansion and prevent decomposition. The foam expanded
-          to ~7x its liquid volume and cured in ~2 hours:contentReference[oaicite:3]{index=3}.
-        </p>
-        <div class="project-images">
-          <img src="../assets/images/KindHumanoid/foamform.jpg" alt="Cured Flex-Foam VIII sheet">
-        </div>
+        <details open>
+          <summary>Silicone Layer — Dragon Skin FX Pro (1 mm)</summary>
+          <p>
+            <strong>Mold features:</strong> 10 cm × 10 cm plates, central threaded port for a 1/8-NPT male luer lock, four vent holes
+            near corners for uniform fill, pry tabs for safe demolding.
+          </p>
+          <ol>
+            <li><strong>Prep:</strong> Tap port; clean; light silicone release on all wet surfaces; clamp top/bottom plates; attach luer + 20 mL syringe.</li>
+            <li><strong>Mix:</strong> 1:1 (A:B), 5 mL + 5 mL typical; pre-mix 2 min each addition.</li>
+            <li><strong>Degas:</strong> Vacuum chamber to ~1 bar; hold 3–4 min until bubbling subsides; vent slowly to prevent implosion.</li>
+            <li><strong>Inject:</strong> Funnel → syringe; slow plunger for smooth, laminar fill until vents weep; wipe excess.</li>
+            <li><strong>Cure:</strong> ~40 min at ≥18 °C (65 °F); unclamp; free edges with blade; pry tabs; peel sheet carefully.</li>
+            <li><strong>Cleanup:</strong> IPA wipe, water rinse; all tooling reusable.</li>
+          </ol>
+          <div class="project-images">
+            <img src="../assets/images/KindHumanoid/siliconeformation.jpg" alt="Silicone injection setup"/>
+            <img src="../assets/images/KindHumanoid/siliconesheet.jpg" alt="Cured 1 mm Dragon Skin FX Pro sheet"/>
+          </div>
+        </details>
+
+        <details>
+          <summary>Foam Layer — Flex-Foam VIII (porous elastic)</summary>
+          <p>
+            <strong>Why this foam?</strong> Lightweight (8 lb/ft³), high elastic deformation, good dielectric behavior, and inexpensive. We tuned
+            the mix to avoid tackiness and achieve a uniform porous structure.
+          </p>
+          <ol>
+            <li><strong>Volume planning:</strong> Compute final sheet volume from CAD; divide by 7 to account for ~7× expansion.</li>
+            <li><strong>Mix ratio:</strong> <span class="codeish">Part A : Part B = 1 : 1.6</span> (empirically optimal). Mix A (1 min), add B, then mix quickly (5–10 s).</li>
+            <li><strong>Pot life:</strong> ~30 s; pour in a spiral pattern; brush to corners; close mold; clamp; cure ~2 h.</li>
+            <li><strong>Release:</strong> Very light Ease Release 200 — heavy coats crystalize the surface and alter texture.</li>
+          </ol>
+          <div class="project-images">
+            <img src="../assets/images/KindHumanoid/foamcadtop.png" alt="Foam mold cover CAD with enlarged vents"/>
+            <img src="../assets/images/KindHumanoid/foamform.jpg" alt="Cured PU foam sheet"/>
+          </div>
+        </details>
       </div>
 
-      <!-- Materials Reasoning -->
-      <div class="project-section">
-        <h2>Material Properties</h2>
-        <h3>Dragon Skin FX Pro</h3>
-        <ul class="project-list">
-          <li>Durability: toughness, tensile strength (~50 MPa), fatigue resistance.</li>
-          <li>Elasticity: 763% elongation, Shore 2A hardness (similar to epidermis).</li>
-          <li>Thermal stability: -60℃ to 230℃ operating range.</li>
-          <li>Biocompatible platinum-cure silicone; skin-safe for human-robot interaction:contentReference[oaicite:4]{index=4}.</li>
-        </ul>
+      <!-- Materials -->
+      <div id="materials" class="project-section">
+        <h2>Materials Reasoning</h2>
 
-        <h3>Flex-Foam VIII</h3>
-        <ul class="project-list">
-          <li>Lightweight: 8 lbs/ft³ density, improving finger dexterity.</li>
-          <li>Elastic deformation with low Young’s modulus.</li>
-          <li>Economical and scalable (~$36 per 2 lb trial kit).</li>
-          <li>Mix ratio optimization critical: 1:1.6 A:B prevented tackiness or over-viscosity:contentReference[oaicite:5]{index=5}.</li>
-        </ul>
+        <details open>
+          <summary>Dragon Skin FX Pro (outer shell)</summary>
+          <ul class="project-list">
+            <li><strong>Durability:</strong> high toughness; tensile strength reported ~50 MPa; resilient to fracture/fatigue.</li>
+            <li><strong>Deformability:</strong> Shore 2A approximates epidermal feel; elongation at break up to ~763%.</li>
+            <li><strong>Thermal/Chemical:</strong> stable ~−60 °C → 230 °C; inert, skin-safe platinum-cure chemistry.</li>
+            <li><strong>Manufacturability:</strong> short cure (~40 min), compatible with syringe-injection molds, scalable.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Flex-Foam VIII (compliance layer)</summary>
+          <ul class="project-list">
+            <li>Low modulus → large elastic deformation for pressure distribution and comfort.</li>
+            <li>Porous structure improves compliance and reduces weight; electrical insulator.</li>
+            <li>Cost-effective and easy to scale; mixing ratio critical (1:1.6 A:B worked best).</li>
+          </ul>
+        </details>
       </div>
 
-      <!-- Design Iterations -->
-      <div class="project-section">
+      <!-- Designs -->
+      <div id="designs" class="project-section">
         <h2>Design Iterations</h2>
-        <h3>Nib Design</h3>
-        <p>
-          Inspired by UC Berkeley’s Embodied Dexterity Group, small-scale “nibs” with 4 electrodes
-          each were designed to detect shear forces and vibration. A <strong>20×20 grid</strong> prototype
-          reached densities of 16 receptors/cm² (approaching human fingertip density of 10/cm²).
-          However, fabrication challenges (spacing electrodes under small nibs) limited implementation:contentReference[oaicite:6]{index=6}.
-        </p>
-        <div class="project-images">
-          <img src="../assets/images/KindHumanoid/nib.jpg" alt="Nib Grid Design">
-          <img src="../assets/images/KindHumanoid/prototype1-1.jpg" alt="Nib Prototype Test">
-        </div>
 
-        <h3>Finger Wrap Design</h3>
-        <p>
-          To fit robotic fingers, modular silicone wraps were designed with strain relievers and flaps.
-          <strong>Option 1</strong> prioritized secure fit and PCB integration, while <strong>Option 2</strong> reduced interference with
-          adhesives. The final design used <strong>silicone instead of foam</strong> for improved thinness and flexibility:contentReference[oaicite:7]{index=7}.
-        </p>
-        <div class="project-images">
-          <img src="../assets/images/KindHumanoid/finger.png" alt="Finger CAD Design">
-        </div>
+        <details open>
+          <summary>Shear-Sensing Nib Arrays</summary>
+          <p>
+            Inspired by prior fingertip work, each nib houses four electrodes to resolve normal + shear. We explored
+            dense arrays up to <strong>20×20 nibs on 10 cm × 10 cm</strong> (≈16 receptors/cm²), approaching human fingertip receptor
+            densities (~10/cm²). Practical limitation: routing four electrodes per small nib without crosstalk at our
+            fabrication scale.
+          </p>
+          <div class="project-images">
+            <img src="../assets/images/KindHumanoid/nib.jpg" alt="Nib grid design"/>
+            <img src="../assets/images/KindHumanoid/prototype1-1.jpg" alt="Early shear-sensing prototype"/>
+          </div>
+        </details>
+
+        <details>
+          <summary>Finger Wraps with Strain-Relief</summary>
+          <p>
+            Wrap geometry adds compliant “wings” and relief near joints to prevent tearing and wrinkling during bend.
+            We compared two patterns; the chosen layout prioritizes <strong>front-side sensing, back-side adhesion</strong>, and simple
+            attachment across finger sizes. For initial EE testing, silicone wraps were preferred over foam to control thickness.
+          </p>
+          <div class="project-images">
+            <img src="../assets/images/KindHumanoid/finger.png"
+                 alt="Finger wrap CAD with relief features"
+                 width="auto" height="320" loading="lazy">
+          </div>
+        </details>
       </div>
 
-      <!-- Electrical Schematics -->
-      <div class="project-section">
-        <h2>Electrical Schematics</h2>
-        <p>
-          Two PCB approaches were designed:
-        </p>
-        <ul class="project-list">
-          <li><strong>Capacitive PCB</strong>: Grid of touchpads + multiplexers, LDO, capacitive ADC, and RP2040 microcontroller.
-            Data sent via RS485 bus for robust communication:contentReference[oaicite:8]{index=8}.</li>
-          <li><strong>Resistive PCB</strong>: Velostat fabric layered with copper electrodes; resistance measured via ESP32 ADC.</li>
-        </ul>
-        <div class="project-images">
-          <img src="../assets/images/KindHumanoid/capactivepcb.jpg" alt="Capacitive PCB">
-          <img src="../assets/images/KindHumanoid/resistivepcb.jpg" alt="Resistive PCB">
-        </div>
+      <!-- Electronics -->
+      <div id="electronics" class="project-section">
+        <h2>Electronics & Schematics</h2>
+
+        <details open>
+          <summary>Capacitive Stack & PCB</summary>
+          <ul class="project-list">
+            <li><strong>Sensors:</strong> Exposed touch-pad matrix; orthogonal row/column pads beneath (grid addressing).</li>
+            <li><strong>Frontend:</strong> Analog multiplexers → capacitive ADC (24-bit class) → RP2040 for acquisition.</li>
+            <li><strong>Power/Comm:</strong> LDO regulation; RS-485 link for robust, multi-drop external comms.</li>
+            <li><strong>Layout:</strong> Sensor array isolated from digital section; careful ground strategy to reduce coupling.</li>
+          </ul>
+          <div class="project-images">
+            <img src="../assets/images/KindHumanoid/capactivepcb.jpg" alt="Capacitive PCB layout"/>
+          </div>
+        </details>
+
+        <details>
+          <summary>Resistive Stack (Velostat) & PCB</summary>
+          <ul class="project-list">
+            <li>Velostat sheet between copper electrodes; resistance read via ADC (ESP32 in early builds).</li>
+            <li>Benefits: simple readout; Challenges: shorts at flex points; sensitivity to pressure distribution.</li>
+            <li>Electrical isolation, cable strain-relief, and trace guarding are critical to stability.</li>
+          </ul>
+          <div class="project-images">
+            <img src="../assets/images/KindHumanoid/resistivepcb.jpg" alt="Resistive stack wiring"/>
+          </div>
+        </details>
       </div>
 
       <!-- Testing -->
-      <div class="project-section">
+      <div id="testing" class="project-section">
         <h2>Testing</h2>
-        <p>
-          Prototypes were tested with Arduino-controlled force application (10g → 100g).
-          Capacitive foams showed delayed responses and hysteresis (~±1 unit).
-          Resistive fingers gave unstable readings due to shorts.
-          Overall, the tests revealed critical insights into material hysteresis, PCB design,
-          and the need for better electrical isolation:contentReference[oaicite:9]{index=9}.
-        </p>
-        <div class="project-images">
-          <img src="../assets/images/KindHumanoid/prototype3-1.jpg" alt="Initial Capacitive Sensing">
-          <img src="../assets/images/KindHumanoid/prototype4-1.png" alt="Initial Resistive Sensing">
-        </div>
+
+        <details open>
+          <summary>Protocol</summary>
+          <ol>
+            <li>Assemble stack; connect to Arduino/RP2040 logger; zero baselines.</li>
+            <li>Apply forces at labeled points (10 g, 25 g, 50 g, 100 g) for ~2 s each; 3 trials/point.</li>
+            <li>Record time-series from all channels; annotate force level & location.</li>
+            <li>Evaluate rise time, drift, hysteresis (loading vs. unloading), spatial selectivity, and noise.</li>
+          </ol>
+        </details>
+
+        <details>
+          <summary>Observations</summary>
+          <ul class="project-list">
+            <li>Capacitive stacks detect applied force but exhibit latency and mild hysteresis (~±1 unit).</li>
+            <li>Resistive fingers show intermittent shorts at bends; wiring path and strain-relief matter.</li>
+            <li>Resolution improves with denser grids but routing + shielding grow more complex.</li>
+          </ul>
+          <div class="project-images">
+            <img src="../assets/images/KindHumanoid/prototype3-1.jpg" alt="Initial capacitive readings"/>
+            <img src="../assets/images/KindHumanoid/prototype4-1.png" alt="Resistive finger readings"/>
+          </div>
+        </details>
       </div>
 
       <!-- Prototypes -->
-      <div class="project-section">
-        <h2>Prototypes</h2>
+      <div id="prototypes" class="project-section">
+        <h2>Prototype Timeline</h2>
         <ol class="project-list">
-          <li><strong>Prototype 1:</strong> Shear-capacitive nib grid (discontinued due to fabrication limits).</li>
-          <li><strong>Prototype 2:</strong> Rough capacitive foam (too rigid, partial success).</li>
-          <li><strong>Prototype 3:</strong> Layered Dragon Skin + Flex-Foam + copper tape (detected force, delayed).</li>
-          <li><strong>Prototype 4:</strong> Resistive Velostat finger wraps (inconsistent, shorts).</li>
-          <li><strong>Prototype 5:</strong> Revised resistive with Velostat; detected force but limited sensitivity (&gt;30N):contentReference[oaicite:10]{index=10}.</li>
+          <li><strong>P1 — Shear nib grid:</strong> promising shear cues; abandoned due to electrode density constraints.</li>
+          <li><strong>P2 — Rough capacitive:</strong> rigid lab foam dielectric; partial success, moved to custom foam.</li>
+          <li><strong>P3 — Layered silicone + foam:</strong> force detected; delayed response + hysteresis.</li>
+          <li><strong>P4 — Resistive fingers (Velostat):</strong> inconsistent due to shorts and handling sensitivity.</li>
+          <li><strong>P5 — Revised capacitive with Velostat layer:</strong> improved force pickup; limited sensitivity &lt;≈30 N.</li>
         </ol>
       </div>
 
       <!-- Results -->
-      <div class="project-section">
-        <h2>Result</h2>
-        <p>
-          While no prototype achieved robust fine-force sensing, the project produced:
-        </p>
+      <div id="results" class="project-section">
+        <h2>Results & Next Steps</h2>
         <ul class="project-list">
-          <li>A validated <strong>manufacturing workflow</strong> for scalable silicone and foam robotic skins.</li>
-          <li>CAD designs for modular molds, wraps, and high-resolution nib arrays.</li>
-          <li>Working but limited <strong>capacitive and resistive PCB prototypes</strong>.</li>
-          <li>Key insights into material hysteresis, electrical noise, and fabrication constraints.</li>
+          <li>Established a <strong>repeatable manufacturing workflow</strong> for thin silicone sheets and compliant foam layers.</li>
+          <li>Created CAD for molds, finger wraps with strain-relief, and high-density nib arrays.</li>
+          <li>Built and instrumented <strong>capacitive and resistive prototypes</strong>; characterized latency/hysteresis/shorts.</li>
+          <li><strong>Next:</strong> add guard traces & shielding; switch to FPC tails at joints; test faster ADC/AFE; explore stretchier nib materials (e.g., Elastic 50A) while preserving displacement.</li>
         </ul>
-        <p>
-          This project laid the groundwork for future tactile sensing systems in humanoid robotics by combining
-          <strong>soft material science</strong> with <strong>embedded electronics</strong>.
-        </p>
       </div>
 
     </div>
