@@ -16,8 +16,15 @@
         .edu-grid { display:grid; gap:1rem; }
         .edu-meta { display:flex; flex-wrap:wrap; gap:.75rem; color:#6b7280; font-size:.95rem; }
         .course-tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem; }
-        .course-tags .tag { background:#f3f4f6; border:1px solid #e5e7eb; padding:.25rem .5rem; border-radius:.5rem; font-size:.85rem; }
-        .btn-row { display:flex; gap:.75rem; justify-content:center; margin-top:.5rem; }
+        .course-tags .tag {
+          background:#e0f2fe;   /* soft blue background */
+          border:1px solid #bae6fd; /* light blue border */
+          color:#075985;        /* dark teal/blue text */
+          padding:.25rem .5rem;
+          border-radius:.5rem;
+          font-size:.85rem;
+          font-weight:500;
+        }
     </style>
 </head>
 <body>
@@ -43,9 +50,6 @@
         <div class="section-header">
             <h1>EDUCATION</h1>
             <div class="underline"></div>
-            <div class="btn-row">
-                <a href="assets/resume.pdf" class="btn btn-primary" download><i class="fas fa-download"></i> Download Resume</a>
-            </div>
         </div>
 
         <div class="edu-grid">

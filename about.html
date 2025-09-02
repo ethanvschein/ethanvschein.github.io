@@ -1,10 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>About - Ethan Schein</title>
+
+    <!-- Site styles & fonts -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- Page-scoped tweaks -->
+    <style>
+        .about-page { padding: 2rem 0; }
+        .about-grid {
+          display: grid;
+          grid-template-columns: 340px 1fr;
+          gap: 1.25rem;
+          align-items: start;
+        }
+        @media (max-width: 920px) {
+          .about-grid { grid-template-columns: 1fr; }
+        }
+
+        .about-card, .about-panel {
+          border: 1px solid #e5e7eb; background: #fff; border-radius: .75rem; padding: 1rem 1.25rem;
+        }
+
+        /* Left column (profile) */
+        .avatar-wrap { text-align: center; }
+        .avatar {
+          width: 200px; height: 200px; object-fit: cover; border-radius: 9999px;
+          border: 6px solid #f3f4f6; background: #f9fafb; display: inline-block;
+        }
+        .contact-links { display: grid; gap: .5rem; margin-top: .75rem; }
+        .contact-links a { display: inline-flex; align-items: center; gap: .5rem; }
+        .quick-list { display: grid; gap: .4rem; margin-top: .75rem; }
+        .quick-list li { display: flex; align-items: baseline; gap: .5rem; }
+
+        /* Right column (bio & sections) */
+        .about-panel h2 { margin: .25rem 0 .5rem; }
+        .lead {
+          font-size: 1.05rem; line-height: 1.65; color: #111827;
+        }
+        .subtle { color: #6b7280; }
+        .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+        .chip {
+          background: #e0f2fe; border:1px solid #bae6fd; color:#075985;
+          padding:.25rem .6rem; border-radius:.5rem; font-size:.85rem; font-weight:500;
+        }
+
+        .two-col {
+          display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+        }
+        @media (max-width: 920px) {
+          .two-col { grid-template-columns: 1fr; }
+        }
+
+        .list-check { padding-left: 1.25rem; }
+        .list-check li { margin: .3rem 0; }
+
+        .section-header { text-align: center; margin-bottom: 1.25rem; }
+        .underline { width: 80px; height: 3px; background: #14b8a6; margin: .4rem auto 0; border-radius: 999px; }
+
+        .cta {
+          display: flex; gap: .75rem; flex-wrap: wrap; align-items: center;
+          border: 1px dashed #cbd5e1; padding: .9rem 1rem; border-radius: .75rem; background: #f8fafc;
+          justify-content: space-between;
+        }
+        .cta .btn { margin-left: auto; }
+        .btn {
+          display:inline-flex; align-items:center; gap:.5rem;
+          background:#111827; color:#fff; padding:.5rem .85rem; border-radius:.5rem; text-decoration:none; font-weight:600;
+        }
+        .btn.secondary { background:#0ea5e9; }
+    </style>
 </head>
 <body>
 
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo"><a href="index.html">Ethan Schein</a></div>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link active">About</a></li>
+            <li><a href="education.html" class="nav-link">Education</a></li>
+            <li><a href="experience.html" class="nav-link">Experience</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="skills.html" class="nav-link">Skills</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+</nav>
+
+<!-- About -->
+<section class="about-page">
+    <div class="container">
+        <div class="section-header">
+            <h1>ABOUT</h1>
+            <div class="underline"></div>
+        </div>
+
+        <div class="about-grid">
+            <!-- Left column: profile -->
+            <aside class="about-card">
+                <div class="avatar-wrap">
+                    <!-- Replace src with your headshot -->
+                    <img class="avatar" src="assets/images/headshot.jpg" alt="Ethan Schein headshot"/>
+                    <h2 style="margin:.6rem 0 .15rem;">Ethan Schein</h2>
+                    <div class="subtle">Bioengineering &amp; EECS @ UC Berkeley</div>
+                </div>
+
+                <ul class="quick-list">
+                    <li><i class="fa-solid fa-location-dot"></i> Berkeley, CA</li>
+                    <li><i class="fa-solid fa-graduation-cap"></i> B.S. BioE + B.S. EECS (’27)</li>
+                    <li><i class="fa-solid fa-flask"></i> LBNL (Kern Lab) &amp; UCSF (Chen Lab)</li>
+                    <li><i class="fa-solid fa-robot"></i> Soft robotics, tactile sensing, embedded systems</li>
+                </ul>
+
+                <div class="contact-links">
+                    <!-- Update hrefs to your actual profiles -->
+                    <a href="mailto:ethanschein@example.com"><i class="fa-solid fa-envelope"></i> ethanschein@example.com</a>
+                    <a href="https://www.linkedin.com/in/ethanschein" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/ethanschein" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </aside>
+
+            <!-- Right column: bio & content -->
+            <main class="about-panel">
+                <h2>Hi, I’m Ethan — I design and build bio-inspired sensing systems.</h2>
+                <p class="lead">
+                    I split my time between <strong>materials-driven prototyping</strong> and <strong>embedded electronics</strong>.
+                    Recent work spans <em>tactile “e-skin”</em> stacks for humanoid hands (Dragon Skin + tuned PU foams),
+                    high-density electrode arrays for shear/normal sensing, and low-noise acquisition over RS-485.
+                    In the lab, I’ve helped on XFEL sample delivery (multi-valve DOT systems) and RNA sensor engineering
+                    (ADAR-based designs, AAV/LV workflows). I like projects where mechanics, materials, and signal processing meet.
+                </p>
+
+                <div class="two-col" style="margin-top:1rem;">
+                    <section class="about-card">
+                        <h3>What I’m focused on now</h3>
+                        <ul class="list-check">
+                            <li>Scaling thin silicone/foam manufacturing for compliant robotic skins.</li>
+                            <li>Improving tactile readout fidelity (guarding, shielding, better AFE/ADC pipelines).</li>
+                            <li>Rapid PCB iteration for dense, flexible sensor arrays and finger wraps.</li>
+                        </ul>
+                        <div class="chips" style="margin-top:.6rem;">
+                            <span class="chip">Dragon Skin FX Pro</span>
+                            <span class="chip">Flex-Foam VIII (1:1.6)</span>
+                            <span class="chip">RS-485</span>
+                            <span class="chip">RP2040</span>
+                            <span class="chip">ESP32</span>
+                        </div>
+                    </section>
+
+                    <section class="about-card">
+                        <h3>Interests</h3>
+                        <ul class="list-check">
+                            <li>Soft robotics &amp; dexterous manipulation</li>
+                            <li>Bio-inspired materials &amp; haptics</li>
+                            <li>Embedded systems &amp; PCB design</li>
+                            <li>Lab automation &amp; microfluidics</li>
+                        </ul>
+                        <div class="chips" style="margin-top:.6rem;">
+                            <span class="chip">SolidWorks</span>
+                            <span class="chip">Altium</span>
+                            <span class="chip">Python</span>
+                            <span class="chip">OpenCV</span>
+                            <span class="chip">Matlab</span>
+                        </div>
+                    </section>
+                </div>
+
+                <section class="about-card" style="margin-top:1rem;">
+                    <h3>Highlights</h3>
+                    <ul class="list-check">
+                        <li>Built a multilayer tactile skin (≤1 mm silicone sheet + tuned PU foam) with early capacitive/resistive readouts.</li>
+                        <li>Designed multiple fingertip surface patterns and validated adhesion with a custom mechanical rig.</li>
+                        <li>Optimized pellicle manufacturing flows and automated inspection using ML &amp; OpenCV.</li>
+                        <li>Engineered and screened RNA sensors; packaged viral vectors for functional assays.</li>
+                    </ul>
+                </section>
+
+                <section class="about-card" style="margin-top:1rem;">
+                    <h3>Values</h3>
+                    <p class="subtle">
+                        Reproducibility over heroics; document everything; simulate early, iterate fast; test against failure modes, not just demos.
+                        I like build logs, simple rigs, and code that others can actually run.
+                    </p>
+                </section>
+
+                <section style="margin-top:1rem;">
+                    <div class="cta">
+                        <div>
+                            <strong>Collaborations &amp; questions welcome.</strong>
+                            <div class="subtle">Have a project at the intersection of materials, sensing, and embedded systems?</div>
+                        </div>
+                        <a class="btn secondary" href="mailto:ethanschein@example.com"><i class="fa-solid fa-paper-plane"></i> Get in touch</a>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</section>
+
+<script src="js/script.js"></script>
 </body>
 </html>
