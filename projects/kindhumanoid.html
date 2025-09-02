@@ -10,20 +10,88 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-  <!-- Optional: small page-specific tweaks (safe if you want to keep everything in style.css instead) -->
+  <!-- Page-scoped fixes/tweaks -->
   <style>
-    .project-toc { display:flex; gap:1rem; flex-wrap:wrap; margin:1rem 0 2rem; }
-    .project-toc a { padding:.4rem .7rem; border:1px solid var(--border, #e5e7eb); border-radius:.5rem; font-size:.9rem; }
-    .project-section details { border:1px solid var(--border, #e5e7eb); border-radius:.75rem; padding:1rem; background:#fff; }
+    /* ---------- Image system (prevents graininess, keeps consistency) ---------- */
+    .project-images { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; margin-top:.75rem; }
+    .figure { margin:0; }
+    .figure .caption { margin-top:.4rem; color:#6b7280; font-size:.9rem; line-height:1.35; }
+    img.project-img { display:block; width:100%; height:auto; border-radius:.5rem; background:#f6f7f9; object-fit:cover; }
+
+    /* Prevent pixelated look by avoiding unnecessary upscaling */
+    .max-600 { max-width:600px; }
+    .max-720 { max-width:720px; }
+    .img-center { margin-inline:auto; }
+
+    /* ---------- Section cards & lists (fixes left overflow) ---------- */
+    .project-section details { border:1px solid #e5e7eb; border-radius:.75rem; background:#fff; padding:1rem 1.25rem; }
     .project-section details + details { margin-top:1rem; }
     .project-section summary { cursor:pointer; font-weight:600; }
+    .project-section ol,
+    .project-section ul { margin: .5rem 0 0; padding-left: 1.25rem; }
+    .project-section li { margin: .25rem 0; }
+    /* keep numbers inside the white card and aligned */
+    .project-section ol { list-style-position: inside; }
+
+    /* ---------- Metrics ---------- */
     .key-metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1rem; }
-    .metric { border:1px solid var(--border, #e5e7eb); border-radius:.75rem; padding:1rem; background:#fff; }
+    .metric { border:1px solid #e5e7eb; border-radius:.75rem; padding:1rem; background:#fff; }
     .metric h4 { margin:.2rem 0 .3rem; font-size:1rem; }
-    .project-images { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:.75rem; }
-    .project-images img { width:100%; height:auto; border-radius:.5rem; }
+
+    /* ---------- TOC redesigned to match your mock (but horizontal) ---------- */
+    .project-toc-wrapper { margin: 1rem 0 2rem; overflow-x: auto; }
+    .project-toc {
+      display: grid;
+      grid-auto-flow: column;           /* horizontal flow */
+      grid-auto-columns: minmax(260px, 1fr);
+      gap: 1rem;
+      padding-bottom: .25rem;           /* breathing room for scrollbar */
+    }
+    .toc-card {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      align-items: start;
+      gap: .75rem;
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: .75rem;
+      background: #fff;
+      position: relative;
+    }
+    .toc-card::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      border-radius: .75rem 0 0 .75rem;
+      background: #14b8a6;              /* teal accent like your image */
+    }
+    .toc-num {
+      font-weight: 700;
+      font-size: 1.8rem;
+      line-height: 1;
+      color: #111827;                    /* near-black */
+    }
+    .toc-body a {
+      display: inline-block;
+      text-decoration: none;
+      color: #111827;
+    }
+    .toc-title {
+      font-weight: 700;
+      margin-bottom: .2rem;
+    }
+    .toc-sub {
+      color: #6b7280;
+      font-size: .9rem;
+      line-height: 1.3;
+    }
+
+    /* Callout */
     .callout { padding:.85rem 1rem; border-left:4px solid #0ea5e9; background:#f0f9ff; border-radius:.5rem; }
-    .codeish { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+
+    /* Prevent layout shift for images with dimensions */
+    img[width][height] { height:auto; }
   </style>
 </head>
 <body>
@@ -73,28 +141,78 @@
         </div>
         <div class="metric">
           <h4>Target Properties</h4>
-          <p>Friction ~ finger skin; Shore ~2A shell; high elongation (≤763%); thermal −60 °C → 230 °C</p>
+          <p>Friction ~ finger skin; Shore ≈ 2A shell; elongation ≤ 763%; thermal −60 °C → 230 °C</p>
         </div>
         <div class="metric">
           <h4>Electronics</h4>
-          <p>Capacitive grid (mux + capacitive ADC + RP2040 + RS-485); resistive Velostat prototypes</p>
+          <p>Capacitive grid (mux → capacitive ADC → RP2040 → RS-485); resistive Velostat stack</p>
         </div>
         <div class="metric">
           <h4>Scope</h4>
-          <p>Silicone/foam mold design, nib arrays, finger wraps, PCB layouts, test harness + protocol</p>
+          <p>Molds, materials, nib arrays, finger wraps, PCBs, test harness, quantitative evaluation</p>
         </div>
       </div>
 
-      <!-- Table of contents (anchors jump to sections) -->
-      <div class="project-toc">
-        <a href="#overview">Overview</a>
-        <a href="#manufacturing">Manufacturing</a>
-        <a href="#materials">Materials</a>
-        <a href="#designs">Designs</a>
-        <a href="#electronics">Electronics</a>
-        <a href="#testing">Testing</a>
-        <a href="#prototypes">Prototypes</a>
-        <a href="#results">Results</a>
+      <!-- Table of contents (horizontal, styled like your mock) -->
+      <div class="project-toc-wrapper">
+        <div class="project-toc">
+          <div class="toc-card">
+            <div class="toc-num">01</div>
+            <div class="toc-body">
+              <a class="toc-title" href="#overview">Overview</a>
+              <div class="toc-sub">Motivation & approach</div>
+            </div>
+          </div>
+          <div class="toc-card">
+            <div class="toc-num">02</div>
+            <div class="toc-body">
+              <a class="toc-title" href="#manufacturing">Manufacturing</a>
+              <div class="toc-sub">Silicone & foam workflows</div>
+            </div>
+          </div>
+          <div class="toc-card">
+            <div class="toc-num">03</div>
+            <div class="toc-body">
+              <a class="toc-title" href="#materials">Materials</a>
+              <div class="toc-sub">Why FX Pro + Flex-Foam VIII</div>
+            </div>
+          </div>
+          <div class="toc-card">
+            <div class="toc-num">04</div>
+            <div class="toc-body">
+              <a class="toc-title" href="#designs">Designs</a>
+              <div class="toc-sub">Nib arrays & finger wraps</div>
+            </div>
+          </div>
+          <div class="toc-card">
+            <div class="toc-num">05</div>
+            <div class="toc-body">
+              <a class="toc-title" href="#electronics">Electronics</a>
+              <div class="toc-sub">Capacitive + resistive PCBs</div>
+            </div>
+          </div>
+          <div class="toc-card">
+            <div class="toc-num">06</div>
+            <div class="toc-body">
+              <a class="toc-title" href="#testing">Testing</a>
+              <div class="toc-sub">Protocol & observations</div>
+            </div>
+          </div>
+          <div class="toc-card">
+            <div class="toc-num">07</div>
+            <div class="toc-body">
+              <a class="toc-title" href="#prototypes">Prototypes</a>
+              <div class="toc-sub">P1 → P5 iteration</div>
+            </div>
+          </div>
+          <div class="toc-card">
+            <div class="toc-num">08</div>
+            <div class="toc-body">
+              <a class="toc-title" href="#results">Results</a>
+              <div class="toc-sub">What worked & next steps</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -104,15 +222,14 @@
       <div id="overview" class="project-section">
         <h2>Overview</h2>
         <p>
-          Human-like touch requires both sensitive electronics <em>and</em> bio-mechanically realistic skins. Kind Humanoid
-          develops a multilayer tactile skin with a soft outer silicone (durability + skin-like friction), a lightweight
-          elastic foam (deformability + compliance), and embedded electrode patterns for capacitive or resistive sensing
-          across flat panels and articulated fingers.
+          Human-like touch sensing requires both sensitive electronics <em>and</em> biomechanically realistic skins.
+          Kind Humanoid develops a multilayer tactile skin: a durable, skin-like silicone outer shell; a compliant,
+          lightweight foam core; and embedded electrode patterns for capacitive or resistive sensing across
+          planar panels and articulated fingers.
         </p>
         <div class="callout">
-          <strong>What changed vs. a typical e-skin?</strong> We optimized foam mixing for structure (1:1.6 A:B), used luer-injection
-          silicone molds for bubble-free 1 mm sheets, and iterated between capacitive and resistive stacks to understand
-          hysteresis, latency, and wiring-induced shorts.
+          <strong>Highlights:</strong> Optimized foam mix (1:1.6 A:B) for structure; syringe-injection silicone molds for bubble-free 1 mm sheets;
+          iterative capacitive/resistive stacks to study hysteresis, latency, and wiring-induced shorts.
         </div>
       </div>
 
@@ -122,39 +239,57 @@
 
         <details open>
           <summary>Silicone Layer — Dragon Skin FX Pro (1 mm)</summary>
-          <p>
-            <strong>Mold features:</strong> 10 cm × 10 cm plates, central threaded port for a 1/8-NPT male luer lock, four vent holes
-            near corners for uniform fill, pry tabs for safe demolding.
-          </p>
+          <p><strong>Mold features:</strong> 10×10 cm plates, central 1/8-NPT luer port, four corner vents, pry tabs for safe demolding.</p>
           <ol>
-            <li><strong>Prep:</strong> Tap port; clean; light silicone release on all wet surfaces; clamp top/bottom plates; attach luer + 20 mL syringe.</li>
-            <li><strong>Mix:</strong> 1:1 (A:B), 5 mL + 5 mL typical; pre-mix 2 min each addition.</li>
-            <li><strong>Degas:</strong> Vacuum chamber to ~1 bar; hold 3–4 min until bubbling subsides; vent slowly to prevent implosion.</li>
-            <li><strong>Inject:</strong> Funnel → syringe; slow plunger for smooth, laminar fill until vents weep; wipe excess.</li>
-            <li><strong>Cure:</strong> ~40 min at ≥18 °C (65 °F); unclamp; free edges with blade; pry tabs; peel sheet carefully.</li>
-            <li><strong>Cleanup:</strong> IPA wipe, water rinse; all tooling reusable.</li>
+            <li><strong>Prep:</strong> Tap port; clean; light release on wet surfaces; clamp plates; attach luer & 20 mL syringe.</li>
+            <li><strong>Mix:</strong> 1:1 (A:B), e.g., 5 mL + 5 mL; pre-mix ~2 min each addition.</li>
+            <li><strong>Degas:</strong> Vacuum ~3–4 min until bubbling subsides; vent slowly.</li>
+            <li><strong>Inject:</strong> Funnel → syringe; slow plunger for laminar fill until vents weep; wipe excess.</li>
+            <li><strong>Cure:</strong> ~40 min at ≥18 °C; unclamp; free edges; pry at tabs; peel sheet carefully.</li>
+            <li><strong>Cleanup:</strong> IPA wipe; water rinse; tooling reusable.</li>
           </ol>
           <div class="project-images">
-            <img src="../assets/images/KindHumanoid/siliconeformation.jpg" alt="Silicone injection setup"/>
-            <img src="../assets/images/KindHumanoid/siliconesheet.jpg" alt="Cured 1 mm Dragon Skin FX Pro sheet"/>
+            <figure class="figure">
+              <img class="project-img max-720 img-center"
+                   src="../assets/images/KindHumanoid/siliconeformation.jpg"
+                   alt="Silicone injection setup with luer syringe and clamps"
+                   width="1400" height="1000" loading="lazy" decoding="async" />
+              <figcaption class="caption">Luer-lock injection into a vented mold.</figcaption>
+            </figure>
+            <figure class="figure">
+              <img class="project-img max-720 img-center"
+                   src="../assets/images/KindHumanoid/siliconesheet.jpg"
+                   alt="Cured 1 mm Dragon Skin FX Pro sheet"
+                   width="1400" height="1000" loading="lazy" decoding="async" />
+              <figcaption class="caption">Cured 1&nbsp;mm silicone sheet.</figcaption>
+            </figure>
           </div>
         </details>
 
         <details>
           <summary>Foam Layer — Flex-Foam VIII (porous elastic)</summary>
-          <p>
-            <strong>Why this foam?</strong> Lightweight (8 lb/ft³), high elastic deformation, good dielectric behavior, and inexpensive. We tuned
-            the mix to avoid tackiness and achieve a uniform porous structure.
-          </p>
+          <p>Lightweight (8 lb/ft³), compliant, dielectric; tuned to avoid tackiness and achieve uniform pores.</p>
           <ol>
-            <li><strong>Volume planning:</strong> Compute final sheet volume from CAD; divide by 7 to account for ~7× expansion.</li>
-            <li><strong>Mix ratio:</strong> <span class="codeish">Part A : Part B = 1 : 1.6</span> (empirically optimal). Mix A (1 min), add B, then mix quickly (5–10 s).</li>
-            <li><strong>Pot life:</strong> ~30 s; pour in a spiral pattern; brush to corners; close mold; clamp; cure ~2 h.</li>
-            <li><strong>Release:</strong> Very light Ease Release 200 — heavy coats crystalize the surface and alter texture.</li>
+            <li><strong>Volume:</strong> Compute final sheet volume; divide by ~7 for expansion.</li>
+            <li><strong>Mix:</strong> <code>Part A : Part B = 1 : 1.6</code>. Mix A (~1 min), add B, then mix quickly (5–10 s).</li>
+            <li><strong>Pot life:</strong> ~30 s; pour spiral; brush corners; close mold; clamp; cure ~2 h.</li>
+            <li><strong>Release:</strong> Very light Ease Release 200 (heavy coats crystalize surface).</li>
           </ol>
           <div class="project-images">
-            <img src="../assets/images/KindHumanoid/foamcadtop.png" alt="Foam mold cover CAD with enlarged vents"/>
-            <img src="../assets/images/KindHumanoid/foamform.jpg" alt="Cured PU foam sheet"/>
+            <figure class="figure">
+              <img class="project-img max-720 img-center"
+                   src="../assets/images/KindHumanoid/foamcadtop.png"
+                   alt="Foam mold cover CAD with enlarged vents"
+                   width="1400" height="1000" loading="lazy" decoding="async" />
+              <figcaption class="caption">Foam mold with heat/pressure relief vents.</figcaption>
+            </figure>
+            <figure class="figure">
+              <img class="project-img max-720 img-center"
+                   src="../assets/images/KindHumanoid/foamform.jpg"
+                   alt="Cured PU foam sheet"
+                   width="1400" height="1000" loading="lazy" decoding="async" />
+              <figcaption class="caption">Flex-Foam VIII, tuned 1:1.6 (A:B).</figcaption>
+            </figure>
           </div>
         </details>
       </div>
@@ -166,19 +301,19 @@
         <details open>
           <summary>Dragon Skin FX Pro (outer shell)</summary>
           <ul class="project-list">
-            <li><strong>Durability:</strong> high toughness; tensile strength reported ~50 MPa; resilient to fracture/fatigue.</li>
-            <li><strong>Deformability:</strong> Shore 2A approximates epidermal feel; elongation at break up to ~763%.</li>
-            <li><strong>Thermal/Chemical:</strong> stable ~−60 °C → 230 °C; inert, skin-safe platinum-cure chemistry.</li>
-            <li><strong>Manufacturability:</strong> short cure (~40 min), compatible with syringe-injection molds, scalable.</li>
+            <li><strong>Durability:</strong> high toughness; tensile strength ~50 MPa; fatigue resistant.</li>
+            <li><strong>Deformability:</strong> Shore ≈ 2A; elongation up to ~763% (epidermis-like feel).</li>
+            <li><strong>Thermal/Chemical:</strong> −60 °C → 230 °C; inert, skin-safe (platinum-cure).</li>
+            <li><strong>Manufacturability:</strong> ~40 min cure; injection-mold friendly; scalable.</li>
           </ul>
         </details>
 
         <details>
           <summary>Flex-Foam VIII (compliance layer)</summary>
           <ul class="project-list">
-            <li>Low modulus → large elastic deformation for pressure distribution and comfort.</li>
-            <li>Porous structure improves compliance and reduces weight; electrical insulator.</li>
-            <li>Cost-effective and easy to scale; mixing ratio critical (1:1.6 A:B worked best).</li>
+            <li>Low modulus for pressure distribution and comfort.</li>
+            <li>Porous, lightweight, solid dielectric.</li>
+            <li>Economical; ratio critical (1:1.6 A:B worked best).</li>
           </ul>
         </details>
       </div>
@@ -190,29 +325,42 @@
         <details open>
           <summary>Shear-Sensing Nib Arrays</summary>
           <p>
-            Inspired by prior fingertip work, each nib houses four electrodes to resolve normal + shear. We explored
-            dense arrays up to <strong>20×20 nibs on 10 cm × 10 cm</strong> (≈16 receptors/cm²), approaching human fingertip receptor
-            densities (~10/cm²). Practical limitation: routing four electrodes per small nib without crosstalk at our
-            fabrication scale.
+            Each nib houses four electrodes to resolve normal + shear. Arrays up to <strong>20×20</strong> on 10×10 cm
+            (~16 receptors/cm²) approach human fingertip densities (~10/cm²). Limitation: routing four electrodes per nib
+            without crosstalk at our fab scale.
           </p>
           <div class="project-images">
-            <img src="../assets/images/KindHumanoid/nib.jpg" alt="Nib grid design"/>
-            <img src="../assets/images/KindHumanoid/prototype1-1.jpg" alt="Early shear-sensing prototype"/>
+            <figure class="figure">
+              <img class="project-img max-720 img-center"
+                   src="../assets/images/KindHumanoid/nib.jpg"
+                   alt="Nib grid design"
+                   width="1400" height="1000" loading="lazy" decoding="async" />
+              <figcaption class="caption">Nib grid CAD: shear + normal sensing.</figcaption>
+            </figure>
+            <figure class="figure">
+              <img class="project-img max-720 img-center"
+                   src="../assets/images/KindHumanoid/prototype1-1.jpg"
+                   alt="Early shear-sensing prototype with copper nodes"
+                   width="1400" height="1000" loading="lazy" decoding="async" />
+              <figcaption class="caption">Early shear prototype using Ecoflex + copper pads.</figcaption>
+            </figure>
           </div>
         </details>
 
         <details>
           <summary>Finger Wraps with Strain-Relief</summary>
           <p>
-            Wrap geometry adds compliant “wings” and relief near joints to prevent tearing and wrinkling during bend.
-            We compared two patterns; the chosen layout prioritizes <strong>front-side sensing, back-side adhesion</strong>, and simple
-            attachment across finger sizes. For initial EE testing, silicone wraps were preferred over foam to control thickness.
+            Wrap geometry adds compliant wings and relief near joints to prevent tearing/wrinkling during bend.
+            The chosen layout prioritizes front-side sensing, back-side adhesion, and simple attachment across finger sizes.
+            Silicone wraps (vs foam) gave better thickness control for first EE tests.
           </p>
-          <div class="project-images">
-            <img src="../assets/images/KindHumanoid/finger.png"
+          <figure class="figure">
+            <img class="project-img max-600 img-center"
+                 src="../assets/images/KindHumanoid/finger.png"
                  alt="Finger wrap CAD with relief features"
-                 width="auto" height="320" loading="lazy">
-          </div>
+                 width="1000" height="700" loading="lazy" decoding="async" />
+            <figcaption class="caption">Finger wrap with joint relief and wings.</figcaption>
+          </figure>
         </details>
       </div>
 
@@ -223,26 +371,36 @@
         <details open>
           <summary>Capacitive Stack & PCB</summary>
           <ul class="project-list">
-            <li><strong>Sensors:</strong> Exposed touch-pad matrix; orthogonal row/column pads beneath (grid addressing).</li>
-            <li><strong>Frontend:</strong> Analog multiplexers → capacitive ADC (24-bit class) → RP2040 for acquisition.</li>
-            <li><strong>Power/Comm:</strong> LDO regulation; RS-485 link for robust, multi-drop external comms.</li>
-            <li><strong>Layout:</strong> Sensor array isolated from digital section; careful ground strategy to reduce coupling.</li>
+            <li><strong>Sensors:</strong> Exposed touchpad matrix; orthogonal row/column pads (grid addressing).</li>
+            <li><strong>Frontend:</strong> Analog mux → capacitive ADC (24-bit class) → RP2040 acquisition.</li>
+            <li><strong>Power/Comm:</strong> LDO regulation; RS-485 bus for robust multi-drop comms.</li>
+            <li><strong>Layout:</strong> Sensor area isolation; ground/guarding to reduce coupling.</li>
           </ul>
-          <div class="project-images">
-            <img src="../assets/images/KindHumanoid/capactivepcb.jpg" alt="Capacitive PCB layout"/>
-          </div>
+          <!-- LIMIT SIZE so it doesn't upscale and look grainy -->
+          <figure class="figure">
+            <img class="project-img max-720 img-center"
+                 src="../assets/images/KindHumanoid/capactivepcb.jpg"
+                 alt="Capacitive PCB layout with sensor grid and RP2040 section"
+                 width="1400" height="1000" loading="lazy" decoding="async" />
+            <figcaption class="caption">Capacitive grid + mux + ADC + RP2040 + RS-485.</figcaption>
+          </figure>
         </details>
 
         <details>
           <summary>Resistive Stack (Velostat) & PCB</summary>
           <ul class="project-list">
             <li>Velostat sheet between copper electrodes; resistance read via ADC (ESP32 in early builds).</li>
-            <li>Benefits: simple readout; Challenges: shorts at flex points; sensitivity to pressure distribution.</li>
-            <li>Electrical isolation, cable strain-relief, and trace guarding are critical to stability.</li>
+            <li>Pros: simple readout. Cons: shorts at flex points; pressure distribution sensitivity.</li>
+            <li>Isolation, strain-relief, and guard traces are critical for stability.</li>
           </ul>
-          <div class="project-images">
-            <img src="../assets/images/KindHumanoid/resistivepcb.jpg" alt="Resistive stack wiring"/>
-          </div>
+          <!-- LIMIT SIZE so it doesn't upscale and look grainy -->
+          <figure class="figure">
+            <img class="project-img max-720 img-center"
+                 src="../assets/images/KindHumanoid/resistivepcb.jpg"
+                 alt="Resistive stack with Velostat and copper electrodes"
+                 width="1400" height="1000" loading="lazy" decoding="async" />
+            <figcaption class="caption">Resistive Velostat layer with copper electrode pads.</figcaption>
+          </figure>
         </details>
       </div>
 
@@ -254,22 +412,34 @@
           <summary>Protocol</summary>
           <ol>
             <li>Assemble stack; connect to Arduino/RP2040 logger; zero baselines.</li>
-            <li>Apply forces at labeled points (10 g, 25 g, 50 g, 100 g) for ~2 s each; 3 trials/point.</li>
+            <li>Apply forces at labeled points (10 g, 25 g, 50 g, 100 g) for ~2 s each; 3 trials per point.</li>
             <li>Record time-series from all channels; annotate force level & location.</li>
-            <li>Evaluate rise time, drift, hysteresis (loading vs. unloading), spatial selectivity, and noise.</li>
+            <li>Evaluate rise time, drift, hysteresis (loading vs unloading), spatial selectivity, and noise.</li>
           </ol>
         </details>
 
         <details>
           <summary>Observations</summary>
           <ul class="project-list">
-            <li>Capacitive stacks detect applied force but exhibit latency and mild hysteresis (~±1 unit).</li>
+            <li>Capacitive stacks detect force but exhibit latency and mild hysteresis (~±1 unit).</li>
             <li>Resistive fingers show intermittent shorts at bends; wiring path and strain-relief matter.</li>
-            <li>Resolution improves with denser grids but routing + shielding grow more complex.</li>
+            <li>Resolution improves with denser grids; routing + shielding become more complex.</li>
           </ul>
           <div class="project-images">
-            <img src="../assets/images/KindHumanoid/prototype3-1.jpg" alt="Initial capacitive readings"/>
-            <img src="../assets/images/KindHumanoid/prototype4-1.png" alt="Resistive finger readings"/>
+            <figure class="figure">
+              <img class="project-img max-720 img-center"
+                   src="../assets/images/KindHumanoid/prototype3-1.jpg"
+                   alt="Initial capacitive sensing time-series"
+                   width="1200" height="900" loading="lazy" decoding="async" />
+              <figcaption class="caption">Capacitive stack: force detection with latency & hysteresis.</figcaption>
+            </figure>
+            <figure class="figure">
+              <img class="project-img max-720 img-center"
+                   src="../assets/images/KindHumanoid/prototype4-1.png"
+                   alt="Resistive finger readings showing noise spikes"
+                   width="1200" height="900" loading="lazy" decoding="async" />
+              <figcaption class="caption">Resistive finger: shorts at bends; needs strain relief.</figcaption>
+            </figure>
           </div>
         </details>
       </div>
@@ -282,7 +452,7 @@
           <li><strong>P2 — Rough capacitive:</strong> rigid lab foam dielectric; partial success, moved to custom foam.</li>
           <li><strong>P3 — Layered silicone + foam:</strong> force detected; delayed response + hysteresis.</li>
           <li><strong>P4 — Resistive fingers (Velostat):</strong> inconsistent due to shorts and handling sensitivity.</li>
-          <li><strong>P5 — Revised capacitive with Velostat layer:</strong> improved force pickup; limited sensitivity &lt;≈30 N.</li>
+          <li><strong>P5 — Revised capacitive with Velostat layer:</strong> improved force pickup; limited sensitivity &lt;≈ 30 N.</li>
         </ol>
       </div>
 
@@ -290,10 +460,10 @@
       <div id="results" class="project-section">
         <h2>Results & Next Steps</h2>
         <ul class="project-list">
-          <li>Established a <strong>repeatable manufacturing workflow</strong> for thin silicone sheets and compliant foam layers.</li>
-          <li>Created CAD for molds, finger wraps with strain-relief, and high-density nib arrays.</li>
-          <li>Built and instrumented <strong>capacitive and resistive prototypes</strong>; characterized latency/hysteresis/shorts.</li>
-          <li><strong>Next:</strong> add guard traces & shielding; switch to FPC tails at joints; test faster ADC/AFE; explore stretchier nib materials (e.g., Elastic 50A) while preserving displacement.</li>
+          <li>Repeatable <strong>manufacturing workflow</strong> for thin silicone sheets and compliant foam layers.</li>
+          <li>CAD for molds, finger wraps with strain-relief, and high-density nib arrays.</li>
+          <li>Capacitive & resistive prototypes characterized (latency, hysteresis, failure modes).</li>
+          <li><strong>Next:</strong> guard traces & shielding; FPC tails at joints; faster ADC/AFE; explore stretchier nib materials.</li>
         </ul>
       </div>
 
