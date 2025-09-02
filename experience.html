@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience - Your Name</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Experience - Ethan Schein</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        .experience-page .section-header { text-align:center; margin-bottom:1.25rem; }
+        .timeline { display:grid; gap:1rem; }
+        .timeline-item { display:grid; grid-template-columns: 160px 1fr; gap:1rem; align-items:start; }
+        .timeline-date { color:#6b7280; font-weight:600; padding-top:.35rem; }
+        .timeline-content { border:1px solid #e5e7eb; border-radius:.75rem; padding:1rem 1.25rem; background:#fff; }
+        .timeline-content h3 { margin:.1rem 0; }
+        .timeline-content h4 { margin:.1rem 0 .25rem; color:#374151; font-weight:600; }
+        .timeline-content p { margin:.25rem 0; }
+        .timeline-content ul { margin:.5rem 0 0; padding-left:1.25rem; }
+        .tech-stack { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem; }
+        .tech-tag { background:#f3f4f6; border:1px solid #e5e7eb; padding:.25rem .5rem; border-radius:.5rem; font-size:.85rem; }
+        @media (max-width: 760px){ .timeline-item{ grid-template-columns:1fr; } .timeline-date{ padding:0; } }
+    </style>
 </head>
 <body>
-<!-- Navigation (same as other pages) -->
+
+<!-- Navigation -->
 <nav class="navbar">
     <div class="nav-container">
-        <div class="nav-logo">
-            <a href="index.html">Your Name</a>
-        </div>
+        <div class="nav-logo"><a href="index.html">Ethan Schein</a></div>
         <ul class="nav-menu">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="about.html" class="nav-link">About</a></li>
@@ -23,91 +36,144 @@
             <li><a href="projects.html" class="nav-link">Projects</a></li>
             <li><a href="skills.html" class="nav-link">Skills</a></li>
         </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <div class="hamburger"><span></span><span></span><span></span></div>
     </div>
 </nav>
 
-<!-- Experience Section -->
+<!-- Experience -->
 <section class="experience-page">
     <div class="container">
         <div class="section-header">
             <h1>PROFESSIONAL EXPERIENCE</h1>
             <div class="underline"></div>
-            <a href="assets/resume.pdf" class="btn btn-primary" download>
+            <a href="documents/resume.pdf" class="btn btn-primary" download>
                 <i class="fas fa-download"></i> Download Resume
             </a>
         </div>
 
         <div class="timeline">
-            <!-- Experience 1 -->
+
+            <!-- Research — LBNL Kern Lab -->
             <div class="timeline-item">
-                <div class="timeline-date">Jun 2023 - Present</div>
+                <div class="timeline-date">Sep 2024 – Present</div>
                 <div class="timeline-content">
-                    <h3>Software Engineer</h3>
-                    <h4>Tech Company Name</h4>
+                    <h3>Student Research Assistant</h3>
+                    <h4>Lawrence Berkeley National Lab — Kern Lab</h4>
+                    <p>Location: Berkeley, CA</p>
+                    <ul>
+                        <li>Optimized the “droplet on tape” (DOT) XFEL sample-delivery system; built a multi-valve syringe system for rapid multi-sample dispensing.</li>
+                        <li>Contributed to beamtime prep and on-site runs (SLAC): PSII crystal growth optimization, high-throughput sample handling, real-time data capture.</li>
+                        <li>Supported experiments resolving catalytic intermediates in photosynthetic water splitting with femtosecond X-ray pulses.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Microfluidics</span><span class="tech-tag">Lab Automation</span><span class="tech-tag">Crystallography</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research — UCSF Chen Lab -->
+            <div class="timeline-item">
+                <div class="timeline-date">Jan 2024 – Feb 2025</div>
+                <div class="timeline-content">
+                    <h3>Neurosurgery Research Assistant</h3>
+                    <h4>UCSF — Chen Lab</h4>
                     <p>Location: San Francisco, CA</p>
                     <ul>
-                        <li>Developed and maintained RESTful APIs serving 1M+ daily active users</li>
-                        <li>Implemented microservices architecture reducing system latency by 40%</li>
-                        <li>Led a team of 3 developers in designing a new feature module</li>
-                        <li>Collaborated with cross-functional teams to deliver products on schedule</li>
+                        <li>Developed hundreds of ADAR-based RNA sensors targeting neuromodulators/neuropeptides; pooled in vitro screens to select candidates for in vivo.</li>
+                        <li>Hands-on viral systems: designed and packaged AAV/LV constructs; VLP formation; transfection and harvesting.</li>
+                        <li>Gained deep exposure to molecular cloning workflows and functional assays.</li>
                     </ul>
                     <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">AWS</span>
-                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">AAV / LV</span><span class="tech-tag">RNA Engineering</span><span class="tech-tag">Molecular Cloning</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Experience 2 -->
+            <!-- Kind Humanoid -->
             <div class="timeline-item">
-                <div class="timeline-date">Jan 2022 - May 2023</div>
+                <div class="timeline-date">Jan 2024 – May 2024</div>
                 <div class="timeline-content">
-                    <h3>Junior Developer</h3>
-                    <h4>Startup Name</h4>
-                    <p>Location: New York, NY</p>
+                    <h3>Material Sciences Engineer (Contract)</h3>
+                    <h4>Kind Humanoid</h4>
+                    <p>Location: Palo Alto, CA</p>
                     <ul>
-                        <li>Built responsive web applications using React and Node.js</li>
-                        <li>Participated in agile development processes and daily stand-ups</li>
-                        <li>Wrote unit tests increasing code coverage by 30%</li>
-                        <li>Assisted in database design and optimization</li>
+                        <li>Designed a multilayer “e-skin” proof-of-concept (≤2 cm thick, ~100 cm²) with flexible PCB and tensile sensing; tuned for human-like mechanical properties.</li>
+                        <li>Ran silicone/foam process studies to optimize Young’s modulus, ductility, toughness, and creep rupture for lifelike responses.</li>
                     </ul>
                     <div class="tech-stack">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Git</span>
+                        <span class="tech-tag">SolidWorks</span><span class="tech-tag">Silicone Casting</span><span class="tech-tag">PCB</span><span class="tech-tag">Capacitive/Resistive Sensing</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Experience 3 -->
+            <!-- Sensible Robotics -->
             <div class="timeline-item">
-                <div class="timeline-date">Jun 2021 - Dec 2021</div>
+                <div class="timeline-date">Sep 2023 – Dec 2023</div>
                 <div class="timeline-content">
-                    <h3>Software Engineering Intern</h3>
-                    <h4>Company Name</h4>
-                    <p>Location: Remote</p>
+                    <h3>Bioengineer (Contract)</h3>
+                    <h4>Sensible Robotics</h4>
+                    <p>Location: Berkeley, CA</p>
                     <ul>
-                        <li>Developed automation scripts reducing manual testing time by 50%</li>
-                        <li>Assisted in debugging and fixing production issues</li>
-                        <li>Created documentation for internal tools and processes</li>
-                        <li>Participated in code reviews and technical discussions</li>
+                        <li>Designed 5 fingertip skin patterns (fingerprint, composite, knurled, checkered, sine curve) in SOLIDWORKS; manufactured via silicone polymer blend.</li>
+                        <li>Built and used a mechanical test rig (spring-loaded bracket + Hirth joints) to evaluate precision grip; identified a design with significantly higher adhesion (95% CI), adopted for production.</li>
                     </ul>
                     <div class="tech-stack">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Jenkins</span>
+                        <span class="tech-tag">SolidWorks</span><span class="tech-tag">Silicone</span><span class="tech-tag">Mechanism Design</span><span class="tech-tag">Data Analysis</span>
                     </div>
                 </div>
             </div>
+
+            <!-- Micro Lithography Inc — 2023 -->
+            <div class="timeline-item">
+                <div class="timeline-date">Jun 2023 – Aug 2023</div>
+                <div class="timeline-content">
+                    <h3>Automation Tech Engineer</h3>
+                    <h4>Micro Lithography Inc.</h4>
+                    <p>Location: Sunnyvale, CA</p>
+                    <ul>
+                        <li>Improved pellicle spin-coating flow to cut manufacturing time, reduce chuck marks, and lower pinholes; validated with QC and adopted by production.</li>
+                        <li>Built a Python ML module for pellicle frame detection (98.9% accuracy) as the basis for automated inspection.</li>
+                        <li>Managed and trained interns on software tooling and project workflows.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span><span class="tech-tag">ML</span><span class="tech-tag">QC/Manufacturing</span><span class="tech-tag">Process Optimization</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Micro Lithography Inc — 2022 -->
+            <div class="timeline-item">
+                <div class="timeline-date">Jun 2022 – Aug 2022</div>
+                <div class="timeline-content">
+                    <h3>Automation Engineer</h3>
+                    <h4>Micro Lithography Inc.</h4>
+                    <p>Location: Sunnyvale, CA</p>
+                    <ul>
+                        <li>Developed an OpenCV pipeline (high-pass filtering + contour detection) to flag contaminated pellicles in <0.5 s per part; adopted as baseline line-scan inspection.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">OpenCV</span><span class="tech-tag">Image Processing</span><span class="tech-tag">Automation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Project — LAMP -->
+            <div class="timeline-item">
+                <div class="timeline-date">Jul 2022 – May 2023</div>
+                <div class="timeline-content">
+                    <h3>Research Project — LAMP Detection of E. coli</h3>
+                    <h4>Independent / Academic</h4>
+                    <p>Location: —</p>
+                    <ul>
+                        <li>Developed a repeatable LAMP protocol to detect non-pathogenic E. coli on spinach in under 60 min (≈2400% faster than typical PCR) with ~$1.06 per sample.</li>
+                        <li>Designed 6 RNA primers targeting the MalB gene (E. coli OP50); validated reactions and documented workflow.</li>
+                    </ul>
+                    <div class="tech-stack">
+                        <span class="tech-tag">LAMP</span><span class="tech-tag">Primer Design</span><span class="tech-tag">qPCR/PCR</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>

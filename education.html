@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Education - Ethan Schein</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        .edu-page .section-header { text-align:center; margin-bottom:1.25rem; }
+        .edu-card {
+          border:1px solid #e5e7eb; border-radius:.75rem; padding:1rem 1.25rem; background:#fff;
+          display:grid; gap:.5rem;
+        }
+        .edu-grid { display:grid; gap:1rem; }
+        .edu-meta { display:flex; flex-wrap:wrap; gap:.75rem; color:#6b7280; font-size:.95rem; }
+        .course-tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem; }
+        .course-tags .tag { background:#f3f4f6; border:1px solid #e5e7eb; padding:.25rem .5rem; border-radius:.5rem; font-size:.85rem; }
+        .btn-row { display:flex; gap:.75rem; justify-content:center; margin-top:.5rem; }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo"><a href="index.html">Ethan Schein</a></div>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="education.html" class="nav-link active">Education</a></li>
+            <li><a href="experience.html" class="nav-link">Experience</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="skills.html" class="nav-link">Skills</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+</nav>
+
+<section class="edu-page">
+    <div class="container">
+        <div class="section-header">
+            <h1>EDUCATION</h1>
+            <div class="underline"></div>
+            <div class="btn-row">
+                <a href="assets/resume.pdf" class="btn btn-primary" download><i class="fas fa-download"></i> Download Resume</a>
+            </div>
+        </div>
+
+        <div class="edu-grid">
+            <!-- UC Berkeley -->
+            <div class="edu-card">
+                <h2>University of California, Berkeley</h2>
+                <div class="edu-meta">
+                    <span><i class="fa-solid fa-location-dot"></i> Berkeley, CA</span>
+                    <span><i class="fa-solid fa-graduation-cap"></i> B.S. Bioengineering &amp; B.S. Electrical Engineering and Computer Sciences</span>
+                    <span><i class="fa-solid fa-calendar"></i> May 2027 (expected)</span>
+                    <span><i class="fa-solid fa-star"></i> GPA: 3.9 / 4.0</span>
+                </div>
+
+                <h3>Selected Coursework</h3>
+                <div class="course-tags">
+                    <span class="tag">Structure & Interpretation of Computer Programs</span>
+                    <span class="tag">Data Structures</span>
+                    <span class="tag">Computer Architecture & Machine Structures</span>
+                    <span class="tag">Great Ideas in Computer Architecture</span>
+                    <span class="tag">Discrete Math & Probability Theory</span>
+                    <span class="tag">Designing Info Devices & Systems I/II</span>
+                    <span class="tag">Engineering Molecules</span>
+                    <span class="tag">Biological Mass Transport & Fluid Dynamics</span>
+                    <span class="tag">Engineering Devices</span>
+                    <span class="tag">Microelectronic Devices</span>
+                    <span class="tag">Properties of Materials</span>
+                </div>
+
+                <h3 style="margin-top:.75rem;">Focus & Interests</h3>
+                <p>
+                    Bio-inspired sensing, soft/robotic materials, embedded systems, and PCB design —
+                    with a cross-disciplinary emphasis on materials science, signal processing, and control for dexterous manipulation.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/script.js"></script>
+</body>
+</html>
