@@ -197,6 +197,13 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+.image-placeholder img {
+    width: 8%;
+    height: 8%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
 /* Stats Section */
 .stats {
     padding: 80px 0;
