@@ -1,12 +1,11 @@
 :root {
-    --primary-color: #0ea5e9;
+    --primary-color: #4a90e2;
     --secondary-color: #50c878;
     --dark-bg: #0a192f;
-    --light-bg: #fff;
-    --text-light: #6b7280;
-    --text-white: #111827;
-    --text-w: #FFFFFF
-    --accent: #14b8a6;
+    --light-bg: #112240;
+    --text-light: #8892b0;
+    --text-white: #ccd6f6;
+    --accent: #64ffda;
 }
 
 * {
@@ -109,7 +108,7 @@ body {
 
 .hero-title {
     font-size: 3.5rem;
-    color: var(--text-w);
+    color: var(--text-white);
     margin-bottom: 1rem;
 }
 
@@ -500,17 +499,17 @@ img[width][height] {
     border: 1px solid #e5e7eb;
     border-radius: 0.75rem;
     padding: 1rem;
-    background: var(--light-bg);
+    background: #e5e7eb;
 }
 
 .metric h4 {
     margin: 0.2rem 0 0.3rem;
     font-size: 1rem;
-    color: var(--text-white);
+    color: #111827;
 }
 
 .metric p {
-    color: var(--text-light);
+    color: #6b7280;
     margin: 0;
 }
 
@@ -536,15 +535,15 @@ img[width][height] {
     padding: 1rem;
     border: 1px solid #e5e7eb;
     border-radius: 0.75rem;
-    background: var(--light-bg);
+    background: #e5e7eb;
     position: relative;
     transition: all 0.3s ease;
 }
 
 .toc-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
-    border-color: var(--accent);
+    box-shadow: 0 10px 30px #e5e7eb;
+    border-color: #14b8a6;
 }
 
 .toc-card::before {
@@ -555,25 +554,25 @@ img[width][height] {
     bottom: 0;
     width: 6px;
     border-radius: 0.75rem 0 0 0.75rem;
-    background: var(--accent);
+    background: #fff;
 }
 
 .toc-num {
     font-weight: 700;
     font-size: 1.8rem;
     line-height: 1;
-    color: var(--text-white);
+    color: #111827;
 }
 
 .toc-body a {
     display: inline-block;
     text-decoration: none;
-    color: var(--text-white);
+    color: #111827;
     transition: color 0.3s;
 }
 
 .toc-body a:hover {
-    color: var(--accent);
+    color: #14b8a6;
 }
 
 .toc-title {
@@ -582,7 +581,7 @@ img[width][height] {
 }
 
 .toc-sub {
-    color: var(--text-light);
+    color: #6b7280;
     font-size: 0.9rem;
     line-height: 1.3;
 }
@@ -591,7 +590,7 @@ img[width][height] {
 .callout {
     padding: 0.85rem 1rem;
     border-left: 4px solid var(--primary-color);
-    background: #f0f9ff;
+    background: rgba(74, 144, 226, 0.1);
     border-radius: 0.5rem;
     margin: 1rem 0;
 }
@@ -706,7 +705,7 @@ img[width][height] {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 50px;
-    color: var(--text-w);
+    color: var(--text-white);
 }
 
 .projects-preview {
@@ -742,7 +741,7 @@ img[width][height] {
 }
 
 .category-title {
-    color: var(--text-w);
+    color: var(--text-white);
     font-size: 1.8rem;
     text-align: center;
     margin-bottom: 1rem;
