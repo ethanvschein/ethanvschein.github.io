@@ -779,6 +779,8 @@ img[width][height] {
     cursor: default;
     min-width: 140px;
     flex: 0 0 auto;
+    text-decoration: none;
+    display: block;
 }
 
 .skill-card:hover {
