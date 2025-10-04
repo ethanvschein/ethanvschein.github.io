@@ -1,11 +1,11 @@
 :root {
-    --primary-color: #4a90e2;
+    --primary-color: #0ea5e9;
     --secondary-color: #50c878;
     --dark-bg: #0a192f;
-    --light-bg: #112240;
-    --text-light: #8892b0;
-    --text-white: #ccd6f6;
-    --accent: #64ffda;
+    --light-bg: #fff;
+    --text-light: #6b7280;
+    --text-white: #111827;
+    --accent: #14b8a6;
 }
 
 * {
@@ -496,7 +496,7 @@ img[width][height] {
 }
 
 .metric {
-    border: 1px solid rgba(100, 255, 218, 0.1);
+    border: 1px solid #e5e7eb;
     border-radius: 0.75rem;
     padding: 1rem;
     background: var(--light-bg);
@@ -533,7 +533,7 @@ img[width][height] {
     align-items: start;
     gap: 0.75rem;
     padding: 1rem;
-    border: 1px solid rgba(100, 255, 218, 0.1);
+    border: 1px solid #e5e7eb;
     border-radius: 0.75rem;
     background: var(--light-bg);
     position: relative;
@@ -590,7 +590,7 @@ img[width][height] {
 .callout {
     padding: 0.85rem 1rem;
     border-left: 4px solid var(--primary-color);
-    background: rgba(74, 144, 226, 0.1);
+    background: #f0f9ff;
     border-radius: 0.5rem;
     margin: 1rem 0;
 }
