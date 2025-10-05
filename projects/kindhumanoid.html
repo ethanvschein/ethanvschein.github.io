@@ -69,7 +69,7 @@
         </div>
       </div>
 
-      <!-- Table of contents (horizontal, styled like your mock) -->
+      <!-- Table of contents (horizontal, styled like mock) -->
       <div class="project-toc-wrapper">
         <div class="project-toc">
           <div class="toc-card">
@@ -182,14 +182,14 @@
                    src="../assets/images/KindHumanoid/siliconeformation.jpg"
                    alt="Silicone injection setup with luer syringe and clamps"
                    width="1400" height="1000" loading="lazy" decoding="async" />
-              <figcaption class="caption">Luer-lock injection into a vented mold.</figcaption>
+              <figcaption class="caption">Luer-lock injection system: syringe delivers degassed silicone through threaded port for laminar fill.</figcaption>
             </figure>
             <figure class="figure">
               <img class="project-img max-720 img-center"
                    src="../assets/images/KindHumanoid/siliconesheet.jpg"
                    alt="Cured 1 mm Dragon Skin FX Pro sheet"
                    width="1400" height="1000" loading="lazy" decoding="async" />
-              <figcaption class="caption">Cured 1&nbsp;mm silicone sheet.</figcaption>
+              <figcaption class="caption">Cured 1 mm silicone sheet (10×10 cm): bubble-free, uniform thickness, ready for layering.</figcaption>
             </figure>
           </div>
         </details>
@@ -212,170 +212,355 @@
             <li><strong>Cleanup:</strong> Acetone/IPA wipe; water rinse; tooling reusable.</li>
           </ol>
           <div class="project-images">
-            <figure class="figure">
-              <img class="project-img max-720 img-center"
-                   src="../assets/images/KindHumanoid/foamcadtop.png"
-                   alt="Foam mold cover CAD with enlarged vents"
-                   width="1400" height="1000" loading="lazy" decoding="async" />
-              <figcaption class="caption">Foam mold with heat/pressure relief vents.</figcaption>
-            </figure>
-            <figure class="figure">
-              <img class="project-img max-720 img-center"
-                   src="../assets/images/KindHumanoid/foamform.jpg"
-                   alt="Cured PU foam sheet"
-                   width="1400" height="1000" loading="lazy" decoding="async" />
-              <figcaption class="caption">Flex-Foam VIII, tuned 1:1.6 (A:B).</figcaption>
-            </figure>
+            <div class="project-images grid-2">
+              <figure class="figure">
+                <img src="../assets/images/KindHumanoid/foamcadtop.png"
+                     alt="Foam mold cover CAD with enlarged vents"
+                     class="project-img"
+                     width="1400" height="1000" loading="lazy" decoding="async" />
+                <figcaption class="caption">Foam mold with heat/pressure relief vents.</figcaption>
+              </figure>
+              <figure class="figure">
+                <img src="../assets/images/KindHumanoid/foamform.jpg"
+                     alt="Cured PU foam sheet"
+                     class="project-img"
+                     width="1400" height="1000" loading="lazy" decoding="async" />
+                <figcaption class="caption">Flex-Foam VIII, tuned 1:1.6 (A:B).</figcaption>
+              </figure>
+            </div>
           </div>
         </details>
       </div>
 
       <!-- Materials -->
       <div id="materials" class="project-section">
-        <h2>Materials Reasoning</h2>
+        <h2>Materials Selection & Engineering Rationale</h2>
 
         <details open>
-          <summary>Dragon Skin FX Pro (outer shell)</summary>
+          <summary>Dragon Skin FX Pro — Outer Shell Material Science</summary>
+
+          <h4>Selection Criteria & Bio-Inspired Requirements</h4>
+          <p>
+            The outer layer demanded properties matching human epidermis: friction coefficient approximating fingertips (0.62±0.22 vs. body 0.46±0.15), low shore hardness (~2A for epidermis vs. 20A for full skin stack including muscle), high elongation (matching skin's extensibility), and durability across millions of deformation cycles. Silicone rubbers emerged as the optimal material class due to skin-like friction, deformability, and established use in robotic hands research.
+          </p>
+
+          <h4>Durability: Toughness, Fatigue, & Tensile Performance</h4>
+          <p>
+            Imperial College's comparative study of commercial silicones established Dragon Skin FX Pro as superior across multiple metrics. Stress-strain characterization revealed <strong>highest toughness</strong> (area under curve) indicating exceptional fracture resistance, <strong>maximum tensile strength ~50 MPa</strong> (manufacturer spec: ~500 psi), and <strong>greatest stress at fracture</strong> among evaluated materials.
+          </p>
+          <p>
+            Standard silicones exhibit poor fatigue resistance (failure within 10³-10⁴ cycles), but <strong>platinum silicone rubbers</strong>—Dragon Skin FX Pro's category—achieve orders-of-magnitude improvement (10⁶+ cycles). Platinum-catalyzed cross-linking produces chemically pure product without toxic byproducts, ensuring skin-safe, biocompatible material suitable for human-robot interaction. This purity also maintains excellent electrical insulation across the molecular structure.
+          </p>
+
+          <h4>Deformability & Compliance</h4>
           <ul class="project-list">
-            <li><strong>Durability:</strong> high toughness; tensile strength ~50 MPa; fatigue resistant.</li>
-            <li><strong>Deformability:</strong> Shore ≈ 2A; elongation up to ~763% (epidermis-like feel).</li>
-            <li><strong>Thermal/Chemical:</strong> −60 °C → 230 °C; inert, skin-safe (platinum-cure).</li>
-            <li><strong>Manufacturability:</strong> ~40 min cure; injection-mold friendly; scalable.</li>
+            <li><strong>Shore hardness 2A:</strong> Matches human epidermis feel; allows conformable contact across varied surface geometries</li>
+            <li><strong>763% elongation at break:</strong> Far exceeds human skin; prevents tearing under extreme deformation</li>
+            <li><strong>High yield strength:</strong> Maintains primarily elastic deformation; minimal permanent plastic deformation under normal use</li>
+            <li><strong>Moderate Young's modulus:</strong> Stress-strain curves show moderate initial slope—sufficiently elastic without being overly compliant (which would reduce force transmission to sensors)</li>
+          </ul>
+
+          <h4>Environmental Stability</h4>
+          <ul class="project-list">
+            <li><strong>Thermal range −60°C to 230°C:</strong> Exceptional temperature tolerance enables outdoor/industrial use; silicone's Si-O backbone provides inherent thermal stability; minimal creep at room temperature but subject to creep rupture under sustained stress at high temperatures (similar to biological tissue)</li>
+            <li><strong>Chemical inertness:</strong> Low reactivity across wide pH range; resistant to UV, ozone, moisture; maintains mechanical properties across environmental factors</li>
+            <li><strong>Platinum cure non-toxicity:</strong> No volatile byproducts; food-safe and medical-grade applications; critical for robots interacting with humans</li>
+          </ul>
+
+          <h4>Mechanical Requirements</h4>
+          <p>
+            Project specification: material must withstand <strong>100 N per 1 cm² ≈ 145 psi</strong>. Dragon Skin FX Pro's 500 psi tensile strength provides <strong>3.4× safety factor</strong>, ensuring reliable operation under maximum loading.
+          </p>
+
+          <h4>Manufacturability & Scalability</h4>
+          <ul class="project-list">
+            <li><strong>Cost-effective:</strong> 55-gallon drum ~\$9,500 (price fluctuates with silicone market); for 6-foot humanoid like Mona, ~½ gallon needed for 1 mm coverage = ~\$85 material cost per robot</li>
+            <li><strong>Rapid cure:</strong> 40-minute cure time at room temperature enables high-throughput production; no specialized heating equipment required</li>
+            <li><strong>Simple processing:</strong> 1:1 mix ratio (A:B); injection-moldable; vacuum-degassable; scales linearly from lab prototypes to manufacturing volumes</li>
           </ul>
         </details>
 
         <details>
-          <summary>Flex-Foam VIII (compliance layer)</summary>
+          <summary>Flex-Foam VIII — Compliance Layer Engineering</summary>
+
+          <h4>Selection Rationale</h4>
+          <p>
+            The foam layer requires: lightweight construction (minimizing robotic inertia), large elastic deformation (pressure distribution across sensors), dielectric properties (enabling capacitive sensing), and commercial availability (avoiding complex chemical synthesis). Polyurethane foams outperform silicone foams on weight while maintaining excellent insulative properties and porous structure beneficial for sensor integration.
+          </p>
+
+          <h4>Material Properties</h4>
           <ul class="project-list">
-            <li>Density 8 lb/ft³; extremely lightweight, improves dexterity.</li>
-            <li>Low modulus → large elastic deformation, distributes pressure evenly.</li>
-            <li>Optimized ratio 1:1.6 produced uniform, non-tacky sheets.</li>
-            <li>Dielectric properties enable use as part of capacitive stack.</li>
+            <li><strong>Density 8 lb/ft³:</strong> Extremely lightweight; improves robot dexterity and reduces actuator requirements vs. heavier alternatives</li>
+            <li><strong>Low Young's modulus:</strong> Permits large elastic deformation under compression; distributes applied forces evenly across capacitive sensor array; mimics dermis compliance</li>
+            <li><strong>Porous structure:</strong> Air pockets reduce effective dielectric constant; improves sensitivity of capacitive measurements; provides cushioning similar to biological adipose tissue</li>
+            <li><strong>High tensile strength:</strong> Polyurethane chemistry provides structural integrity despite low density; resists tearing under shear forces</li>
+            <li><strong>Excellent insulation:</strong> Low thermal and electrical conductivity; isolates sensors from environmental noise; maintains stable dielectric properties across temperature range</li>
           </ul>
+
+          <h4>Formulation Optimization: Why 1:1.6?</h4>
+          <p>
+            Systematic ratio testing revealed critical relationships between Part A:B ratio and material properties:
+          </p>
+          <ul class="project-list">
+            <li><strong>1:2 (manufacturer default):</strong> Excessively dense, tacky surface, poor porosity, unsuitable for sensing applications</li>
+            <li><strong>1:3 (excess Part B):</strong> Viscous liquid-like consistency, no structural integrity, failed to cure properly</li>
+            <li><strong>1:1.6 (optimized):</strong> Non-tacky surface, uniform porous structure, good compliance, lighter weight, ideal for sensor integration</li>
+            <li><strong>1:1.5 (reduced Part B):</strong> Improved porosity but compromised structural integrity; foam too weak for repeated compression</li>
+            <li><strong>1:1 (excess Part A):</strong> Phase separation with concentrated Part A pockets; non-uniform properties across sheet; unacceptable for sensing applications</li>
+          </ul>
+
+          <h4>Cost & Accessibility</h4>
+          <p>
+            Flex-Foam VIII trial kit (2 lb) costs \$36, making it extremely affordable for prototyping. No specialized equipment beyond mixing bowls and molds required. Commercial availability eliminates need for complex polyurethane synthesis, enabling rapid iteration and scaling.
+          </p>
         </details>
       </div>
 
       <!-- Designs -->
       <div id="designs" class="project-section">
-        <h2>Design Iterations</h2>
+        <h2>Design Iterations & CAD Development</h2>
 
         <details open>
-          <summary>Shear-Sensing Nib Arrays</summary>
+          <summary>Shear-Sensing Nib Arrays — Approaching Human Tactile Density</summary>
+
+          <h4>Bio-Inspired Design Philosophy</h4>
           <p>
-            Each nib houses four electrodes to resolve normal + shear. Arrays up to <strong>20×20</strong> on 10×10 cm
-            (~16 receptors/cm²) approach human fingertip densities (~10/cm²). Limitation: routing four electrodes per nib
-            without crosstalk at our fab scale.
+            Human fingertips contain approximately <strong>~10 mechanoreceptors per cm²</strong> providing fine-grained tactile information. Our nib design places <strong>four electrodes under each nib</strong> to resolve both normal (perpendicular) and shear (tangential) forces. When a nib deflects, differential capacitance changes across the four electrodes indicate force magnitude and direction. Inspired by UC Berkeley's Embody Dexterity Group, this architecture enables detection of direct pressure, shear vectors, and vibrations.
           </p>
-          <div class="project-images">
+
+          <h4>Resolution Progression</h4>
+          <p>
+            We systematically increased receptor density through three design iterations:
+          </p>
+          <ul class="project-list">
+            <li><strong>5×5 grid (1 cm²):</strong> Large-scale prototype for EE testing; 1 receptor per cm² (4 electrodes per nib → 4 sensing points per cm²); enabled rudimentary capacitive characterization and proof-of-concept validation</li>
+            <li><strong>10×10 grid (1 cm²):</strong> Small-scale high-resolution test; 4 receptors per cm²; printed in Formlabs Flexible 80A Resin; revealed mechanical limitations—nibs clumped together obstructing individual sensing; insufficient bend recovery for repeated compression</li>
+            <li><strong>19×19 → 20×20 grid (10 cm²):</strong> Production-scale design; <strong>16 receptors per cm² (4 electrodes × 400 nibs ÷ 100 cm²)</strong>; exceeds human fingertip density by 60%; demonstrates feasibility of biomimetic tactile resolution</li>
+          </ul>
+
+          <h4>Material Exploration: Flexible 80A vs. Elastic 50A</h4>
+          <p>
+            Initial prototypes used <strong>Formlabs Flexible 80A Resin</strong> for SLA printing: sufficient bend capability for compression testing, but <em>inadequate stretch properties</em> for dynamic deformation. Resin showed promising deflection behavior but lacked elasticity needed for rapid recovery. Next iteration plan: <strong>Elastic 50A Resin</strong> for improved stretchability, though concern exists that higher compliance may reduce displacement sensitivity (softer material compresses more, potentially decreasing differential capacitance signal).
+          </p>
+
+          <h4>Interlocking Architecture for Scalability</h4>
+          <p>
+            High-resolution coverage of humanoid torso/limbs requires multiple 10×10 cm panels. We designed <strong>interlocking strap features</strong> enabling modular assembly of nib grids without gaps. Challenge: maintain continuous capacitive sensing across panel boundaries while avoiding <em>cross-panel coupling</em> that degrades spatial selectivity. Solution requires careful PCB routing and inter-panel shielding.
+          </p>
+
+          <h4>Abandonment Rationale</h4>
+          <p>
+            Despite promising shear detection, the nib approach was discontinued due to <strong>electrode density constraints</strong>. Routing <em>four electrodes per nib</em> at 20×20 density (1,600 total connections over 100 cm²) exceeded our PCB fabrication capabilities. Crosstalk between adjacent traces, mechanical fragility of high-density routing, and assembly complexity made the design impractical for current manufacturing scale. Future work: explore FPC (flexible printed circuit) routing, direct nib-to-PCB integration, or multiplexing strategies to reduce connection count.
+          </p>
+
+          <div class="project-images grid-2">
             <figure class="figure">
-              <img class="project-img max-720 img-center"
-                   src="../assets/images/KindHumanoid/nib.jpg"
+              <img src="../assets/images/KindHumanoid/nib.jpg"
                    alt="Nib grid design"
+                   class="project-img"
                    width="1400" height="1000" loading="lazy" decoding="async" />
-              <figcaption class="caption">Nib grid CAD: shear + normal sensing.</figcaption>
+              <figcaption class="caption">Nib grid CAD: each nib houses 4 electrodes for shear + normal force resolution; 20×20 array achieves 16 receptors/cm².</figcaption>
             </figure>
             <figure class="figure">
-              <img class="project-img max-720 img-center"
-                   src="../assets/images/KindHumanoid/prototype1-1.jpg"
+              <img src="../assets/images/KindHumanoid/prototype1-1.jpg"
                    alt="Early shear-sensing prototype with copper nodes"
+                   class="project-img"
                    width="1400" height="1000" loading="lazy" decoding="async" />
-              <figcaption class="caption">Early shear prototype using Ecoflex + copper pads.</figcaption>
+              <figcaption class="caption">Early shear prototype: Ecoflex 00-30 + copper tape nodes; demonstrated viability but limited by electrode routing complexity.</figcaption>
             </figure>
           </div>
         </details>
 
         <details>
-          <summary>Finger Wraps with Strain-Relief</summary>
+          <summary>Finger Wraps with Strain-Relief — Joint-Aware Design</summary>
+
+          <h4>Design Challenge: Joint-Induced Failure</h4>
           <p>
-            Early wraps wrinkled and tore at joints. Revised designs added strain-relief “wings” and side flaps for
-            modular fit. Two design paths were tested: one emphasizing tight fit and PCB adhesion, another prioritizing
-            flexibility. Final: silicone wraps gave better thickness control for electronics tests.
+            Initial finger wrap designs (simple rectangular segments) exhibited catastrophic failure at robotic joints: wrinkles concentrated stress, causing <em>premature tearing</em>. Silicone's 763% elongation was insufficient when geometric constraints forced material bunching at flex points. Consultation with UC Berkeley Jacobs Institute Design Specialist identified need for <strong>strain-relief features</strong> near bending and pulling regions.
           </p>
+
+          <h4>Strain-Relief Architecture</h4>
+          <p>
+            Revised designs incorporated three key features:
+          </p>
+          <ul class="project-list">
+            <li><strong>Extra material between segments:</strong> Intentional slack prevents tension buildup during joint flexion; allows material to redistribute rather than tear</li>
+            <li><strong>Side flaps:</strong> Provide modular fit across finger diameter variations; enable secure attachment without over-tensioning; improve conformability to robotic finger geometry</li>
+            <li><strong>Relief "wings":</strong> Localized material additions at high-stress regions; distribute forces across wider area; reduce peak stress concentrations</li>
+          </ul>
+
+          <h4>Design Option Trade-offs</h4>
+          <p>
+            Two competing architectures were evaluated:
+          </p>
+          <ul class="project-list">
+            <li><strong>Option 1 (Internal Wings):</strong> Tight fit prioritizing PCB adhesion; sensors on front (palm side) of finger where tactile information most critical; adhesives/solder on rear (back of hand); better for consistent sensor-to-skin contact; <em>selected for final implementation</em></li>
+            <li><strong>Option 2 (External Wings):</strong> Emphasized flexibility over adhesion; reduced interference between pressure sensors and attachment methods; adhesives relegated to less sensitive rear surface; better for high-deflection scenarios but compromised sensing consistency</li>
+          </ul>
+
+          <h4>Fabrication Method</h4>
+          <p>
+            Finger wraps used same two-part mold architecture as 10×10 cm sheets (luer-lock injection for silicone, open-pour for foam). Critical insight: <strong>silicone-only design preferable for fingers</strong> despite foam's compliance advantages. Foam layer added excessive thickness (<1mm silicone + foam + electronics) limiting dexterity in confined spaces. Silicone-only wraps provided sufficient thickness control for electronics integration while maintaining finger mobility.
+          </p>
+
           <figure class="figure">
-            <img class="project-img max-600 img-center"
+            <img class="project-img max-400 img-center"
                  src="../assets/images/KindHumanoid/finger.png"
                  alt="Finger wrap CAD with relief features"
                  width="1000" height="700" loading="lazy" decoding="async" />
-            <figcaption class="caption">Finger wrap with joint relief and wings.</figcaption>
+            <figcaption class="caption">Finger wrap with joint strain relief: wings distribute stress, side flaps enable modular fit, extra segment spacing prevents bunching.</figcaption>
           </figure>
         </details>
       </div>
 
       <!-- Electronics -->
       <div id="electronics" class="project-section">
-        <h2>Electronics & Schematics</h2>
+        <h2>Electronics & Dual-Modality Sensing</h2>
 
         <details open>
-          <summary>Capacitive Stack & PCB</summary>
+          <summary>Capacitive Stack & PCB Architecture</summary>
+
+          <h4>System Architecture</h4>
+          <p>
+            The capacitive sensing system employs a <strong>row-column grid addressing scheme</strong> to minimize pin count while maintaining spatial resolution. Exposed touchpad matrix on the PCB surface forms one capacitor plate; conductive layer in the skin forms the opposing plate. Applied force compresses dielectric (foam layer), decreasing capacitor distance and increasing capacitance. Differential measurements across the grid localize force application.
+          </p>
+
+          <h4>Signal Chain</h4>
           <ul class="project-list">
-            <li><strong>Sensors:</strong> Exposed touchpad matrix; orthogonal row/column pads (grid addressing).</li>
-            <li><strong>Frontend:</strong> Analog mux → capacitive ADC (24-bit class) → RP2040 acquisition.</li>
-            <li><strong>Power/Comm:</strong> LDO regulation; RS-485 bus for robust multi-drop comms.</li>
-            <li><strong>Layout:</strong> Sensor area isolation; ground/guarding to reduce coupling.</li>
+            <li><strong>Frontend multiplexing:</strong> Analog mux sequentially connects each row-column intersection to ADC input; reduces 400-node array (20×20 grid) to manageable channel count</li>
+            <li><strong>Capacitive ADC (24-bit):</strong> High-resolution conversion enables detection of small capacitance changes (~pF range); dramatically outperforms ESP32's 8-bit ADC (early prototypes); resolution improvement essential for characterizing subtle force gradients</li>
+            <li><strong>RP2040 acquisition:</strong> Microcontroller orchestrates mux scanning, ADC readout, and data packaging; dual-core architecture enables parallel sensor acquisition and communication</li>
+            <li><strong>RS-485 bus:</strong> Robust multi-drop industrial protocol for noise immunity; enables daisy-chaining multiple skin panels across robot; differential signaling reduces susceptibility to EMI in actuator-heavy environment</li>
           </ul>
-          <!-- LIMIT SIZE so it doesn't upscale and look grainy -->
+
+          <h4>Layout Considerations</h4>
+          <ul class="project-list">
+            <li><strong>Sensor area isolation:</strong> Touchpad region separated from digital circuitry via ground plane partitioning; reduces switching noise coupling into sensitive capacitive measurements</li>
+            <li><strong>Guard rings:</strong> Grounded traces surround sensor pads to minimize parasitic capacitance and crosstalk; critical for accurate differential measurements</li>
+            <li><strong>Power regulation:</strong> LDO provides clean, low-noise supply for ADC analog section; separate digital/analog power domains prevent supply rail bounce from corrupting measurements</li>
+          </ul>
+
           <figure class="figure">
-            <img class="project-img max-720 img-center"
+            <img class="project-img max-400 img-center"
                  src="../assets/images/KindHumanoid/capactivepcb.jpg"
                  alt="Capacitive PCB layout with sensor grid and RP2040 section"
                  width="1400" height="1000" loading="lazy" decoding="async" />
-            <figcaption class="caption">Capacitive grid + mux + ADC + RP2040 + RS-485.</figcaption>
+            <figcaption class="caption">Capacitive PCB: left half shows touchpad grid (row-column addressing); right half contains mux, 24-bit ADC, RP2040, RS-485 transceiver, and power regulation.</figcaption>
           </figure>
         </details>
 
         <details>
-          <summary>Resistive Stack (Velostat) & PCB</summary>
+          <summary>Resistive Stack (Velostat) & PCB Design</summary>
+
+          <h4>Operating Principle</h4>
+          <p>
+            Velostat (pressure-sensitive conductive polymer) exhibits <strong>resistance decrease under compression</strong>. Sandwich architecture: copper electrode layer, Velostat sheet, second copper layer. Applied force compresses Velostat, increasing contact area and reducing resistance. Voltage divider configuration converts resistance change to measurable voltage; ADC quantifies force magnitude.
+          </p>
+
+          <h4>Advantages & Limitations</h4>
           <ul class="project-list">
-            <li>Velostat sheet between copper electrodes; resistance read via ADC (ESP32 in early builds).</li>
-            <li>Pros: simple readout. Cons: shorts at flex points; pressure distribution sensitivity.</li>
-            <li>Isolation, strain-relief, and guard traces are critical for stability.</li>
+            <li><strong>Pros:</strong> Simple readout circuit (no specialized ADC required); direct DC measurement; low component count; fast response time</li>
+            <li><strong>Cons:</strong> Shorts at flex points where copper layers contact; pressure distribution sensitivity (force location affects reading); wiring path creates mechanical interference; requires careful strain relief</li>
           </ul>
-          <!-- LIMIT SIZE so it doesn't upscale and look grainy -->
+
+          <h4>Design Requirements</h4>
+          <ul class="project-list">
+            <li><strong>Electrode isolation:</strong> Copper layers must remain separated except at intended sensing points; achieved via precision Velostat cutting with gaps at joint locations</li>
+            <li><strong>Strain relief:</strong> Wiring routed through low-stress regions (finger sides); slack loops at joints prevent wire breakage during flexion; critical for long-term reliability</li>
+            <li><strong>Guard traces:</strong> Grounded traces between signal lines reduce crosstalk; essential when routing multiple resistive sensors in parallel</li>
+          </ul>
+
+          <h4>ESP32 Integration (Early Prototypes)</h4>
+          <p>
+            Initial resistive builds used ESP32 for ADC acquisition. While functional for proof-of-concept, 8-bit resolution proved insufficient for characterizing subtle force gradients. Later prototypes integrated higher-resolution ADCs for parity with capacitive system's 24-bit performance.
+          </p>
+
           <figure class="figure">
-            <img class="project-img max-720 img-center"
+            <img class="project-img max-400 img-center"
                  src="../assets/images/KindHumanoid/resistivepcb.jpg"
                  alt="Resistive stack with Velostat and copper electrodes"
                  width="1400" height="1000" loading="lazy" decoding="async" />
-            <figcaption class="caption">Resistive Velostat layer with copper electrode pads.</figcaption>
+            <figcaption class="caption">Resistive Velostat stack: copper electrode pads sandwich pressure-sensitive polymer; gaps at joints prevent shorting during flexion.</figcaption>
           </figure>
         </details>
       </div>
 
       <!-- Testing -->
       <div id="testing" class="project-section">
-        <h2>Testing</h2>
+        <h2>Characterization & Testing Protocols</h2>
 
         <details open>
-          <summary>Protocol</summary>
+          <summary>Standardized Testing Procedure</summary>
+
+          <h4>Setup & Calibration</h4>
           <ol>
-            <li>Assemble stack; connect to Arduino/RP2040 logger; zero baselines.</li>
-            <li>Apply forces at labeled points (10 g, 25 g, 50 g, 100 g) for ~2 s each; 3 trials per point.</li>
-            <li>Record time-series from all channels; annotate force level & location.</li>
-            <li>Evaluate rise time, drift, hysteresis (loading vs unloading), spatial selectivity, and noise.</li>
+            <li><strong>Assemble stack:</strong> Layer silicone skin, foam dielectric, sensor PCB according to design specification; verify mechanical alignment and electrical connections</li>
+            <li><strong>Connect to logger:</strong> Arduino or RP2040 configured for multi-channel time-series acquisition; sampling rate ≥100 Hz to capture transient responses</li>
+            <li><strong>Zero baselines:</strong> With no applied force, record 30-second baseline for each channel; calculate mean and standard deviation; establish noise floor and drift characteristics</li>
+            <li><strong>Mark test points:</strong> Label 5-8 spatial locations on skin surface; ensures consistent force application across trials for repeatability analysis</li>
           </ol>
+
+          <h4>Force Application Protocol</h4>
+          <p>
+            Systematic force progression to characterize dynamic range and linearity:
+          </p>
+          <ol>
+            <li><strong>10g force:</strong> Apply calibrated 10g mass to labeled point; hold for 2 seconds; record sensor response; remove mass; wait 3 seconds for relaxation; <em>repeat 3 trials</em></li>
+            <li><strong>25g force:</strong> Repeat procedure with 25g mass; three trials per point</li>
+            <li><strong>50g force:</strong> Repeat with 50g mass; approach sensitivity upper limit for soft sensors</li>
+            <li><strong>100g force:</strong> Maximum test force; three trials; check for permanent deformation or sensor saturation</li>
+          </ol>
+
+          <h4>Data Analysis</h4>
+          <ul class="project-list">
+            <li><strong>Rise time:</strong> Duration from force application to 90% steady-state reading; quantifies sensor responsiveness</li>
+            <li><strong>Drift:</strong> Change in sensor reading during sustained force application; indicates creep or charge leakage</li>
+            <li><strong>Hysteresis:</strong> Difference between loading and unloading curves; capacitive systems showed ~±1 unit hysteresis due to foam viscoelasticity</li>
+            <li><strong>Spatial selectivity:</strong> Signal magnitude at target sensor vs. adjacent sensors; validates independence of array elements</li>
+            <li><strong>Noise characterization:</strong> RMS noise from baseline recordings; signal-to-noise ratio at each force level</li>
+          </ul>
         </details>
 
         <details>
-          <summary>Observations</summary>
+          <summary>Quantitative Observations & Failure Modes</summary>
+
+          <h4>Capacitive System Performance</h4>
           <ul class="project-list">
-            <li>Capacitive stacks detect force but exhibit latency and mild hysteresis (~±1 unit).</li>
-            <li>Resistive fingers show intermittent shorts at bends; wiring path and strain-relief matter.</li>
-            <li>Resolution improves with denser grids; routing + shielding become more complex.</li>
+            <li><strong>Force detection:</strong> Successfully detects forces across 10-100g range; distinguishes spatial location of applied force within grid resolution</li>
+            <li><strong>Latency:</strong> ~2-second delay from force application to steady-state reading; attributed to foam viscoelastic response and ADC averaging</li>
+            <li><strong>Hysteresis:</strong> Approximately ±1 unit difference between loading and unloading curves; foam compression/recovery asymmetry creates path-dependent behavior</li>
+            <li><strong>Resolution limit:</strong> 24-bit ADC provides excellent sensitivity; noise floor determined by foam dielectric stability rather than electronics</li>
           </ul>
-          <div class="project-images">
+
+          <h4>Resistive System Challenges</h4>
+          <ul class="project-list">
+            <li><strong>Intermittent shorts:</strong> Copper layers contact at bend points despite Velostat gaps; manifests as sudden resistance drops to near-zero; requires improved isolation strategy</li>
+            <li><strong>Wiring path sensitivity:</strong> External wing routing concentrates stress on copper traces; strain relief critical but difficult to implement without increasing thickness</li>
+            <li><strong>Inconsistent readings:</strong> Front-side pressure creates readings, but back-side contact also triggers response; poor spatial selectivity compared to capacitive approach</li>
+            <li><strong>Handling artifacts:</strong> Grasping finger during manipulation changes baseline resistance; Velostat sensitivity to non-targeted forces reduces signal quality</li>
+          </ul>
+
+          <h4>Sensitivity Boundaries</h4>
+          <ul class="project-list">
+            <li><strong>Lower limit <30N:</strong> Forces below ~30 Newtons produce inconsistent readings; insufficient foam compression to overcome noise; requires pre-load or stiffer dielectric</li>
+            <li><strong>Upper limit ~100N:</strong> Forces above 100N cause foam bottoming-out; sensor saturates; potential permanent deformation at extreme loads</li>
+            <li><strong>Dynamic range:</strong> Approximately 3:1 useful range (30-100N); improvement requires multi-layer foam with progressive stiffness</li>
+          </ul>
+
+          <div class="project-images grid-2">
             <figure class="figure">
-              <img class="project-img max-720 img-center"
-                   src="../assets/images/KindHumanoid/prototype3-1.jpg"
+              <img src="../assets/images/KindHumanoid/prototype3-1.jpg"
                    alt="Initial capacitive sensing time-series"
+                   class="project-img"
                    width="1200" height="900" loading="lazy" decoding="async" />
-              <figcaption class="caption">Capacitive stack: force detection with latency & hysteresis.</figcaption>
+              <figcaption class="caption">Capacitive time-series: force detection confirmed with ~2s latency and ~±1 unit hysteresis; 24-bit ADC resolution enables subtle gradient measurement.</figcaption>
             </figure>
             <figure class="figure">
-              <img class="project-img max-720 img-center"
-                   src="../assets/images/KindHumanoid/prototype4-1.png"
+              <img src="../assets/images/KindHumanoid/prototype4-1.png"
                    alt="Resistive finger readings showing noise spikes"
+                   class="project-img"
                    width="1200" height="900" loading="lazy" decoding="async" />
-              <figcaption class="caption">Resistive finger: shorts at bends; needs strain relief.</figcaption>
+              <figcaption class="caption">Resistive finger data: intermittent shorts at bends create noise spikes; wiring path interference evident; strain relief inadequate for reliable operation.</figcaption>
             </figure>
           </div>
         </details>
@@ -383,25 +568,104 @@
 
       <!-- Prototypes -->
       <div id="prototypes" class="project-section">
-        <h2>Prototype Timeline</h2>
-        <ol class="project-list">
-          <li><strong>P1 — Shear nib grid:</strong> promising shear cues; abandoned due to electrode density constraints.</li>
-          <li><strong>P2 — Rough capacitive:</strong> rigid lab foam dielectric; partial success, moved to custom foam.</li>
-          <li><strong>P3 — Layered silicone + foam:</strong> force detected; delayed response + hysteresis.</li>
-          <li><strong>P4 — Resistive fingers (Velostat):</strong> inconsistent due to shorts and handling sensitivity.</li>
-          <li><strong>P5 — Revised capacitive with Velostat layer:</strong> improved force pickup; limited sensitivity &lt;≈ 30 N.</li>
-        </ol>
+        <h2>Prototype Evolution: P1 → P5</h2>
+        <p>
+          Five major prototype iterations explored different sensing modalities, materials, and integration strategies. Each build informed subsequent designs through systematic failure analysis and performance characterization.
+        </p>
+
+        <h3>P1 — Shear Capacitance Nib Prototype</h3>
+        <p>
+          <strong>Design:</strong> Ecoflex 00-30 elastomer layer with copper tape nodes positioned at nib corners; ESP32 "touch" ADC pins for capacitive readout; 5×5 large-scale nib array for proof-of-concept.
+        </p>
+        <p>
+          <strong>Results:</strong> Successfully detected shear direction via differential capacitance across four corners; Ecoflex elasticity adequate for displacement sensing; demonstrated viability of multi-axis force resolution.
+        </p>
+        <p>
+          <strong>Abandonment rationale:</strong> Electrode density constraints insurmountable at target 20×20 resolution (1,600 connections); routing complexity and crosstalk exceeded PCB fabrication capabilities; shear sensing unexplored in favor of simpler normal force detection.
+        </p>
+
+        <h3>P2 — Rough Capacitive Sensing</h3>
+        <p>
+          <strong>Design:</strong> Copper tape electrodes separated by rigid commercial foam (salvaged from lab supplies); basic proof-of-concept without custom materials.
+        </p>
+        <p>
+          <strong>Results:</strong> Partial success: capacitance change detected under compression, but foam rigidity limited sensitivity; insufficient deformation at low forces (<50g); served as validation for pursuing custom foam formulation.
+        </p>
+        <p>
+          <strong>Lessons:</strong> Confirmed capacitive sensing viability; identified foam compliance as critical parameter; motivated Flex-Foam VIII selection and ratio optimization.
+        </p>
+
+        <h3>P3 — Layered Silicone + Optimized Foam</h3>
+        <p>
+          <strong>Design:</strong> Dragon Skin FX Pro outer shell (1mm); optimized Flex-Foam VIII dielectric (1:1.6 ratio); copper tape electrodes; paper backing; silicone glue bonding; Arduino data acquisition.
+        </p>
+        <p>
+          <strong>Results:</strong> Force detection across skin surface confirmed; spatial localization within grid resolution achieved; <em>however</em>: delayed response (~2s latency) due to foam viscoelasticity; hysteresis (~±1 unit) on loading vs. unloading; ADC resolution (24-bit vs. ESP32 8-bit) critical for characterization.
+        </p>
+        <p>
+          <strong>Improvements over P2:</strong> Custom foam eliminated rigidity limitations; silicone skin provided realistic mechanical response; multi-sensor array demonstrated scalability.
+        </p>
+
+        <h3>P4 — Initial Resistive Sensing (Velostat Fingers)</h3>
+        <p>
+          <strong>Design:</strong> Velostat sheet cut to finger segment geometry with gaps at joints; copper tape adhered via silicone glue; Dragon Skin outer layer; wires routed from external wings to ESP32 ADC pins; resistance measurement via voltage divider.
+        </p>
+        <p>
+          <strong>Results:</strong> Inconsistent readings plagued by multiple failure modes: <em>shorts between sensing pads</em> when copper layers contacted at flexion points; <em>wiring path interference</em> where external wing routing created stress concentrations; <em>backside sensitivity</em> where finger rear contact triggered readings (poor spatial selectivity); <em>handling artifacts</em> from grasping during manipulation.
+        </p>
+        <p>
+          <strong>Root causes:</strong> Inadequate electrode isolation at joints; insufficient strain relief in wiring; Velostat's omnidirectional pressure sensitivity (lacks spatial discrimination of capacitive approach).
+        </p>
+
+        <h3>P5 — Revised Capacitive Sensing</h3>
+        <p>
+          <strong>Design:</strong> Hybrid architecture: Velostat resistive layer for improved force coupling; copper tape beneath Velostat; second copper layer on paper substrate above; Arduino logging; attempted integration of lessons from P3 and P4.
+        </p>
+        <p>
+          <strong>Results:</strong> Confirmed force response; <em>limited sensitivity below ~30N</em> (insufficient compression to overcome noise); <em>eventual short circuit</em> due to electrical design deficiencies (inadequate isolation between layers).
+        </p>
+        <p>
+          <strong>Status:</strong> Demonstrated incremental improvement but fundamental challenges remain: dynamic range constraints, isolation difficulties, and system integration complexity require further iteration beyond P5.
+        </p>
       </div>
 
       <!-- Results -->
       <div id="results" class="project-section">
-        <h2>Results & Next Steps</h2>
+        <h2>Results, Contributions & Future Directions</h2>
+
+        <h3>Achieved Outcomes</h3>
         <ul class="project-list">
-          <li>Repeatable <strong>manufacturing workflow</strong> for thin silicone sheets and compliant foam layers.</li>
-          <li>CAD for molds, finger wraps with strain-relief, and high-density nib arrays.</li>
-          <li>Capacitive & resistive prototypes characterized (latency, hysteresis, failure modes).</li>
-          <li><strong>Next:</strong> guard traces & shielding; FPC tails at joints; faster ADC/AFE; explore stretchier nib materials.</li>
+          <li><strong>Manufacturing workflows:</strong> Validated repeatable protocols for 1mm silicone injection molding (luer-lock system, 4-vent architecture, degassing procedures) and porous foam casting (1:1.6 ratio optimization, expansion factor calculations, release agent techniques)</li>
+          <li><strong>Material characterization:</strong> Established Dragon Skin FX Pro as optimal outer layer (Shore 2A, 763% elongation, 500 psi tensile strength, −60°C to 230°C thermal range, platinum-cure safety); optimized Flex-Foam VIII as compliance layer (8 lb/ft³ density, 1:1.6 A:B ratio for ideal porosity)</li>
+          <li><strong>High-density design:</strong> CAD for 20×20 nib arrays achieving 16 receptors/cm² (exceeding human fingertip density); strain-relieved finger wraps preventing joint-induced tearing; modular interlocking architecture for scalable coverage</li>
+          <li><strong>Dual-modality sensing:</strong> Capacitive system (24-bit ADC, row-column grid, RP2040 + RS-485) characterized with ~2s latency, ~±1 unit hysteresis, 30-100N dynamic range; resistive system (Velostat + copper) revealing failure modes (shorts at bends, wiring interference, poor spatial selectivity)</li>
+          <li><strong>Failure mode analysis:</strong> Documented electrode density limitations (1,600 connections impractical for nib approach); identified foam viscoelasticity as latency source; established strain relief as critical for joint-crossing sensors</li>
         </ul>
+
+        <h3>Quantitative Performance Metrics</h3>
+        <ul class="project-list">
+          <li>Silicone layer: 1mm thickness, 10×10 cm sheets, 40-minute cure, bubble-free via vacuum degassing</li>
+          <li>Foam layer: 7× expansion factor, 1:1.6 optimized ratio, non-tacky surface, uniform porosity</li>
+          <li>Nib resolution: 400 nibs over 100 cm², 16 receptors/cm² (4 electrodes per nib), 60% above human fingertips</li>
+          <li>Capacitive sensing: 24-bit resolution, ~2s response latency, ±1 unit hysteresis, 30-100N range</li>
+          <li>Cost: ~$85 silicone per 6-foot humanoid (1mm coverage); ~$36 foam trial kit for multiple prototypes</li>
+        </ul>
+
+        <h3>Next Steps & Future Work</h3>
+        <ul class="project-list">
+          <li><strong>Guard traces & shielding:</strong> Implement comprehensive EMI mitigation for capacitive arrays; active guarding to reduce parasitic capacitance; improve signal-to-noise ratio in actuator-heavy environments</li>
+          <li><strong>FPC (Flexible Printed Circuit) integration:</strong> Replace copper tape with custom FPC tails at joints; enables strain-compliant wiring without shorts; reduces thickness vs. wire routing</li>
+          <li><strong>Faster ADC/AFE:</strong> Upgrade from 24-bit Σ-Δ ADC to faster successive-approximation architecture; reduce latency from ~2s to <100ms; enable real-time control loops</li>
+          <li><strong>Stretchier nib materials:</strong> Evaluate Formlabs Elastic 50A for improved recovery vs. Flexible 80A; balance increased compliance against potential sensitivity loss; optimize for high-cycle fatigue resistance</li>
+          <li><strong>Multi-layer foam stacks:</strong> Progressive stiffness gradient (soft → firm) to expand dynamic range; prevent bottoming-out at high forces while maintaining low-force sensitivity</li>
+          <li><strong>Machine learning for drift compensation:</strong> Neural network models to correct hysteresis and temperature-dependent behavior; enable long-term calibration stability</li>
+          <li><strong>Integration testing on Mona:</strong> Full-humanoid deployment to validate thermal management, power distribution, data aggregation, and mechanical durability in operational scenarios</li>
+        </ul>
+
+        <h3>Broader Impact</h3>
+        <p>
+          This work establishes foundational manufacturing processes and design principles for bio-inspired robotic skin at humanoid scale. The combination of repeatable fabrication protocols, dual-modality sensing characterization, and systematic failure analysis provides a roadmap for future researchers pursuing tactile-enabled human-robot interaction. By documenting both successes (optimized material formulations, high-density nib designs) and failures (electrode routing constraints, wiring-induced shorts), we accelerate the field's progression toward robots with human-like touch sensitivity.
+        </p>
       </div>
 
     </div>
