@@ -740,7 +740,7 @@ img[width][height] {
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
-    margin: 1rem 0 0 1rem; /* top right bottom left */
+    margin: 1rem 0 1rem 1rem; /* top right bottom left */
     display: inline-block;
 }
 
