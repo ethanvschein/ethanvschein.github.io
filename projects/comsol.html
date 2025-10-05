@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMSOL Microneedle Diffusion Analysis - Ethan Schein</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo"><a href="../index.html">Ethan Schein</a></div>
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../about.html" class="nav-link">About</a></li>
+            <li><a href="../education.html" class="nav-link">Education</a></li>
+            <li><a href="../experience.html" class="nav-link">Experience</a></li>
+            <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+            <li><a href="../skills.html" class="nav-link">Skills</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+</nav>
+
+<!-- Project Detail -->
+<section class="project-detail">
+    <div class="container">
+        <div class="back-button">
+            <a href="../projects.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </div>
+
+        <div class="project-header">
+            <h1 class="project-title">COMSOL Analysis of Microneedle Drug Delivery Efficiency</h1>
+            <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                Comparing Solid vs Hollow Microneedle Geometries for Transdermal Drug Delivery Using Hydrocortisone and Caffeine
+            </p>
+            <div class="project-tags">
+                <span class="tag">COMSOL Multiphysics</span>
+                <span class="tag">Drug Delivery</span>
+                <span class="tag">Finite Element Analysis</span>
+                <span class="tag">Transdermal Systems</span>
+                <span class="tag">Diffusion Modeling</span>
+            </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="project-images">
+            <figure class="figure">
+                <img src="../assets/images/comsol-microneedle/hollowvssoliddrawing.png"
+                     alt="Solid vs Hollow Microneedle Comparison"
+                     class="project-img max-720 img-center">
+                <figcaption class="caption">
+                    Microneedle diagrams comparing solid and hollow microneedle diffusion geometry for hydrocortisone and caffeine delivery through human skin.
+                </figcaption>
+            </figure>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="project-toc-wrapper">
+            <div class="project-toc">
+                <div class="toc-card">
+                    <div class="toc-num">01</div>
+                    <div class="toc-body">
+                        <a href="#overview">
+                            <div class="toc-title">Overview</div>
+                            <div class="toc-sub">Project goals & approach</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="toc-card">
+                    <div class="toc-num">02</div>
+                    <div class="toc-body">
+                        <a href="#modeling">
+                            <div class="toc-title">COMSOL Setup</div>
+                            <div class="toc-sub">Geometry & parameters</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="toc-card">
+                    <div class="toc-num">03</div>
+                    <div class="toc-body">
+                        <a href="#results">
+                            <div class="toc-title">Results</div>
+                            <div class="toc-sub">Hydrocortisone & caffeine</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="toc-card">
+                    <div class="toc-num">04</div>
+                    <div class="toc-body">
+                        <a href="#analysis">
+                            <div class="toc-title">Discussion</div>
+                            <div class="toc-sub">Transport mechanisms</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="toc-card">
+                    <div class="toc-num">05</div>
+                    <div class="toc-body">
+                        <a href="#conclusions">
+                            <div class="toc-title">Conclusions</div>
+                            <div class="toc-sub">Key findings & DOX predictions</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Content -->
+        <div class="project-content">
+
+            <!-- Overview Section -->
+            <div id="overview" class="project-section">
+                <h2>Overview</h2>
+                <p>
+                    I developed COMSOL Multiphysics models to evaluate and compare the diffusion and delivery profiles of two model drugs—
+                    <strong>hydrocortisone</strong> and <strong>caffeine</strong>—through human skin using solid and hollow microneedle geometries.
+                    The goal was to determine which microneedle design delivers drugs more efficiently to the dermis layer and eventually
+                    into the bloodstream.
+                </p>
+                <p>
+                    By analyzing the transport dynamics of these two molecules with different physicochemical properties, I aimed to predict
+                    the expected behavior of <strong>doxorubicin (DOX)</strong>, a chemotherapy drug with a significantly larger molecular weight
+                    (~543 g/mol) than either test compound.
+                </p>
+
+                <div class="callout">
+                    <strong>Project Goal:</strong> Quantitatively compare solid vs hollow microneedle delivery efficiency using
+                    hydrocortisone (362.46 g/mol) and caffeine (194.19 g/mol) as model compounds, then extrapolate findings to predict
+                    doxorubicin delivery behavior.
+                </div>
+            </div>
+
+            <!-- Modeling Section -->
+            <div id="modeling" class="project-section">
+                <h2>COMSOL Modeling Setup</h2>
+
+                <h3>Model Geometries</h3>
+                <p>
+                    I constructed two distinct microneedle configurations to compare passive (solid) versus active (hollow) delivery mechanisms:
+                </p>
+
+                <!-- Geometry images -->
+                <div class="project-images">
+                    <figure class="figure">
+                        <img src="../assets/images/comsol-microneedle/solid-microneedle-fixed.jpg"
+                             alt="Solid microneedle geometry"
+                             class="project-img">
+                        <figcaption class="caption">
+                            Solid microneedle geometry with drug coating on the surface. Drug diffuses passively from the coating into surrounding tissue.
+                        </figcaption>
+                    </figure>
+                    <figure class="figure">
+                        <img src="../assets/images/comsol-microneedle/hollow-microneedle-fixed.jpg"
+                             alt="Hollow microneedle geometry"
+                             class="project-img">
+                        <figcaption class="caption">
+                            Hollow microneedle with internal bore and reservoir. Drug is actively delivered through the lumen via convective flow.
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <details open>
+                    <summary><strong>Solid Microneedle Configuration</strong></summary>
+                    <ul>
+                        <li><strong>Needle length:</strong> 500 μm</li>
+                        <li><strong>Outer diameter:</strong> Tapered geometry</li>
+                        <li><strong>Drug coating:</strong> Uniform layer on needle surface</li>
+                        <li><strong>Transport mechanism:</strong> Diffusion-only (no convection)</li>
+                        <li><strong>Péclet number:</strong> Pe = 0 (pure diffusion)</li>
+                    </ul>
+                </details>
+
+                <details open>
+                    <summary><strong>Hollow Microneedle Configuration</strong></summary>
+                    <ul>
+                        <li><strong>Needle length:</strong> 500 μm</li>
+                        <li><strong>Lumen diameter:</strong> Internal hollow bore</li>
+                        <li><strong>Flow rate:</strong> 2.976 × 10⁻⁴ m/s</li>
+                        <li><strong>Transport mechanism:</strong> Combined convection and diffusion</li>
+                        <li><strong>Péclet numbers:</strong> Pe = 68.9 (hydrocortisone), Pe = 35.2 (caffeine)</li>
+                    </ul>
+                </details>
+
+                <h3>Material Properties & Parameters</h3>
+                <p>
+                    I used literature-derived data to calculate diffusion coefficients and partition coefficients (through COMSOL) for each solute. All other variables
+                    were kept constant between models to ensure fair comparison:
+                </p>
+
+                <div class="project-images">
+                    <figure class="figure">
+                        <img src="../assets/images/comsol-microneedle/tableofvals%20(2).jpg"
+                             alt="Material properties table"
+                             class="project-img max-600 img-center">
+                        <figcaption class="caption">
+                            Table: Diffusion and partition coefficients used for hydrocortisone COMSOL simulations.
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <details>
+                    <summary><strong>Key Material Parameters</strong></summary>
+                    <ul>
+                        <li><strong>Hydrocortisone:</strong>
+                            <ul>
+                                <li>Molecular weight: 362.46 g/mol</li>
+                                <li>Diffusion coefficient: 2.16 × 10⁻⁹ cm²/s</li>
+                                <li>Partition coefficient: Higher affinity for lipid layers</li>
+                            </ul>
+                        </li>
+                        <li><strong>Caffeine:</strong>
+                            <ul>
+                                <li>Molecular weight: 194.19 g/mol</li>
+                                <li>Diffusion coefficient: 4.23 × 10⁻⁹ cm²/s</li>
+                                <li>Partition coefficient: Lower due to higher polarity</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </details>
+
+                <h3>Constant Parameters Across Models</h3>
+                <ul class="project-list">
+                    <li>Needle length: 500 μm</li>
+                    <li>Lumen diameter (hollow only)</li>
+                    <li>Needle outer diameter</li>
+                    <li>Epidermis thickness</li>
+                    <li>Dermis thickness</li>
+                    <li>Epidermis density</li>
+                    <li>Dermis density</li>
+                    <li>Flow rate (hollow only): 2.976 × 10⁻⁴ m/s</li>
+                </ul>
+
+                <h3>Transport Mechanisms</h3>
+                <p>
+                    I calculated Péclet numbers to understand the dominant transport mechanism for each configuration:
+                </p>
+
+                <div class="callout">
+                    <strong>Péclet Number Analysis:</strong> Using Pe = vL/D, where v is velocity, L is characteristic length, and D is diffusion coefficient.
+                    <br><br>
+                    <strong>Hydrocortisone (hollow):</strong> Pe = (2.976×10⁻⁴ m/s × 500 μm) / (2.16×10⁻⁹ cm²/s) = 68.9
+                    <br>
+                    <strong>Caffeine (hollow):</strong> Pe = (2.976×10⁻⁴ m/s × 500 μm) / (4.23×10⁻⁹ cm²/s) = 35.2
+                    <br><br>
+                    Since Pe ≫ 1, <strong>convection dominates over diffusion</strong> in the hollow microneedle lumen. In contrast,
+                    solid microneedles have Pe = 0, indicating <strong>diffusion is the sole transport mechanism</strong>.
+                </div>
+
+                <!-- Physics setup image -->
+                <div class="project-images">
+                    <figure class="figure">
+                        <img src="../assets/images/comsol-microneedle/graphics.jpg"
+                             alt="Péclet number interpretation"
+                             class="project-img max-600 img-center">
+                        <figcaption class="caption">
+                            Schematic illustrating the difference in flux between diffusion-dominated (Pe ≪ 1) and convection-dominated (Pe ≫ 1) transport regimes across epidermis barrier.
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="project-section">
+                <h2>Results</h2>
+
+                <h3>Hydrocortisone Delivery</h3>
+                <p>
+                    I simulated hydrocortisone diffusion through human skin for both microneedle geometries. The solid microneedle
+                    model demonstrated significantly deeper and faster penetration compared to the hollow microneedle model.
+                </p>
+
+                <!-- Hydrocortisone results images -->
+                <div class="project-images">
+                    <figure class="figure">
+                        <img src="../assets/images/comsol-microneedle/hydrocortisone.png"
+                             alt="Hydrocortisone solid microneedle results"
+                             class="project-img max-720 img-center">
+                        <figcaption class="caption">
+                            Hydrocortisone concentration distribution between solid and hollow microneedle over time. Drug efficiently reaches
+                            the dermis layer and shows broad spatial coverage.
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <p>
+                    <strong>Key observation:</strong> Solid microneedles enabled hydrocortisone to reach the dermis layer efficiently,
+                    while hollow microneedles resulted in drug remaining localized near the microneedle insertion site with a much slower
+                    delivery rate into the bloodstream.
+                </p>
+
+                <h3>Caffeine Delivery</h3>
+                <p>
+                    I followed the same modeling process for caffeine, using different partition and diffusion coefficient values while
+                    keeping all other parameters constant.
+                </p>
+
+                <!-- Caffeine results images -->
+                <div class="project-images">
+                    <figure class="figure">
+                        <img src="../assets/images/comsol-microneedle/caffeine.png"
+                             alt="Caffeine delivery comparison"
+                             class="project-img max-720 img-center">
+                        <figcaption class="caption">
+                            Caffeine concentration profiles for solid and hollow microneedles showing similar trends to
+                            hydrocortisone but with different absolute concentrations due to varying molecular properties.
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <h3>Efficiency Ratio Analysis</h3>
+                <p>
+                    I calculated efficiency ratios by comparing the time required for each microneedle type to reach a toxic threshold
+                    concentration. The efficiency ratio quantifies how much faster one design delivers drug compared to the other.
+                </p>
+
+                <div class="key-metrics">
+                    <div class="metric">
+                        <h4>Caffeine Efficiency Ratio</h4>
+                        <p><strong>Ratio: 2.0</strong></p>
+                        <p>Solid microneedle was <strong>2× faster</strong> than hollow microneedle to reach toxic threshold concentration</p>
+                    </div>
+                    <div class="metric">
+                        <h4>Hydrocortisone Efficiency Ratio</h4>
+                        <p><strong>Ratio: 2.0</strong></p>
+                        <p>Solid microneedle was <strong>2× faster</strong> than hollow microneedle to reach toxic threshold concentration</p>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <strong>Finding:</strong> The efficiency ratios calculated for caffeine and hydrocortisone were both found to be 2.
+                    This means that the solid microneedle was 2× faster than the hollow microneedle to reach the toxic threshold
+                    concentration for both solutes.
+                </div>
+            </div>
+
+            <!-- Discussion Section -->
+            <div id="analysis" class="project-section">
+                <h2>Discussion</h2>
+
+                <h3>Molecular Property Effects on Diffusion</h3>
+                <p>
+                    The solutes' varying diffusion times can be explained by a number of characteristics including partition coefficients,
+                    polarity, and molecular size.
+                </p>
+
+                <h4>Caffeine vs Hydrocortisone</h4>
+                <ul class="project-list">
+                    <li><strong>Molecular weight:</strong> Caffeine (194.19 g/mol) is substantially smaller than hydrocortisone (362.46 g/mol),
+                        which favors a higher diffusion coefficient for caffeine.</li>
+                    <li><strong>Partition coefficient:</strong> Caffeine's higher polarity causes a lower partition coefficient across the skin
+                        barrier, diminishing its capacity to efficiently penetrate the layers of skin.</li>
+                    <li><strong>Initial skin entry:</strong> Despite caffeine's higher diffusion coefficient due to its smaller size, its lower
+                        partition coefficient decreases its initial skin entry.</li>
+                    <li><strong>Partitioning vs diffusivity:</strong> Hydrocortisone reaches effective concentrations faster due to its stronger
+                        partitioning into lipid layers, proving that depending on the transport context, <strong>partitioning can sometimes be
+                            more important than diffusivity</strong>.</li>
+                </ul>
+
+                <h3>Implications for Doxorubicin Delivery</h3>
+                <p>
+                    These results provide insight into the expected behavior of doxorubicin (DOX), which has a molecular weight of approximately
+                    543 g/mol—significantly higher than both hydrocortisone and caffeine.
+                </p>
+
+                <div class="callout">
+                    <strong>DOX Prediction:</strong> Since larger molecules generally exhibit lower diffusion coefficients and slower transdermal
+                    transport, it is reasonable to infer that DOX would display even slower penetration kinetics than either test compound.
+                    The 2× efficiency advantage of solid microneedles observed for caffeine and hydrocortisone likely applies to DOX as well,
+                    though the absolute delivery rates would be lower.
+                </div>
+
+                <h3>Transport Mechanism Validation</h3>
+                <p>
+                    The Péclet number calculations validated my assumptions about the dominant transport mechanisms in each geometry:
+                </p>
+
+                <ul class="project-list">
+                    <li><strong>Hollow microneedle:</strong> Pe values of 68.9 (hydrocortisone) and 35.2 (caffeine) indicate that
+                        convection dominates over diffusion in the lumen. This justifies using convection-diffusion physics.</li>
+                    <li><strong>Solid microneedle:</strong> Pe = 0 confirms diffusion is the sole transport mechanism, validating the
+                        diffusion-only physics implementation.</li>
+                </ul>
+            </div>
+
+            <!-- Conclusions Section -->
+            <div id="conclusions" class="project-section">
+                <h2>Conclusions</h2>
+
+                <h3>Key Findings</h3>
+                <ol class="project-list">
+                    <li><strong>Solid microneedles are 2× more efficient:</strong> Both caffeine and hydrocortisone showed efficiency ratios
+                        of 2.0, meaning solid microneedles delivered drugs to toxic threshold concentrations twice as fast as hollow microneedles.</li>
+
+                    <li><strong>Deeper and faster penetration with solid design:</strong> Solid microneedles enabled drugs to reach the dermis
+                        layer efficiently, while hollow microneedles kept drugs more localized near the insertion site.</li>
+
+                    <li><strong>Partitioning can dominate over diffusivity:</strong> Hydrocortisone reached effective concentrations faster than
+                        caffeine despite having a lower diffusion coefficient, demonstrating that partition coefficients (lipophilicity) can be
+                        more important than molecular diffusivity for skin penetration.</li>
+
+                    <li><strong>Transport mechanism validation:</strong> Péclet number analysis confirmed that convection dominates in hollow
+                        microneedles (Pe ≫ 1) while pure diffusion drives solid microneedle delivery (Pe = 0).</li>
+
+                    <li><strong>DOX prediction:</strong> Given doxorubicin's larger molecular weight (~543 g/mol), it would likely exhibit even
+                        slower transdermal transport than either test compound, though the 2× efficiency advantage of solid microneedles should
+                        still apply.</li>
+                </ol>
+
+                <h3>Technical Skills Demonstrated</h3>
+                <div class="key-metrics">
+                    <div class="metric">
+                        <h4>COMSOL Multiphysics</h4>
+                        <p>Finite element modeling, transport phenomena, convection-diffusion coupling, parametric studies</p>
+                    </div>
+                    <div class="metric">
+                        <h4>Transport Analysis</h4>
+                        <p>Péclet number calculations, dimensionless analysis, mechanism identification, boundary condition selection</p>
+                    </div>
+                    <div class="metric">
+                        <h4>Drug Delivery Knowledge</h4>
+                        <p>Transdermal systems, skin physiology, partition coefficients, molecular property effects on permeation</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="../js/script.js"></script>
+</body>
+</html>
