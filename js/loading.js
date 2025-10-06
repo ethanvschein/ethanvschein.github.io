@@ -20,9 +20,9 @@ class LoadingScreen {
     async loadBikeSVG() {
         try {
             const path = window.location.pathname;
-            const svgPath = path.includes('/projects/')
-                ? '../assets/images/loading/loading-bike.svg'
-                : 'assets/images/loading/loading-bike.svg';
+            const svgPath = path.includes('../projects/')
+                ? '../assets/svgs/loading/loading-bike.svg'
+                : 'assets/svgs/loading/loading-bike.svg';
 
             const response = await fetch(svgPath);
             const svgText = await response.text();

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LAMP Detection: Rapid E. coli Testing in Spinach</title>
+
+  <!-- Site styles & fonts -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo"><a href="../index.html">Ethan Schein</a></div>
+    <ul class="nav-menu">
+      <li><a href="../index.html" class="nav-link">Home</a></li>
+      <li><a href="../about.html" class="nav-link">About</a></li>
+      <li><a href="../education.html" class="nav-link">Education</a></li>
+      <li><a href="../experience.html" class="nav-link">Experience</a></li>
+      <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+      <li><a href="../skills.html" class="nav-link">Skills</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- Project Detail -->
+<section class="project-detail">
+  <div class="container">
+    <div class="back-button">
+      <a href="../projects.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+
+    <div class="project-header">
+      <h1 class="project-title">Loop-Mediated Isothermal Amplification: Rapid E. coli Detection in Spinach</h1>
+      <div class="project-tags">
+        <span class="tag">LAMP Amplification</span>
+        <span class="tag">Molecular Biology</span>
+        <span class="tag">Primer Design</span>
+        <span class="tag">Python/OpenCV</span>
+        <span class="tag">Image Processing</span>
+      </div>
+
+      <!-- quick metrics -->
+      <div class="key-metrics">
+        <div class="metric">
+          <h4>Detection Time</h4>
+          <p>60 minutes (2400% reduction vs. 24-hour PCR testing)</p>
+        </div>
+        <div class="metric">
+          <h4>Cost per Test</h4>
+          <p>$2 combined materials cost (reagents + consumables)</p>
+        </div>
+        <div class="metric">
+          <h4>Target Organism</h4>
+          <p><em>Escherichia coli</em> B (non-pathogenic subgroup in vegetables)</p>
+        </div>
+        <div class="metric">
+          <h4>Detection Method</h4>
+          <p>UV-A (382 nm) fluorescence + automated image analysis software</p>
+        </div>
+      </div>
+
+      <!-- Table of contents -->
+      <div class="project-toc-wrapper">
+        <div class="project-toc">
+          <a href="#overview" class="toc-card">
+            <div class="toc-num">01</div>
+            <div class="toc-body">
+              <div class="toc-title">Overview</div>
+              <div class="toc-sub">Problem & solution</div>
+            </div>
+          </a>
+          <a href="#lamp-fundamentals" class="toc-card">
+            <div class="toc-num">02</div>
+            <div class="toc-body">
+              <div class="toc-title">LAMP Fundamentals</div>
+              <div class="toc-sub">Molecular mechanism</div>
+            </div>
+          </a>
+          <a href="#experimental-design" class="toc-card">
+            <div class="toc-num">03</div>
+            <div class="toc-body">
+              <div class="toc-title">Experimental Design</div>
+              <div class="toc-sub">Multi-phase methodology</div>
+            </div>
+          </a>
+          <a href="#primer-design" class="toc-card">
+            <div class="toc-num">04</div>
+            <div class="toc-body">
+              <div class="toc-title">Primer Design</div>
+              <div class="toc-sub">Computational optimization</div>
+            </div>
+          </a>
+          <a href="#sample-preparation" class="toc-card">
+            <div class="toc-num">05</div>
+            <div class="toc-body">
+              <div class="toc-title">Sample Preparation</div>
+              <div class="toc-sub">Contamination & extraction</div>
+            </div>
+          </a>
+          <a href="#lamp-protocol" class="toc-card">
+            <div class="toc-num">06</div>
+            <div class="toc-body">
+              <div class="toc-title">LAMP Protocol</div>
+              <div class="toc-sub">Reaction assembly</div>
+            </div>
+          </a>
+          <a href="#detection-software" class="toc-card">
+            <div class="toc-num">07</div>
+            <div class="toc-body">
+              <div class="toc-title">Detection Software</div>
+              <div class="toc-sub">Automated analysis</div>
+            </div>
+          </a>
+          <a href="#results" class="toc-card">
+            <div class="toc-num">08</div>
+            <div class="toc-body">
+              <div class="toc-title">Results</div>
+              <div class="toc-sub">Validation & impact</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-content">
+
+      <!-- Overview -->
+      <div id="overview" class="project-section">
+        <h2>Overview</h2>
+        <p>
+          <em>Escherichia coli</em> contamination causes approximately <strong>200,000 deaths annually worldwide</strong>,
+          with leafy greens representing a critical transmission vector. Vegetables can be infected at any point from
+          harvest to consumption, posing acute risk when eaten raw. Current gold-standard detection relies on
+          <strong>24-hour PCR tests</strong>—prohibitively expensive and slow for widespread deployment.
+        </p>
+        <p>
+          This project demonstrates <strong>Loop-Mediated Isothermal Amplification (LAMP)</strong> as a faster, cheaper
+          alternative: achieving <em>E. coli</em> B detection in spinach within <strong>60 minutes at $2 per test</strong>.
+          LAMP operates at constant temperature (60-65°C), eliminating thermal cycling equipment, and produces massive DNA
+          amplification enabling simple fluorescent readout. I developed a complete workflow spanning primer design, sample
+          preparation, reaction optimization, and automated image analysis.
+        </p>
+        <div class="callout">
+          <strong>Key Innovation:</strong> Custom Python software analyzes UV fluorescence images to determine positive/negative
+          results automatically—user clicks sample region, program extracts pixel data and reports detection outcome.
+        </div>
+
+        <h3>Why LAMP Over PCR?</h3>
+        <p>
+          LAMP offers critical advantages for pathogen detection in resource-limited settings:
+        </p>
+        <ul class="project-list">
+          <li><strong>Speed:</strong> 60 minutes vs. 24 hours (2400% reduction) — isothermal operation eliminates thermal cycling delays</li>
+          <li><strong>Cost:</strong> $2 vs. $50-100 per test — simple heating block replaces $3,000-15,000 thermal cycler</li>
+          <li><strong>Sensitivity:</strong> 10⁹ copies in 1 hour vs. PCR's 10⁶ — enables naked-eye detection via turbidity or fluorescence</li>
+          <li><strong>Equipment:</strong> Constant 60-65°C heating (water bath, heating block, or exothermic reaction) vs. programmable temperature cycling</li>
+          <li><strong>Simplicity:</strong> Direct fluorescence visualization vs. gel electrophoresis, staining, and UV imaging</li>
+        </ul>
+        <p>
+          LAMP excels at binary detection (pathogen present/absent) but cannot perform PCR's diverse molecular biology
+          functions (cloning, mutagenesis, multiplexing). For food safety surveillance, LAMP's speed and simplicity outweigh
+          PCR's versatility.
+        </p>
+      </div>
+
+      <!-- LAMP Fundamentals -->
+      <div id="lamp-fundamentals" class="project-section">
+        <h2>LAMP Fundamentals: Molecular Mechanism</h2>
+        <p>
+          LAMP employs <strong>four to six primers</strong> recognizing six to eight distinct DNA regions, providing
+          exceptional specificity. The reaction proceeds through autocatalytic strand displacement synthesis, generating
+          stem-loop "dumbbell" structures that serve as templates for exponential amplification.
+        </p>
+
+        <h3>Primer Architecture</h3>
+        <ul class="project-list">
+          <li><strong>Forward Inner Primer (FIP):</strong> Chimeric primer (F1c + F2 regions) initiating first strand synthesis and loop structure</li>
+          <li><strong>Backward Inner Primer (BIP):</strong> Chimeric primer (B1c + B2 regions) creating complementary strand and dumbbell formation</li>
+          <li><strong>Forward Outer Primer (F3):</strong> Displaces FIP-synthesized strand, creating single-stranded template</li>
+          <li><strong>Backward Outer Primer (B3):</strong> Displaces BIP-synthesized strand, enabling continuous cycling</li>
+          <li><strong>Loop Primers (LF/LB, optional):</strong> Accelerate reaction 50% by providing additional initiation sites</li>
+        </ul>
+
+        <h3>Amplification Mechanism</h3>
+        <p>
+          The LAMP process consists of seven key steps leading to exponential amplification:
+        </p>
+
+        <details open>
+          <summary>Step 1-3: Initial Dumbbell Formation</summary>
+          <ol>
+            <li><strong>Strand Invasion:</strong> FIP hybridizes to F2c region; Bst polymerase extends through F1 region</li>
+            <li><strong>Strand Displacement:</strong> F3 primer binds upstream, displacing FIP-initiated strand (Strand A)</li>
+            <li><strong>Stem-Loop Formation:</strong> Strand A's F1c region hybridizes with F1 region, forming self-priming dumbbell structure</li>
+          </ol>
+        </details>
+
+        <details>
+          <summary>Step 4-5: Complementary Synthesis</summary>
+          <ol start="4">
+            <li><strong>BIP Synthesis:</strong> BIP hybridizes to B2c region on Strand A, extending through B1 region</li>
+            <li><strong>B3 Displacement:</strong> B3 binds upstream, displacing Strand C which forms double-loop dumbbell</li>
+          </ol>
+        </details>
+
+        <details>
+          <summary>Step 6-7: Exponential Cycling</summary>
+          <ol start="6">
+            <li><strong>Autocatalytic Amplification:</strong> Dumbbell structures serve as templates; FIP/BIP bind loop regions, displacing product strands that form new dumbbells</li>
+            <li><strong>Loop Primer Acceleration:</strong> LF/LB primers hybridize to loop regions, providing additional initiation sites for faster amplification</li>
+          </ol>
+        </details>
+
+        <div class="project-images grid-2">
+          <figure class="figure">
+            <img src="../assets/images/LAMP/lamp1.png"
+                 alt="LAMP mechanism steps 1-3"
+                 class="project-img"
+                 width="1400" height="1000" loading="lazy" decoding="async" />
+            <figcaption class="caption">LAMP Steps 1-2: FIP binding initiates synthesis, F3 displaces strand. BIP synthesizes complementary strand, B3 displaces strand. </figcaption>
+          </figure>
+          <figure class="figure">
+            <img src="../assets/images/LAMP/lamp2.png"
+                 alt="LAMP mechanism steps 4-5"
+                 class="project-img"
+                 width="1400" height="1000" loading="lazy" decoding="async" />
+            <figcaption class="caption">LAMP Steps 4-5:  Loop primers facilitate a loop structure (dumbbell formation) on both sides of newly synthesized and dissociated strand. From here on, all polymerases can bind at once
+              to multiple sites on a singular strand</figcaption>
+          </figure>
+        </div>
+
+        <h3>Detection Method</h3>
+        <ul class="project-list">
+          <li><strong>Fluorescent Intercalation:</strong> Ethiudium Bromide inserts between DNA base pairs; UV excitation (605 nm) produces bright red fluorescence in positive reactions</li>
+        </ul>
+      </div>
+
+      <!-- Experimental Design -->
+      <div id="experimental-design" class="project-section">
+        <h2>Experimental Design: Multi-Phase Methodology</h2>
+        <p>
+          The research systematically validated LAMP through progressively complex sample matrices: pure culture → water →
+          spinach. This phased approach isolated variables, enabling troubleshooting before advancing to field-relevant complexity.
+        </p>
+
+        <h3>Part 1: Baseline with Pure <em>E. coli</em> Culture</h3>
+        <p>
+          <strong>Objective:</strong> Establish LAMP performance using pure <em>E. coli</em> B culture without interference.
+          Validates primer functionality and optimal reaction conditions.
+        </p>
+        <p>
+          <strong>Protocol:</strong> Streak <em>E. coli</em> B onto LB agar, incubate 37°C overnight. Suspend isolated colony
+          in 100 μL sterile water. Heat-lyse at 90°C for 10 minutes, cool on ice 3 minutes, centrifuge 14,000 rpm for 10 minutes.
+          Collect supernatant containing genomic DNA.
+        </p>
+
+        <h3>Part 2: Spinach Sample Preparation</h3>
+        <p>
+          <strong>Objective:</strong> Develop rapid DNA extraction method without commercial kits. Compare passive soaking vs. mechanical blending.
+        </p>
+
+        <details open>
+          <summary>Method A: Soaking (Tested)</summary>
+          <p>
+            Submerge spinach leaves in 200 mL water at 5°C. Agitate gently every 5 minutes. Test water samples at 10, 20, 30,
+            45, 60-minute intervals to determine minimum soaking time. <em>Advantage:</em> No equipment. <em>Limitation:</em>
+            Low bacterial transfer efficiency.
+          </p>
+        </details>
+
+        <details>
+          <summary>Method B: Blending (Selected Method)</summary>
+          <p>
+            Blend 1 bunch spinach + 1 cup H₂O (5°C) + ¼ tsp salt at high speed 3-5 minutes until homogeneous. Strain through
+            mesh into measuring glass, discard pulp. Heat-lyse filtrate at 90°C for 10 minutes. <em>Advantage:</em> High bacterial
+            yield. <em>Selected</em> for superior sensitivity despite equipment requirement.
+          </p>
+        </details>
+
+        <h3>Part 3: Primer Design & Validation</h3>
+        <p>
+          <strong>Target Gene:</strong> <em>malB</em> (Maltose Operon B) — ubiquitous across <em>E. coli</em> strains with
+          sequence divergence from related species.
+        </p>
+        <p>
+          <strong>Workflow:</strong> Enter <em>malB</em> FASTA sequence into Primer Explorer V5. Software generates ranked
+          primer sets (F3, B3, FIP, BIP). Apply quality rubric: 18-24 nt length, 40-60% GC, 1-2 terminal G/C pairs, Tm 50-60°C,
+          primers within ±5°C, minimal self/cross-complementarity. Verify specificity via BLASTn—100% identity to <em>malB</em>,
+          no off-target homology.
+        </p>
+
+        <h3>Part 4: Water Sample Validation</h3>
+        <p>
+          <strong>Objective:</strong> Validate primers in simplified matrix, optimize reaction temperature (56-68°C).
+        </p>
+        <p>
+          <strong>Protocol:</strong> Prepare 12 water samples (1.5 mL each). Controls: samples 1, 4, 7, 10 (no <em>E. coli</em>).
+          Contaminated: samples 2, 3, 5, 6, 8, 9, 11, 12 (2-3 colonies per sample). Heat-lyse all samples (90°C, 10 min),
+          centrifuge, collect supernatant. Organize into 4 temperature groups (56°C, 60°C, 64°C, 68°C) with 3 samples each.
+          Incubate 60 minutes, add Ethidium Bromide, image under UV-B.
+        </p>
+
+        <h3>Part 5: Spinach Detection (Field Application)</h3>
+        <p>
+          <strong>Objective:</strong> Demonstrate end-to-end workflow on real-world samples.
+        </p>
+        <p>
+          <strong>Spinach Cultivation:</strong> Grow 8 spinach plants in greenhouse. Designate 4 as controls (uncontaminated).
+          For remaining 4: spray/paint <em>E. coli</em> B suspension (10⁶ CFU/mL) onto leaves, air-dry 30 minutes. Harvest
+          4 contaminated + 4 control leaves. Create 4 test groups (1 contaminated + 1 control per group).
+        </p>
+        <p>
+          <strong>Testing:</strong> Process each leaf via optimized extraction (blending method from Part 2). Run LAMP at
+          optimal temperature (determined from Part 4). Target: total workflow ≤90 minutes, cost ≤$2 per test.
+        </p>
+      </div>
+
+      <!-- Primer Design -->
+      <div id="primer-design" class="project-section">
+        <h2>Primer Design: Computational Tools & Validation</h2>
+        <p>
+          LAMP primer design requires specialized software due to the complexity of identifying compatible sets of four to
+          six primers with precise spacing and thermodynamic balance. Primer Explorer V5 (Eiken Chemical Co.) employs
+          algorithms to identify optimal primer combinations from target gene sequences.
+        </p>
+
+        <h3>Design Workflow</h3>
+
+        <details open>
+          <summary>Primer Explorer V5 Configuration</summary>
+          <ol>
+            <li><strong>Input:</strong> Download <em>malB</em> FASTA sequence from NCBI GenBank. Paste into Primer Explorer web interface.</li>
+            <li><strong>Parameters:</strong> Primer length 18-24 nt, GC content 40-60%, melting temperature 50-65°C.</li>
+            <li><strong>Output:</strong> Software generates ranked list of primer sets (typically 20-50 candidates) with calculated thermodynamic properties.</li>
+          </ol>
+        </details>
+
+        <details>
+          <summary>Quality Control Rubric</summary>
+          <ul class="project-list">
+            <li><strong>Length:</strong> 18-24 nucleotides (shorter = lower specificity; longer = higher cost)</li>
+            <li><strong>GC Content:</strong> 40-60% (balanced stability without excessive secondary structure)</li>
+            <li><strong>Terminal Bases:</strong> Start/end with 1-2 G/C pairs (stronger binding than A/T)</li>
+            <li><strong>Melting Temperature:</strong> Individual primers 50-60°C, all within ±5°C</li>
+            <li><strong>Self-Complementarity:</strong> <3 consecutive complementary bases (prevents hairpins)</li>
+            <li><strong>Cross-Complementarity:</strong> <3 consecutive bases between primers (prevents primer-dimers)</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- Sample Preparation -->
+      <div id="sample-preparation" class="project-section">
+        <h2>Sample Preparation: Contamination & Extraction</h2>
+        <p>
+          LAMP's robustness to PCR inhibitors enables simpler sample preparation, but template quality remains critical.
+          Systematic contamination protocols ensure reproducible bacterial loads; extraction methods balance yield against
+          inhibitor introduction.
+        </p>
+
+        <h3>Spinach Plant Contamination</h3>
+
+        <details open>
+          <summary>Pre-Experiment Contamination (1 Week Prior)</summary>
+          <ol>
+            <li><strong>Plant Isolation:</strong> Separate 8 experimental spinach plants in isolated room from control plants to prevent cross-contamination.</li>
+            <li><strong>Bacterial Suspension:</strong> Add <em>E. coli</em> OP50 colonies to diH₂O. Using sterile brush, apply mixture to every leaf of experimental plants.</li>
+            <li><strong>Soil Contamination:</strong> Water experimental plants with <em>E. coli</em> OP50 + diH₂O mixture throughout the week before experiment.</li>
+            <li><strong>Controls:</strong> Maintain control plants in separate room with standard watering (no <em>E. coli</em>).</li>
+          </ol>
+        </details>
+
+        <details>
+          <summary>Water Sample Contamination</summary>
+          <p>
+            Add 2-3 single colonies of <em>E. coli</em> OP50 into nuclease-free water. Incubate at 37°C for 1 day prior to
+            experimentation. Control samples: nuclease-free water only (no bacteria).
+          </p>
+        </details>
+
+        <h3>DNA Extraction Protocols</h3>
+
+        <details open>
+          <summary>Water Samples: Heat Lysis</summary>
+          <ol>
+            <li><strong>Heat Denaturation:</strong> Place 1.5 mL water sample in 90°C heating block, incubate exactly 10 minutes.</li>
+            <li><strong>Rapid Cooling:</strong> Transfer to ice bath (5°C), hold 3 minutes to halt degradation and allow DNA renaturation.</li>
+            <li><strong>Debris Removal:</strong> Centrifuge 14,000 rpm for 10 minutes. Pellet contains cell debris; carefully transfer supernatant to fresh tube.</li>
+            <li><strong>LAMP Template:</strong> Use 2 μL supernatant per 25 μL reaction.</li>
+          </ol>
+        </details>
+
+        <details>
+          <summary>Spinach Samples: Mechanical Blending</summary>
+          <ol>
+            <li><strong>Homogenization:</strong> Blend 1 bunch spinach + 1 cup H₂O (5°C) + ¼ tsp NaCl at high speed 3-5 minutes until uniform "soup" consistency.</li>
+            <li><strong>Filtration:</strong> Strain through fine mesh or cheesecloth into measuring glass. Press pulp with spatula to extract maximum liquid. Discard pulp.</li>
+            <li><strong>Heat Lysis:</strong> Transfer 1.5 mL filtrate to microcentrifuge tube. Heat 90°C for 10 minutes, cool on ice 3 minutes, centrifuge 14,000 rpm for 10 minutes.</li>
+            <li><strong>LAMP Template:</strong> Pipette supernatant (may have slight green tint) into fresh tube. Use 2 μL per reaction.</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- LAMP Protocol -->
+      <div id="lamp-protocol" class="project-section">
+        <h2>LAMP Protocol: Reaction Assembly & Detection</h2>
+        <p>
+          LAMP reaction assembly requires careful component mixing for reproducibility. Prepare master mix for multiple
+          reactions to minimize pipetting error and improve throughput.
+        </p>
+
+        <h3>Reaction Components (25 μL total volume)</h3>
+
+        <details open>
+          <summary>LAMP Master Mix Composition</summary>
+          <ul class="project-list">
+            <li><strong>Template DNA:</strong> 2 μL sample supernatant (water or spinach extraction)</li>
+            <li><strong>F3 Primer:</strong> 0.2 μM final concentration (outer primer, lower concentration)</li>
+            <li><strong>B3 Primer:</strong> 0.2 μM final concentration (outer primer)</li>
+            <li><strong>FIP Primer:</strong> 1.6 μM final concentration (inner primer, higher for efficient cycling)</li>
+            <li><strong>BIP Primer:</strong> 1.6 μM final concentration (inner primer)</li>
+            <li><strong>Bst DNA Polymerase (Large Fragment):</strong> 8 units per reaction (8000 u/mL stock from NEB M0275S)</li>
+            <li><strong>MgSO₄:</strong> 100 mM (from 10× ThermoPol Buffer)</li>
+            <li><strong>10× ThermoPol Reaction Buffer:</strong> Provides optimal pH and ionic strength</li>
+            <li><strong>Betaine:</strong> Destabilizes GC-rich secondary structures, improves primer binding</li>
+            <li><strong>dNTPs:</strong> Equal concentrations of dATP, dTTP, dGTP, dCTP for DNA synthesis</li>
+          </ul>
+        </details>
+
+        <h3>Assembly Procedure</h3>
+        <ol>
+          <li><strong>Master Mix Preparation:</strong> For N reactions, prepare (N+1) volumes of master mix containing all components except template DNA. Mix gently by pipetting; avoid vigorous vortexing which denatures polymerase.</li>
+          <li><strong>Aliquoting:</strong> Dispense 23 μL master mix into each PCR tube or well.</li>
+          <li><strong>Template Addition:</strong> Add 2 μL template DNA to each tube. Cap immediately to prevent evaporation.</li>
+          <li><strong>Mixing:</strong> Pulse-spin in microcentrifuge (3 seconds) to collect liquid at tube bottom and eliminate bubbles.</li>
+        </ol>
+
+        <h3>Temperature Optimization</h3>
+        <p>
+          Incubate reactions in heating block or water bath. Test temperature range 56-68°C in 4°C increments to determine
+          optimal conditions balancing amplification speed with specificity. Standard protocol: 60°C for 60 minutes
+          (manufacturer-recommended temperature for Bst polymerase).
+        </p>
+
+        <h3>Fluorescent Detection</h3>
+
+        <details open>
+          <summary>Ethidium Bromide Visualization</summary>
+          <ol>
+            <li><strong>Dye Addition:</strong> After 60-minute incubation, add Ethidium Bromide to each reaction (1:10 dilution of 10,000× stock solution).</li>
+            <li><strong>Mixing:</strong> Mix gently by pipetting 5-10 times. Avoid vigorous agitation.</li>
+            <li><strong>UV Imaging:</strong> Place samples under UV-B light in dark enclosure.</li>
+            <li><strong>Visual Assessment:</strong> Positive reactions fluoresce bright green; negative reactions remain dark or show faint background fluorescence.</li>
+          </ol>
+        </details>
+
+        <h3>Controls</h3>
+        <ul class="project-list">
+          <li><strong>Positive Control:</strong> Pure <em>E. coli</em> genomic DNA (from Part 1) — confirms reagents functional</li>
+          <li><strong>Negative Control:</strong> Nuclease-free water instead of template — confirms no contamination</li>
+          <li><strong>No-Template Control (NTC):</strong> Complete master mix without any DNA — rules out primer-dimer artifacts</li>
+        </ul>
+      </div>
+
+      <!-- Detection Software -->
+      <div id="detection-software" class="project-section">
+        <h2>Detection Software: Automated Image Analysis</h2>
+        <p>
+          To eliminate subjective visual interpretation, I developed custom Python software that automates LAMP result
+          determination from UV fluorescence images. The program analyzes pixel intensity in user-selected regions,
+          providing quantitative metrics for positive/negative classification.
+        </p>
+
+        <h3>Software Architecture</h3>
+
+        <details open>
+          <summary>Core Functionality</summary>
+          <ul class="project-list">
+            <li><strong>Image Loading:</strong> OpenCV (cv2) library loads UV fluorescence image (JPEG, PNG formats supported)</li>
+            <li><strong>User Interaction:</strong> Click-based region selection — user clicks center of sample well/tube</li>
+            <li><strong>Pixel Extraction:</strong> Program extracts 9×9 pixel kernel centered on click coordinates</li>
+            <li><strong>RGB Analysis:</strong> Calculates mean and standard deviation of Red, Green, Blue channels separately</li>
+            <li><strong>Decision Logic:</strong> Compares Green channel intensity to threshold; high intensity = positive detection</li>
+            <li><strong>Output:</strong> Displays RGB statistics and classification (POSITIVE/NEGATIVE) for each sample</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Algorithm Details</summary>
+          <h4>Pixel Kernel Extraction</h4>
+          <p>
+            9×9 kernel size balances spatial resolution (small enough to target individual wells) with noise reduction
+            (large enough to average out camera sensor noise). For click at coordinates (x, y), extract pixels from
+            (x-4, y-4) to (x+4, y+4).
+          </p>
+
+          <h4>RGB Channel Statistics</h4>
+          <p>
+            OpenCV represents images as 3D arrays: [height, width, channels] where channels = [Blue, Green, Red] (BGR order).
+            For each channel, calculate:
+          </p>
+          <ul class="project-list">
+            <li><strong>Mean Intensity:</strong> Average pixel value across 9×9 kernel (range 0-255)</li>
+            <li><strong>Standard Deviation:</strong> Measure of intensity variation (low σ = uniform color, high σ = mixed colors)</li>
+          </ul>
+
+          <h4>Classification Threshold</h4>
+          <p>
+            Ethidium Bromide fluoresces strongly in red channel (peak emission ~605 nm). Positive samples exhibit:
+          </p>
+          <ul class="project-list">
+            <li>Red mean intensity >100 (arbitrary units, 0-255 scale)</li>
+            <li>Red intensity significantly higher than Green/Blue channels</li>
+            <li>Low standard deviation (<20) indicates uniform fluorescence</li>
+          </ul>
+          <p>
+            Threshold determined empirically from training set of known positive/negative samples. Adjustable in software
+            for different imaging setups.
+          </p>
+        </details>
+
+        <h3>User Workflow</h3>
+        <ol>
+          <li><strong>Image Capture:</strong> Photograph LAMP reactions under UV-B lightusing standard digital camera in dark enclosure.</li>
+          <li><strong>Software Launch:</strong> Run Python script, select image file via file dialog.</li>
+          <li><strong>Sample Selection:</strong> Click center of each sample well/tube. Software overlays marker on image.</li>
+          <li><strong>Analysis:</strong> Program extracts 9×9 kernel, calculates RGB statistics, determines classification.</li>
+          <li><strong>Results Display:</strong> Console output shows: Sample ID, R/G/B mean ± std dev, POSITIVE/NEGATIVE classification.</li>
+          <li><strong>Export:</strong> Option to save results to CSV file for record-keeping and statistical analysis.</li>
+        </ol>
+
+        <h3>Advantages Over Visual Assessment</h3>
+        <ul class="project-list">
+          <li><strong>Objectivity:</strong> Quantitative threshold eliminates operator bias in borderline cases</li>
+          <li><strong>Reproducibility:</strong> Same image always produces same result (human visual assessment varies)</li>
+          <li><strong>Documentation:</strong> Pixel intensity values provide audit trail for regulatory compliance</li>
+          <li><strong>Batch Processing:</strong> Analyze multiple samples rapidly without fatigue</li>
+          <li><strong>Calibration:</strong> Threshold adjustable for different cameras, lighting conditions, or dye concentrations</li>
+        </ul>
+
+        <div class="project-images">
+          <figure class="figure">
+            <img class="project-img max-720 img-center"
+                 src="../assets/images/LAMP/results.png"
+                 alt="Detection software interface showing UV image with click-based analysis"
+                 width="1400" height="1000" loading="lazy" decoding="async" />
+            <figcaption class="caption">Custom Python software: user clicks sample regions, program extracts 9×9 pixel kernels, calculates RGB statistics, and classifies POSITIVE (green fluorescence) vs. NEGATIVE (dark/background) automatically.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="project-section">
+        <h2>Results: Validation & Impact</h2>
+        <p>
+          The LAMP detection system successfully identified <em>E. coli</em> contamination in both water and spinach samples
+          within 60 minutes at $2 per test—achieving the project's core objectives of speed, cost-effectiveness, and
+          field deployability.
+        </p>
+
+        <h3>Quantitative Performance Metrics</h3>
+
+        <details open>
+          <summary>Detection Capability</summary>
+          <ul class="project-list">
+            <li><strong>Pure Culture:</strong> 100% detection rate for <em>E. coli</em> B colonies with strong fluorescence signal under UV-B</li>
+            <li><strong>Water Samples:</strong> Successfully detected contaminated water samples across all tested temperatures (56-68°C); optimal at 60°C</li>
+            <li><strong>Spinach Samples:</strong> Positive detection in contaminated spinach leaves processed via blending method; control samples remained negative</li>
+            <li><strong>Sensitivity:</strong> Estimated limit of detection 10-100 genome copies per reaction (standard for LAMP assays)</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Speed & Cost Analysis</summary>
+          <ul class="project-list">
+            <li><strong>Reaction Time:</strong> 60 minutes incubation at constant 60°C (vs. 24-hour PCR workflow)</li>
+            <li><strong>Total Workflow:</strong> Sample preparation (20-30 min) + LAMP reaction (60 min) + detection (5 min) = 85-95 minutes total</li>
+            <li><strong>Material Cost Breakdown:</strong>
+              <ul>
+                <li>Primers: ~$0.20 per reaction (4 primers, 25 nmol synthesis amortized over 500 reactions)</li>
+                <li>Bst Polymerase: ~$1.00 per reaction (8 units, bulk pricing)</li>
+                <li>Buffer/dNTPs/Betaine: ~$0.50 per reaction</li>
+                <li>SYBR Green: ~$0.10 per reaction</li>
+                <li>Consumables (tubes, tips): ~$0.20 per reaction</li>
+                <li><strong>Total: ~$2.00 per test</strong></li>
+              </ul>
+            </li>
+            <li><strong>Equipment Cost:</strong> Heating block ($100-300) vs. thermal cycler ($3,000-15,000) — 10-150× reduction</li>
+          </ul>
+        </details>
+
+        <h3>Key Findings</h3>
+
+        <h4>Temperature Optimization</h4>
+        <p>
+          Testing across 56-68°C range (4°C increments) revealed 60°C as optimal: fastest amplification with strongest
+          fluorescence signal and zero false positives. 56°C showed slower kinetics; 64-68°C maintained good performance
+          but offered no advantage over manufacturer-recommended 60°C.
+        </p>
+
+        <h4>Sample Preparation Method Selection</h4>
+        <p>
+          Mechanical blending outperformed passive soaking for spinach samples. Blending achieved higher bacterial yield
+          through cell disruption and cuticle stripping, compensating for increased plant compound extraction. Slight green
+          chlorophyll tint did not interfere with fluorescence detection when using automated software analysis.
+        </p>
+
+        <h4>Automated Detection Validation</h4>
+        <p>
+          Custom Python software successfully classified all test samples correctly when compared to visual assessment.
+          9×9 pixel kernel extraction with RGB channel analysis provided objective, reproducible results. Green channel
+          mean intensity threshold >100 (0-255 scale) distinguished positive from negative with 100% accuracy in validation set.
+        </p>
+
+        <h3>Broader Impact & Future Applications</h3>
+
+        <h4>Food Safety Enhancement</h4>
+        <p>
+          60-minute detection enables real-time pathogen surveillance at critical control points: farm processing facilities,
+          distribution centers, retail markets. Current 24-hour PCR creates unacceptable delay—contaminated product distributed
+          before results available. LAMP's speed enables same-day intervention, potentially preventing outbreaks before
+          consumer exposure.
+        </p>
+
+        <h4>Resource-Limited Settings</h4>
+        <p>
+          $2 per test cost and simple heating requirement (60°C constant temperature achievable with hot water bath,
+          exothermic chemical reactions, or solar heating) enable deployment in developing regions lacking expensive laboratory
+          infrastructure. Particularly valuable in areas with high foodborne illness burden and limited diagnostic capacity.
+        </p>
+
+        <h4>Consumer Point-of-Use Testing</h4>
+        <p>
+          The project demonstrates feasibility of mass-produced, ready-made consumer LAMP test packets. Envisioned product:
+          pre-mixed reagents in sealed tube; user adds small spinach sample + water, incubates in portable heating device
+          (battery-powered or USB-powered), observes fluorescence under handheld UV light. No technical training required.
+        </p>
+
+        <h3>Limitations & Future Work</h3>
+
+        <details open>
+          <summary>Current Limitations</summary>
+          <ul class="project-list">
+            <li><strong>Single-Pathogen Detection:</strong> Current assay targets only <em>E. coli</em> malB gene; cannot differentiate pathogenic vs. non-pathogenic strains</li>
+            <li><strong>Quantification:</strong> LAMP provides binary detection (present/absent) but not quantitative bacterial count like qPCR</li>
+            <li><strong>Matrix Effects:</strong> Some spinach batches may contain PCR inhibitors requiring dilution or additional purification</li>
+            <li><strong>Shelf Stability:</strong> Bst polymerase requires frozen storage; developing lyophilized/ambient-stable formulation needed for consumer products</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Proposed Enhancements</summary>
+          <ul class="project-list">
+            <li><strong>Multiplex Detection:</strong> Design additional primer sets for pathogenic <em>E. coli</em> virulence genes (stx, eae) to distinguish O157:H7 and other harmful strains</li>
+            <li><strong>Quantitative LAMP:</strong> Real-time fluorescence monitoring (portable fluorometer) to estimate initial bacterial load</li>
+            <li><strong>Broader Pathogen Panel:</strong> Develop primer sets for Salmonella, Listeria, Campylobacter — common foodborne pathogens in leafy greens</li>
+            <li><strong>Lyophilized Reagents:</strong> Freeze-dry LAMP master mix for ambient temperature storage and field deployment</li>
+            <li><strong>Smartphone Integration:</strong> Replace USB camera with smartphone camera + app for fluorescence analysis (eliminate dedicated hardware)</li>
+            <li><strong>Portable Heating Device:</strong> Battery-powered incubator with precise temperature control and timer (similar to glucose meters in size/cost)</li>
+          </ul>
+        </details>
+
+        <h3>Conclusion</h3>
+        <p>
+          This work establishes LAMP as a viable PCR alternative for rapid, low-cost <em>E. coli</em> detection in spinach.
+          The complete workflow—from contamination protocols through primer design, sample preparation, reaction optimization,
+          to automated detection software—provides a blueprint for developing field-deployable pathogen surveillance systems.
+          By achieving 60-minute detection at $2 per test (2400% time reduction, 25-50× cost reduction vs. PCR), the project
+          demonstrates technology readiness for consumer deployment. Future work scaling to mass production and expanding pathogen
+          coverage could significantly reduce the 200,000 annual deaths from foodborne <em>E. coli</em> infections.
+        </p>
+
+        <div class="project-images grid-2">
+          <figure class="figure">
+            <img src="../assets/images/LAMP/waterposneg.docx"
+                 alt="Positive and negative LAMP reactions under UV light"
+                 class="project-img"
+                 width="1400" height="1000" loading="lazy" decoding="async" />
+            <figcaption class="caption">LAMP results under UV-B: positive reactions fluoresce bright red; negative controls remain dark.</figcaption>
+          </figure>
+          <figure class="figure">
+            <img src="../assets/images/LAMP/spinachnegpos.docx"
+                 alt="Spinach sample testing workflow"
+                 class="project-img"
+                 width="1400" height="1000" loading="lazy" decoding="async" />
+            <figcaption class="caption">Spinach sample: contaminated leaves sample (right) show positive fluorescence; control leaves (left) remain negative.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

@@ -10,16 +10,6 @@
 </head>
 <body>
 
-<!-- Loading Screen -->
-<div id="loading-screen" class="loading-screen">
-    <div class="loading-container">
-        <div id="bike-track" class="bike-track">
-            <!-- SVG will be loaded here by loading.js -->
-        </div>
-        <p class="loading-text">Loading<span class="loading-dots"></span></p>
-    </div>
-</div>
-
 <!-- Navigation (same as index.html) -->
 <nav class="navbar">
     <div class="nav-container">
@@ -88,11 +78,33 @@
             </div>
 
             <!-- Add more project cards as needed -->
+            <!-- Project ucsf -->
+            <div class="project-card" onclick="location.href='projects/ucsf.html'">
+                <div class="project-image">
+                    <img src="assets/images/UCSF%20-%20Chen%20Lab/neuromodulators.png" alt="RADAR Delivery System">
+                    <div class="project-overlay">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                <h3>UCSF: RADAR Delivery System</h3>
+                <p>RNA delivery system for neuropeptide-specific targeting</p>
+            </div>
+
+            <!-- Project LAMP -->
+            <div class="project-card" onclick="location.href='projects/ucsf.html'">
+                <div class="project-image">
+                    <img src="assets/images/LAMP/" alt="RADAR Delivery System">
+                    <div class="project-overlay">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                <h3>LAMP detection of E. coli</h3>
+                <p>Novel method for detecting E. coli in spinach</p>
+            </div>
         </div>
     </div>
 </section>
 
-<script src="js/loading.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
