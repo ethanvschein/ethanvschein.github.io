@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>RADAR: RNA-Activated Detection And Recording for Cell-Type Specific Gene Expression</title>
+
+    <!-- Site styles & fonts -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=splash" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo"><a href="../index.html">Ethan Schein</a></div>
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../about.html" class="nav-link">About</a></li>
+            <li><a href="../education.html" class="nav-link">Education</a></li>
+            <li><a href="../experience.html" class="nav-link">Experience</a></li>
+            <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+            <li><a href="../skills.html" class="nav-link">Skills</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+</nav>
+
+<!-- Project Detail -->
+<section class="project-detail">
+    <div class="container">
+        <div class="back-button">
+            <a href="../projects.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </div>
+
+        <div class="project-header">
+            <h1 class="project-title">RADAR: RNA-Activated Detection And Recording</h1>
+            <div class="project-tags">
+                <span class="tag">Molecular Biology</span>
+                <span class="tag">Genetic Engineering</span>
+                <span class="tag">ADAR Editing</span>
+                <span class="tag">Sensor Design</span>
+                <span class="tag">Plasmid Cloning</span>
+                <span class="tag">PCR</span>
+                <span class="tag">NGS</span>
+                <span class="tag">Transfection</span>
+                <span class="tag">Fluorescence Microscopy</span>
+                <span class="tag">Python / Benchling</span>
+            </div>
+
+            <!-- quick metrics -->
+            <div class="key-metrics">
+                <div class="metric">
+                    <h4>Institution</h4>
+                    <p>UCSF Chen Lab | Neuroscience & Gene Therapy Research</p>
+                </div>
+                <div class="metric">
+                    <h4>Technology</h4>
+                    <p>RNA sensing via ADAR-mediated stop codon editing for cell-type specific expression control</p>
+                </div>
+                <div class="metric">
+                    <h4>Target Application</h4>
+                    <p>Precise gene therapy delivery to specific neuronal populations without viral integration</p>
+                </div>
+                <div class="metric">
+                    <h4>Sensor Library</h4>
+                    <p>Hundreds of sensors per gene; pooled screening via NGS for optimal specificity</p>
+                </div>
+            </div>
+
+            <!-- Table of contents -->
+            <div class="project-toc-wrapper">
+                <div class="project-toc">
+                    <a href="#overview" class="toc-card">
+                        <div class="toc-num">01</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Overview</div>
+                            <div class="toc-sub">The RADAR system</div>
+                        </div>
+                    </a>
+                    <a href="#motivation" class="toc-card">
+                        <div class="toc-num">02</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Motivation</div>
+                            <div class="toc-sub">Gene therapy challenges</div>
+                        </div>
+                    </a>
+                    <a href="#mechanism" class="toc-card">
+                        <div class="toc-num">03</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Mechanism</div>
+                            <div class="toc-sub">How RADAR works</div>
+                        </div>
+                    </a>
+                    <a href="#sensor-design" class="toc-card">
+                        <div class="toc-num">04</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Sensor Design</div>
+                            <div class="toc-sub">Computational pipeline</div>
+                        </div>
+                    </a>
+                    <a href="#pooling" class="toc-card">
+                        <div class="toc-num">05</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Pooled Cloning</div>
+                            <div class="toc-sub">High-throughput workflow</div>
+                        </div>
+                    </a>
+                    <a href="#proof-of-concept" class="toc-card">
+                        <div class="toc-num">06</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Proof of Concept</div>
+                            <div class="toc-sub">CTIP2 & EEF1A1 validation</div>
+                        </div>
+                    </a>
+                    <a href="#targets" class="toc-card">
+                        <div class="toc-num">07</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Target Genes</div>
+                            <div class="toc-sub">Neuromodulator library</div>
+                        </div>
+                    </a>
+                    <a href="#future" class="toc-card">
+                        <div class="toc-num">08</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Future Work</div>
+                            <div class="toc-sub">LNPs & in vivo delivery</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-content">
+
+            <!-- Overview -->
+            <div id="overview" class="project-section">
+                <h2>Overview</h2>
+                <p>
+                    Precise gene therapy requires delivering therapeutic genes to <em>specific cell types</em> without affecting surrounding tissues. Traditional approaches rely on viral vectors that integrate into the genome (raising safety concerns) or antibody-based targeting (which suffers from off-target binding and limited specificity). <strong>RADAR (RNA-Activated Detection And Recording)</strong> offers a fundamentally different approach: it uses <em>endogenous RNA molecules</em> as cell-type identifiers to control gene expression with unprecedented precision.
+                </p>
+                <p>
+                    The system leverages <strong>ADAR enzymes</strong> (Adenosine Deaminases Acting on RNA) that naturally edit specific adenosines in double-stranded RNA. By engineering a sensor RNA (sesRNA) that binds to a target mRNA, we recruit ADAR to edit a strategically placed stop codon—converting it to a "read-through" codon and enabling translation of a downstream effector gene. This occurs <em>only in cells expressing the target RNA</em>, providing cell-type specificity without genomic integration.
+                </p>
+                <div class="callout">
+                    <strong>Key Innovation:</strong> RADAR enables transient, reversible gene expression control based on native cellular RNA signatures. Unlike CRISPR or viral integration, it leaves no permanent genomic footprint and can be delivered via lipid nanoparticles (LNPs) for safer therapeutic applications.
+                </div>
+            </div>
+
+            <!-- Motivation -->
+            <div id="motivation" class="project-section">
+                <h2>Motivation: Why RADAR?</h2>
+
+                <h3>Limitations of Current Gene Therapy Approaches</h3>
+
+                <details open>
+                    <summary>Viral Vectors — Integration & Safety Concerns</summary>
+                    <p>
+                        Lentivirus and adeno-associated virus (AAV) are workhorses of gene therapy, but they integrate into the host genome, creating permanent genetic modifications. This poses risks:
+                    </p>
+                    <ul class="project-list">
+                        <li><strong>Insertional mutagenesis:</strong> Random integration can disrupt tumor suppressor genes or activate oncogenes</li>
+                        <li><strong>Immunogenicity:</strong> Viral capsid proteins trigger immune responses, limiting repeat dosing</li>
+                        <li><strong>Limited cargo capacity:</strong> AAV restricts payloads to ~4.7 kb, excluding many therapeutic genes</li>
+                        <li><strong>Off-target expression:</strong> Viral tropism provides tissue-level targeting but lacks single-cell-type precision</li>
+                    </ul>
+                    <p>
+                        While viral vectors excel at long-term expression, many therapeutic applications require <em>transient intervention</em>—correcting a disease state without permanent genomic alteration.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Antibody-Based Targeting — Specificity & Scalability</summary>
+                    <p>
+                        Antibody-targeted delivery systems (e.g., antibody-drug conjugates, immunoliposomes) rely on cell-surface proteins for targeting. However:
+                    </p>
+                    <ul class="project-list">
+                        <li><strong>Surface marker limitations:</strong> Many cell types lack unique surface antigens; neuronal subtypes often share markers</li>
+                        <li><strong>Off-target binding:</strong> Antibody cross-reactivity causes unintended delivery to non-target cells. Companies like Alamar Biosciences and Abcam screen hundreds of antibodies per target, selecting the "best" performer—yet off-target effects persist</li>
+                        <li><strong>Manufacturing complexity:</strong> Custom antibodies for each target require extensive validation; scaling to hundreds of cell types is impractical</li>
+                        <li><strong>Cost:</strong> High-quality antibodies are expensive; therapeutic-grade production adds further cost barriers</li>
+                    </ul>
+                    <p>
+                        RADAR circumvents these limitations by using <em>intracellular RNA signatures</em> instead of surface proteins, enabling targeting of cell types that are indistinguishable by antibody-based methods.
+                    </p>
+                </details>
+
+                <h3>The RADAR Advantage</h3>
+                <ul class="project-list">
+                    <li><strong>Non-integrating:</strong> Delivered as mRNA or plasmid; no permanent genome modification; expression fades as RADAR constructs degrade</li>
+                    <li><strong>RNA-based specificity:</strong> Targets genes expressed uniquely in specific cell types (e.g., CTIP2 in corticospinal neurons, VIP in specific interneurons)</li>
+                    <li><strong>Multiplexable:</strong> Multiple sensors can be deployed simultaneously to target different cell populations</li>
+                    <li><strong>Scalable design:</strong> Computational sensor design enables rapid generation of hundreds of candidates per gene; pooled screening identifies optimal sensors</li>
+                    <li><strong>LNP compatibility:</strong> Can be packaged in lipid nanoparticles for systemic or localized delivery without viral vectors</li>
+                </ul>
+            </div>
+
+            <!-- Mechanism -->
+            <div id="mechanism" class="project-section">
+                <h2>Mechanism: How RADAR Works</h2>
+
+                <h3>System Architecture</h3>
+                <p>
+                    The RADAR construct consists of two key components:
+                </p>
+                <ul class="project-list">
+                    <li><strong>sesRNA (sensor RNA):</strong> Contains a ~300 nt sensor domain complementary to the target mRNA, followed by one or more ADAR-editable stop codons</li>
+                    <li><strong>efRNA (effector RNA):</strong> Encodes the therapeutic gene or reporter protein, positioned downstream of a self-cleaving T2A peptide sequence</li>
+                </ul>
+
+                <details open>
+                    <summary>Step 1: Target Recognition & Hybridization</summary>
+                    <p>
+                        When the RADAR construct is expressed in a cell, the sesRNA sensor domain scans for its complementary target mRNA. In cells expressing the target gene (e.g., CTIP2 in corticospinal neurons), base-pairing occurs, forming a double-stranded RNA (dsRNA) structure. In cells lacking the target mRNA, the sensor remains unpaired and the system stays "off."
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Step 2: ADAR Recruitment & Stop Codon Editing</summary>
+                    <p>
+                        ADAR enzymes recognize dsRNA structures ≥ ~20 bp and catalyze adenosine-to-inosine (A-to-I) deamination. Inosine is read as guanosine (G) by the ribosome. The RADAR sesRNA contains a strategically positioned stop codon (e.g., UAG) where the middle adenosine is editable.
+                    </p>
+                    <p>
+                        <strong>Before editing:</strong> UAG (stop codon) → translation terminates<br>
+                        <strong>After ADAR editing:</strong> UAG → UIG (read as UGG, tryptophan) → translation continues
+                    </p>
+                    <p>
+                        This A-to-I editing converts the stop codon into a sense codon, allowing the ribosome to read through and translate the downstream effector gene.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Step 3: Effector Expression & Therapeutic Action</summary>
+                    <p>
+                        Once the stop codon is edited, translation proceeds through the T2A self-cleaving peptide sequence, producing two separate proteins:
+                    </p>
+                    <ol>
+                        <li><strong>Upstream fragment:</strong> Contains the sensor and any N-terminal sequence</li>
+                        <li><strong>Effector protein:</strong> The therapeutic gene or reporter (e.g., GFP for visualization, Cre recombinase for genetic manipulation)</li>
+                    </ol>
+                    <p>
+                        The T2A peptide ensures efficient separation of the two proteins, allowing the effector to function independently. This modular architecture enables RADAR to deliver diverse therapeutic payloads by simply swapping the efRNA sequence.
+                    </p>
+                </details>
+
+                <div class="callout">
+                    <strong>Specificity Mechanism:</strong> RADAR achieves cell-type specificity through a "two-factor authentication" system: the sensor must (1) find its complementary target RNA <em>and</em> (2) recruit ADAR to edit the stop codon. Cells lacking the target RNA never activate the effector, ensuring precise spatial control of gene expression.
+                </div>
+
+                <figure class="figure">
+                    <img class="project-img max-400 img-center"
+                         src="../assets/images/UCSF%20-%20Chen%20Lab/radar.png"
+                         alt="RADAR mRNA Sensor"
+                         width="1400" height="1000" loading="lazy" decoding="async" />
+                    <figcaption class="caption">Radar sensor mRNA using intracellular ADAR to bind to stop codon </figcaption>
+                </figure>
+
+            </div>
+
+            <!-- Sensor Design -->
+            <div id="sensor-design" class="project-section">
+                <h2>Sensor Design: Computational Pipeline</h2>
+
+                <h3>Design Requirements</h3>
+                <p>
+                    Effective RADAR sensors must balance competing constraints:
+                </p>
+                <ul class="project-list">
+                    <li><strong>Target specificity:</strong> Bind strongly to intended mRNA; minimal off-target hybridization</li>
+                    <li><strong>ADAR editing efficiency:</strong> dsRNA structure must recruit ADAR and present stop codon in editable conformation</li>
+                    <li><strong>Length optimization:</strong> 180-200 bp sensor domains provide optimal hybridization stability while maintaining practical cloning size</li>
+                    <li><strong>Secondary structure:</strong> Avoid self-complementarity that prevents target binding; minimize competing hairpin structures</li>
+                </ul>
+
+                <details open>
+                    <summary>Computational Workflow</summary>
+                    <ol>
+                        <li><strong>Target selection:</strong> Identify gene of interest (e.g., CTIP2 for corticospinal neurons); retrieve cDNA sequence from Ensembl Genomes database (excluding introns)</li>
+                        <li><strong>Sensor region identification:</strong> Use RNASensingNIO tool to scan cDNA for optimal hybridization regions; prioritize sequences with high binding energy and low secondary structure</li>
+                        <li><strong>Top candidate selection:</strong> Generate top 10-20 sensor sequences per gene based on predicted specificity scores</li>
+                        <li><strong>Benchling integration:</strong> Import cDNA sequence into Benchling; map sensor regions to validate positioning; verify no overlap with known regulatory elements</li>
+                        <li><strong>Sensor library expansion:</strong> For high-throughput screening, design 100-200 sensor variants per gene by tiling across transcript or varying sensor length</li>
+                    </ol>
+                </details>
+
+                <details>
+                    <summary>Pooling Strategy for Scalability</summary>
+                    <p>
+                        Testing hundreds of sensors individually is impractical. Instead, we employ <strong>pooled cloning and next-generation sequencing (NGS)</strong> to screen entire sensor libraries simultaneously:
+                    </p>
+                    <ul class="project-list">
+                        <li><strong>Twist Bioscience synthesis:</strong> Order all sensor sequences in a single tube as single-stranded DNA (ssDNA) oligonucleotides</li>
+                        <li><strong>PCR amplification:</strong> Convert ssDNA to double-stranded DNA (dsDNA) using universal primers flanking sensor regions; limit to 8 cycles to minimize library skew</li>
+                        <li><strong>Restriction enzyme cloning:</strong> Flank sensors with restriction sites (e.g., BamHI, BsaI); digest and ligate into RADAR plasmid backbone in single pooled reaction</li>
+                        <li><strong>Transformation & colony counting:</strong> Electroporate into bacteria; aim for ~500 colonies per sensor (total 50,000-100,000 colonies for 100-200 sensor library)</li>
+                        <li><strong>Maxiprep & NGS:</strong> Extract plasmid DNA from pooled colonies; sequence to confirm library composition and relative sensor abundance</li>
+                    </ul>
+                    <p>
+                        This approach enables testing hundreds of sensors in weeks rather than years, identifying optimal candidates for subsequent validation.
+                    </p>
+                </details>
+
+                <h3>Quality Control Metrics</h3>
+                <ul class="project-list">
+                    <li><strong>Library skew:</strong> NGS reveals sensor abundance ratios; acceptable range ≤ 10:1 (e.g., most abundant sensor vs. least abundant); excessive skew indicates PCR bias or transformation inefficiency</li>
+                    <li><strong>Coverage depth:</strong> Minimum 500 colonies per sensor ensures statistical power for downstream functional screening</li>
+                    <li><strong>Sequence fidelity:</strong> Verify no mutations introduced during synthesis or PCR; errors in sensor domain compromise specificity</li>
+                </ul>
+            </div>
+
+            <!-- Pooled Cloning -->
+            <div id="pooling" class="project-section">
+                <h2>Pooled Cloning: High-Throughput Workflow</h2>
+
+                <h3>Overview</h3>
+                <p>
+                    Traditional molecular cloning requires individual plasmid construction for each sensor variant—an untenable approach for libraries containing hundreds of sequences. Pooled cloning circumvents this bottleneck by processing all sensors <em>simultaneously</em> in a single reaction vessel, then using NGS to track individual sensor performance in functional assays.
+                </p>
+
+                <details open>
+                    <summary>Step 1: Oligonucleotide Design & Synthesis</summary>
+                    <p>
+                        Each sensor sequence is designed with standardized flanking elements:
+                    </p>
+                    <pre><code>5' - [Primer Site] - [RE Site] - [Sensor (90-200 bp)] - [RE Site] - [Primer Site] - 3'</code></pre>
+                    <ul class="project-list">
+                        <li><strong>Primer sites (20-30 bp):</strong> Universal sequences for PCR amplification; identical across all sensors</li>
+                        <li><strong>Restriction enzyme (RE) sites (6 bp):</strong> Flanking cut sites (e.g., BamHI, BsaI) compatible with RADAR plasmid backbone; enable directional cloning</li>
+                        <li><strong>Sensor domain (90-200 bp):</strong> Target-complementary sequence; varies between sensors</li>
+                    </ul>
+                    <p>
+                        All sequences are ordered from Twist Bioscience as single-stranded DNA (ssDNA) in one tube—eliminating need for individual oligonucleotide orders and dramatically reducing cost.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Step 2: PCR Amplification & Library Skew Minimization</summary>
+                    <p>
+                        <strong>Goal:</strong> Convert ssDNA to dsDNA while maintaining equal representation of all sensors.
+                    </p>
+                    <p>
+                        <strong>Challenge:</strong> PCR exponentially amplifies template DNA; even small differences in amplification efficiency between sensors compound over cycles, creating severe library skew (some sensors over-represented, others under-represented).
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Limit amplification to <strong>8 cycles</strong>—sufficient to generate dsDNA while minimizing bias accumulation. Use high-fidelity polymerase (e.g., Q5, Phusion) to reduce error rate.
+                    </p>
+                    <p>
+                        PCR primers bind to universal primer sites; all sensors amplify using same primer pair. Reaction conditions optimized for uniform amplification across GC content range.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Step 3: Restriction Digest & Gel Extraction</summary>
+                    <p>
+                        Digest PCR product and RADAR plasmid backbone with same restriction enzymes (e.g., BamHI + BsaI). This creates compatible sticky ends for ligation.
+                    </p>
+                    <p>
+                        <strong>Gel extraction:</strong> Run digested products on agarose gel; excise bands corresponding to sensor inserts and linearized plasmid backbone; purify using gel extraction kit. This step removes uncut plasmid and PCR primers.
+                    </p>
+                    <p>
+                        <strong>Critical consideration:</strong> Maintain equimolar ratios during gel extraction—do not preferentially recover certain sensor sizes, as this introduces additional skew.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Step 4: Ligation & Circularization</summary>
+                    <p>
+                        Combine digested sensors and plasmid backbone in single ligation reaction. T4 DNA ligase joins compatible sticky ends, creating circular plasmids encoding different sensor variants.
+                    </p>
+                    <p>
+                        <strong>Stoichiometry:</strong> Use 3:1 insert:vector molar ratio to favor insert incorporation while minimizing vector self-ligation.
+                    </p>
+                    <p>
+                        <strong>Reaction conditions:</strong> 16°C overnight or room temperature 1 hour; ligation efficiency >80% ensures high library complexity.
+                    </p>
+                    <p>
+                        Pooled ligation contains mixture of plasmids, each encoding a different sensor. Relative abundance depends on PCR bias, digestion efficiency, and ligation kinetics—hence NGS quality control is essential.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Step 5: Transformation & Colony Scaling</summary>
+                    <p>
+                        Transform ligated plasmids into electrocompetent bacteria (e.g., E. coli DH5α, DH10B). Electroporation provides higher transformation efficiency than heat shock—critical for large libraries.
+                    </p>
+                    <p>
+                        <strong>Colony count targeting:</strong> Aim for <strong>500 colonies per sensor variant</strong>. For 200-sensor library, this requires 100,000 total colonies. Plate aliquots on LB agar + antibiotic; extrapolate transformation efficiency; scale up electroporation volume accordingly.
+                    </p>
+                    <p>
+                        <strong>Why 500 colonies?</strong> Each colony represents a clonal population of bacteria carrying one sensor variant. Sampling 500 colonies per sensor ensures statistical robustness when assessing sensor performance in downstream functional assays.
+                    </p>
+                    <p>
+                        After confirmation of sufficient colony count, scrape colonies into LB broth and grow overnight. This pooled culture contains all sensor variants in proportions reflecting transformation efficiency and colony growth rates.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Step 6: Plasmid Purification & NGS Quality Control</summary>
+                    <p>
+                        Extract plasmid DNA from overnight culture using maxiprep kit (yields ~500 μg for 200 mL culture). This pooled plasmid library serves as master stock for transfection experiments.
+                    </p>
+                    <p>
+                        <strong>NGS library preparation:</strong> PCR-amplify sensor regions using primers containing Illumina adapters; add barcodes for multiplexing; sequence on MiSeq or NextSeq.
+                    </p>
+                    <p>
+                        <strong>Bioinformatics analysis:</strong> Count reads mapping to each sensor sequence; calculate relative abundance (sensor ratio). Acceptable skew: ≤ 10:1 between most and least abundant sensors. Excessive skew indicates need to repeat PCR or transformation steps.
+                    </p>
+                </details>
+
+                <div class="callout">
+                    <strong>Throughput Comparison:</strong> Traditional cloning requires ~2 weeks per sensor (design → synthesis → cloning → transformation → miniprep → sequencing). For 200 sensors: 400 weeks (7.7 years). Pooled cloning completes entire library in <strong>4 weeks</strong>—a 100× time savings.
+                </div>
+            </div>
+
+            <!-- Proof of Concept -->
+            <div id="proof-of-concept" class="project-section">
+                <h2>Proof of Concept: CTIP2 & EEF1A1 Validation</h2>
+
+                <h3>Experimental Design</h3>
+                <p>
+                    To validate RADAR specificity before scaling to hundreds of neuromodulator sensors, we designed proof-of-concept experiments targeting two genes with known expression patterns:
+                </p>
+                <ul class="project-list">
+                    <li><strong>CTIP2 (BCL11B):</strong> Zinc-finger transcription factor expressed in corticospinal neurons of cerebral cortex; absent in HEK293T cells (human embryonic kidney cell line commonly used for in vitro testing)</li>
+                    <li><strong>EEF1A1:</strong> Eukaryotic translation elongation factor 1 alpha 1; housekeeping gene highly expressed in virtually all cell types including HEK293T</li>
+                </ul>
+
+                <h3>Cre-Reporter System</h3>
+                <p>
+                    We employed a Cre-lox reporter line to visualize RADAR activity:
+                </p>
+                <ul class="project-list">
+                    <li><strong>Baseline state (no Cre):</strong> Reporter construct expresses red fluorescent protein (RFP); sensor inactive</li>
+                    <li><strong>RADAR activation:</strong> When sensor detects target RNA and ADAR edits stop codon, Cre recombinase is expressed as the effector protein</li>
+                    <li><strong>Cre-mediated recombination:</strong> Cre excises DNA between loxP sites, replacing RFP with green fluorescent protein (GFP)</li>
+                    <li><strong>Output signal:</strong> Cells shift from red → green fluorescence, providing visual confirmation of sensor activation</li>
+                </ul>
+
+
+
+                <details open>
+                    <summary>In Vitro Testing: HEK293T Transfection</summary>
+                    <p>
+                        <strong>Experimental setup:</strong> Transfect HEK293T cells with three conditions:
+                    </p>
+                    <ol>
+                        <li><strong>Positive control:</strong> Constitutive Cre expression plasmid (no sensor); all transfected cells should turn green</li>
+                        <li><strong>CTIP2 sensor:</strong> RADAR construct targeting CTIP2 mRNA; should remain red (CTIP2 not expressed in HEK cells)</li>
+                        <li><strong>EEF1A1 sensor:</strong> RADAR construct targeting EEF1A1 mRNA; should turn green (EEF1A1 highly expressed in HEK cells)</li>
+                    </ol>
+
+                    <h4>Expected Results</h4>
+                    <ul class="project-list">
+                        <li><strong>Positive control:</strong> Widespread green fluorescence across transfected cells; validates Cre-lox system function</li>
+                        <li><strong>CTIP2 sensor:</strong> Cells remain red with minimal green signal; demonstrates OFF state in cells lacking target RNA; low leakiness confirms tight sensor control</li>
+                        <li><strong>EEF1A1 sensor:</strong> Robust green fluorescence in transfected cells; demonstrates ON state when target RNA present; efficiency comparable to positive control</li>
+                    </ul>
+
+                    <h4>Controls for Leakiness</h4>
+                    <p>
+                        A critical metric is sensor <strong>leakiness</strong>—unintended activation in cells lacking the target RNA. We quantify leakiness as:
+                    </p>
+                    <pre><code>Leakiness (%) = (GFP+ cells with CTIP2 sensor) / (GFP+ cells with positive control) × 100</code></pre>
+                    <p>
+                        Acceptable leakiness: <strong>&lt; 5%</strong>. Values above 10% indicate non-specific ADAR editing or insufficient stop codon strength, requiring sensor redesign.
+                    </p>
+
+                    <div class="project-images grid-2x2">
+                        <!-- Row 1, Column 1 -->
+                        <figure class="figure">
+                            <img src="../assets/images/UCSF%20-%20Chen%20Lab/rfpctip2.jpg"
+                                 alt="Ctip2 with RFP"
+                                 class="project-img"
+                                 width="800" height="600" loading="lazy" decoding="async" />
+                            <figcaption class="caption">CTIP2 sensor shows red fluorescence, confirming RADAR was properly delivered to cells. </figcaption>
+                        </figure>
+
+                        <!-- Row 1, Column 2 -->
+                        <figure class="figure">
+                            <img src="../assets/images/UCSF%20-%20Chen%20Lab/ctip2gfp.jpg"
+                                 alt="Ctip2 with GFP"
+                                 class="project-img"
+                                 width="800" height="600" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Positive control shows red fluorescence, confirming RADAR was properly delivered to cells.</figcaption>
+                        </figure>
+
+                        <!-- Row 2, Column 1 -->
+                        <figure class="figure">
+                            <img src="../assets/images/UCSF%20-%20Chen%20Lab/poscontrolrfp.jpg"
+                                 alt="Pos Control with RFP"
+                                 class="project-img"
+                                 width="800" height="600" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Positive control shows red fluorescnece showcasing RADAR was properly delivered to cells. </figcaption>
+                        </figure>
+
+                        <!-- Row 2, Column 2 -->
+                        <figure class="figure">
+                            <img src="../assets/images/UCSF%20-%20Chen%20Lab/poscontrolgfp.jpg"
+                                 alt="Pos Control with GFP"
+                                 class="project-img"
+                                 width="800" height="600" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Positive control (EEF1A1 gene) shows green fluorescence in HEK cells, as this is a housekeeping gene essential to eukaryotic cells.</figcaption>
+                        </figure>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>In Vivo Validation: Mouse Cortex Injection </summary>
+                    <p>
+                        Following in vitro validation, CTIP2 sensors were tested in vivo via retro orbital injection into mouse:
+                    </p>
+                    <ul class="project-list">
+                        <li><strong>Delivery method:</strong> RADAR construct packaged in lipid nanoparticles (LNPs)</li>
+                        <li><strong>Expected outcome:</strong> GFP expression co-localize with CTIP2-positive neurons (corticospinal projection neurons in layer V); minimal GFP in CTIP2-negative cells (e.g., interneurons, astrocytes)</li>
+                        <li><strong>Quantification:</strong> Immunohistochemistry for CTIP2 protein + GFP imaging; calculate overlap percentage; ideal sensor shows >90% specificity (GFP only in CTIP2+ neurons)</li>
+                    </ul>
+                    <p>
+                        This experiment established RADAR's ability to achieve cell-type-specific expression in complex neural tissue, setting the stage for therapeutic applications.
+                    </p>
+                </details>
+            </div>
+
+            <!-- Target Genes -->
+            <div id="targets" class="project-section">
+                <h2>Target Genes: Neuromodulator & Neuropeptide Library</h2>
+
+                <h3>Neuroscience Motivation</h3>
+                <p>
+                    Neuromodulators and neuropeptides regulate critical brain functions—mood, motivation, pain perception, arousal—yet their cell-type-specific roles remain poorly understood. Traditional genetic tools (e.g., transgenic mice with Cre lines for each gene) are time-intensive and limited to model organisms. RADAR enables <em>rapid, flexible interrogation</em> of neuromodulator function by targeting specific neuronal populations for optogenetic manipulation, calcium imaging, or gene knockdown.
+                </p>
+
+                <h3>Gene Targets</h3>
+                <p>
+                    I designed sensor libraries for the following neuromodulator and neuropeptide genes:
+                </p>
+
+                <details open>
+                    <summary>Neuropeptides</summary>
+                    <ul class="project-list">
+                        <li><strong>VIP (Vasoactive Intestinal Peptide):</strong> Expressed in specific interneuron populations; regulates cortical inhibition and circadian rhythms</li>
+                        <li><strong>NPY (Neuropeptide Y):</strong> Involved in appetite regulation, anxiety, and stress response; expressed in hypothalamus and various cortical/subcortical regions</li>
+                        <li><strong>SST (Somatostatin):</strong> Inhibitory interneuron marker; critical for sensory processing and motor control</li>
+                        <li><strong>MCH (Melanin-Concentrating Hormone):</strong> Regulates sleep, feeding, and energy balance; expressed in lateral hypothalamus</li>
+                        <li><strong>Oxytocin:</strong> Social bonding, maternal behavior, stress response; produced in hypothalamic neurons projecting to diverse brain regions</li>
+                        <li><strong>Galanin:</strong> Modulates feeding, mood, and pain; co-released with other neurotransmitters in multiple systems</li>
+                        <li><strong>CRH (Corticotropin-Releasing Hormone):</strong> Central stress response regulator; expressed in hypothalamus and amygdala</li>
+                        <li><strong>ADCYAP1 (PACAP):</strong> Neuroprotective peptide; involved in stress response and circadian regulation</li>
+                        <li><strong>AGRP (Agouti-Related Peptide):</strong> Hunger-promoting peptide expressed in arcuate nucleus; antagonizes melanocortin receptors</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Additional Targets</summary>
+                    <ul class="project-list">
+                        <li><strong>PV (Parvalbumin):</strong> Fast-spiking interneuron marker; critical for gamma oscillations and working memory</li>
+                        <li><strong>CCK (Cholecystokinin):</strong> Co-released with GABA in certain interneurons; modulates anxiety and satiety</li>
+                        <li><strong>TH (Tyrosine Hydroxylase):</strong> Rate-limiting enzyme for dopamine/norepinephrine synthesis; marks catecholaminergic neurons</li>
+                    </ul>
+                </details>
+
+                <figure class="figure">
+                    <img class="project-img max-400 img-center"
+                         src="../assets/images/UCSF%20-%20Chen%20Lab/radar.png"
+                         alt="RADAR mRNA Sensor"
+                         width="1400" height="1000" loading="lazy" decoding="async" />
+                    <figcaption class="caption">Radar sensor mRNA using intracellular ADAR to bind to stop codon </figcaption>
+                </figure>
+
+                <h3>Sensor Library Design</h3>
+                <p>
+                    For each gene, I designed <strong>100-200 sensor variants</strong> covering different transcript regions. This comprehensive approach accounts for:
+                </p>
+                <ul class="project-list">
+                    <li><strong>Isoform diversity:</strong> Many neuropeptide genes have multiple splice variants; sensors targeting different exons enable isoform-specific detection</li>
+                    <li><strong>Secondary structure variability:</strong> RNA folding differs across transcript; some regions more accessible for sensor hybridization</li>
+                    <li><strong>Off-target minimization:</strong> Tiling sensors across transcript reveals regions with highest specificity vs. related genes</li>
+                </ul>
+
+                <h3>Screening Workflow</h3>
+                <p>
+                    <strong>Note:</strong> Per PI request, in vitro and in vivo screening results for neuromodulator sensors are not disclosed here. General workflow:
+                </p>
+                <ol>
+                    <li><strong>Pooled transfection:</strong> Deliver entire sensor library (100-200 variants per gene) to cultured neurons or brain slices</li>
+                    <li><strong>Sort for activity:</strong> Use fluorescence-activated cell sorting (FACS) to isolate GFP+ cells (sensors that activated) vs. GFP− cells (inactive sensors)</li>
+                    <li><strong>NGS enrichment analysis:</strong> Sequence sensor regions from GFP+ and GFP− populations; calculate enrichment ratio for each sensor; top candidates show high representation in GFP+ fraction, minimal presence in GFP− fraction</li>
+                    <li><strong>Validation:</strong> Test top 3-5 sensors individually in vitro and in vivo; assess specificity via co-localization with antibody staining for target gene protein</li>
+                    <li><strong>Optimization:</strong> Refine sensor design based on off-target analysis; iteratively improve specificity and dynamic range</li>
+                </ol>
+
+                <div class="callout">
+                    <strong>Impact:</strong> Once validated, these sensor libraries will be made publicly available, enabling researchers worldwide to target neuromodulator populations without generating transgenic animals—dramatically accelerating neuroscience research.
+                </div>
+            </div>
+
+            <!-- Future Work -->
+            <div id="future" class="project-section">
+                <h2>Future Work: LNP Delivery & Clinical Translation</h2>
+
+                <h3>Lipid Nanoparticle (LNP) Formulation</h3>
+                <p>
+                    While plasmid transfection suffices for proof-of-concept studies, therapeutic applications require <strong>non-viral delivery systems</strong>. LNPs—the same technology used in COVID-19 mRNA vaccines—offer several advantages:
+                </p>
+                <ul class="project-list">
+                    <li><strong>Safety:</strong> No viral genome integration; no immunogenic capsid proteins; biodegradable lipid components</li>
+                    <li><strong>Scalability:</strong> Reproducible manufacturing; GMP-compatible production for clinical trials</li>
+                    <li><strong>Flexibility:</strong> Can encapsulate mRNA (for transient expression) or plasmid DNA (for longer-duration studies)</li>
+                    <li><strong>Targeting potential:</strong> Surface modifications (e.g., targeting ligands, PEGylation) enable tissue-specific delivery</li>
+                </ul>
+
+                <details open>
+                    <summary>LNP Design for Brain Delivery</summary>
+                    <p>
+                        Delivering RNA therapeutics to the brain poses unique challenges due to the blood-brain barrier (BBB). Strategies under investigation:
+                    </p>
+                    <ul class="project-list">
+                        <li><strong>Convection-enhanced delivery (CED):</strong> Direct injection into brain parenchyma using pressure-driven infusion; bypasses BBB; enables local high concentrations</li>
+                        <li><strong>Focused ultrasound (FUS):</strong> Transiently disrupts BBB at targeted regions; combined with intravenous LNP injection for non-invasive delivery</li>
+                        <li><strong>Receptor-mediated transcytosis:</strong> Decorate LNPs with antibodies targeting transferrin receptor or other BBB transporters; enables crossing via endogenous trafficking pathways</li>
+                        <li><strong>Intranasal delivery:</strong> Exploit olfactory and trigeminal nerve pathways for direct nose-to-brain transport; avoids BBB entirely</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Therapeutic Applications</summary>
+
+                    <h4>Chronic Pain Management</h4>
+                    <p>
+                        Target pain-sensing neurons expressing specific neuropeptide receptors; deliver RADAR constructs encoding inhibitory optogenetic tools (e.g., halorhodopsin) or endogenous opioid peptides. Cell-type specificity reduces off-target effects like respiratory depression or addiction risk associated with systemic opioids.
+                    </p>
+
+                    <h4>Psychiatric Disorders</h4>
+                    <p>
+                        Modulate specific neuromodulator circuits implicated in depression or anxiety. For example, target CRH neurons in amygdala for anxiety reduction, or VIP interneurons for sleep regulation in insomnia. RADAR's transient nature allows "dose-tuning" by adjusting LNP administration frequency.
+                    </p>
+
+                    <h4>Neurodegenerative Disease</h4>
+                    <p>
+                        Deliver neuroprotective factors (e.g., BDNF, GDNF) specifically to vulnerable neuron populations in Parkinson's or Alzheimer's disease. Cell-type targeting prevents off-target trophic effects while maximizing therapeutic benefit.
+                    </p>
+
+                    <h4>Circuit Interrogation & Basic Research</h4>
+                    <p>
+                        Enable optogenetic or chemogenetic manipulation of specific neuromodulator populations without transgenic animals. Researchers can rapidly test hypotheses about circuit function, accelerating understanding of brain organization and disease mechanisms.
+                    </p>
+                </details>
+
+                <h3>Regulatory Pathway</h3>
+                <p>
+                    RADAR's non-integrating mechanism simplifies regulatory approval compared to genome-editing therapies:
+                </p>
+                <ul class="project-list">
+                    <li><strong>Transient expression:</strong> No permanent genetic modification; reduces long-term safety monitoring requirements</li>
+                    <li><strong>Precedent from mRNA vaccines:</strong> LNP delivery of mRNA already FDA-approved; RADAR extends this platform to therapeutic gene regulation</li>
+                    <li><strong>Dose control:</strong> Repeat dosing enables titration of therapeutic effect; discontinuation stops expression within days-weeks</li>
+                </ul>
+
+                <h3>Next Steps</h3>
+                <ol>
+                    <li><strong>Complete neuromodulator sensor validation:</strong> Finalize in vitro and in vivo characterization of top sensors for each target gene</li>
+                    <li><strong>Optimize LNP formulations:</strong> Screen lipid compositions for brain delivery efficiency; assess biodistribution and duration of expression</li>
+                    <li><strong>Large animal studies:</strong> Test RADAR in non-human primates to establish safety and efficacy at clinically relevant scale</li>
+                    <li><strong>Clinical trial design:</strong> Identify lead therapeutic indication (e.g., chronic pain); prepare IND (Investigational New Drug) application</li>
+                    <li><strong>Manufacturing scale-up:</strong> Develop GMP-compliant LNP production; establish release criteria and stability testing protocols</li>
+                </ol>
+
+                <div class="callout">
+                    <strong>Vision:</strong> RADAR represents a paradigm shift in precision medicine—enabling cell-type-specific gene therapy without genome integration. By leveraging endogenous RNA signatures, we can target disease-relevant cells with unprecedented specificity, opening new therapeutic avenues for neurological and psychiatric disorders.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

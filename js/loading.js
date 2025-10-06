@@ -7,7 +7,7 @@ class LoadingScreen {
         this.loadingScreen = document.getElementById('loading-screen');
         this.bikeTrack = document.getElementById('bike-track');
         this.bike = null;
-        this.minLoadTime = 2000; // 2 seconds for navigation
+        this.minLoadTime = 1500; // 2 seconds for navigation
         this.initialLoadTime = 3000; // 3 seconds for initial load
         this.isLoading = false;
 
