@@ -66,3 +66,72 @@ document.querySelectorAll('.stat-card, .project-card, .timeline-item').forEach(e
     el.style.transition = 'opacity 0.5s, transform 0.5s';
     observer.observe(el);
 });
+
+class BikeMetrics {
+    constructor() {
+        // Check if elements exist
+        this.totalMilesEl = document.getElementById('total-miles');
+        this.elevationEl = document.getElementById('elevation');
+        this.rideTimeEl = document.getElementById('ride-time');
+        this.avgSpeedEl = document.getElementById('avg-speed');
+
+        // Exit if not on a page with bike stats
+        if (!this.totalMilesEl) return;
+
+        // Starting values (update these with your real stats!)
+        this.totalMiles = 3847;
+        this.elevation = 127420;
+        this.avgSpeed = 18.4;
+        this.startTime = Date.now();
+
+        this.init();
+    }
+
+    init() {
+        // Update every second
+        setInterval(() => this.update(), 1000);
+
+        // Initial update
+        this.update();
+    }
+
+    update() {
+        // Slowly increment lifetime stats (simulates continuous riding)
+        this.totalMiles += 0.008; // ~7 miles per day
+        this.elevation += 0.4; // ~350 feet per day
+
+        // Update display
+        if (this.totalMilesEl) {
+            this.totalMilesEl.textContent = Math.floor(this.totalMiles).toLocaleString();
+        }
+
+        if (this.elevationEl) {
+            this.elevationEl.textContent = Math.floor(this.elevation).toLocaleString();
+        }
+
+        // Update session time (time since page load)
+        if (this.rideTimeEl) {
+            const elapsed = Math.floor((Date.now() - this.startTime) / 1000);
+            const hours = Math.floor(elapsed / 3600);
+            const minutes = Math.floor((elapsed % 3600) / 60);
+            const seconds = elapsed % 60;
+            this.rideTimeEl.textContent = `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        // Slightly fluctuate average speed for realism
+        if (this.avgSpeedEl) {
+            const fluctuation = (Math.sin(Date.now() / 3000) * 0.3);
+            const currentSpeed = (this.avgSpeed + fluctuation).toFixed(1);
+            this.avgSpeedEl.textContent = currentSpeed;
+        }
+    }
+}
+
+// Initialize after DOM loads
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        new BikeMetrics();
+    });
+} else {
+    new BikeMetrics();
+}
