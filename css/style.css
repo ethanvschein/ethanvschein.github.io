@@ -455,6 +455,7 @@ body {
     color: var(--text-light);
     font-size: 0.9rem;
     line-height: 1.35;
+    text-align: center;
 }
 
 img.project-img {
