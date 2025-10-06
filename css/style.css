@@ -1082,7 +1082,7 @@ img[width][height] {
    LOADING SCREEN
    =================================== */
 
-.loading-screen {
+#loading-screen {
     position: fixed;
     top: 0;
     left: 0;
@@ -1098,7 +1098,7 @@ img[width][height] {
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.loading-screen.active {
+#loading-screen.active {
     opacity: 1;
     visibility: visible;
 }
@@ -1158,13 +1158,13 @@ img[width][height] {
 }
 
 /* Rear wheel rotation */
-.loading-screen.active #rear-wheel {
+#loading-screen.active #rear-wheel {
     animation: rotate-wheel 0.6s linear infinite;
     transform-origin: 430px 1219px;
 }
 
 /* Front wheel rotation */
-.loading-screen.active #front-wheel {
+#loading-screen.active #front-wheel {
     animation: rotate-wheel 0.6s linear infinite;
     transform-origin: 1610px 1220px;
 }
@@ -1179,9 +1179,9 @@ img[width][height] {
     }
 }
 
-.loading-screen.active #crank,
-.loading-screen.active #crankset,
-.loading-screen.active #drivetrain {
+#loading-screen.active #crank,
+#loading-screen.active #crankset,
+#loading-screen.active #drivetrain {
     animation: rotate-crank 0.9s linear infinite;
     transform-origin: 902px 1298px;
 }

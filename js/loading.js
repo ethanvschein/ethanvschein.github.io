@@ -5,27 +5,38 @@
 class LoadingScreen {
     constructor() {
         this.loadingScreen = document.getElementById('loading-screen');
+
+        // Exit if loading screen doesn't exist on this page
+        if (!this.loadingScreen) return;
+
         this.bikeTrack = document.getElementById('bike-track');
         this.bike = null;
-        this.initialLoadTime = 3000; // 3 seconds for first visit/refresh
+        this.initialLoadTime = 3000;
         this.isLoading = false;
 
         // Check if this is the first page load OR a refresh
         this.isInitialLoad = !sessionStorage.getItem('hasLoadedBefore');
         this.isRefresh = this.checkIfRefresh();
 
+        // Show loading screen IMMEDIATELY if it's initial load or refresh
+        if (this.isInitialLoad || this.isRefresh) {
+            this.loadingScreen.classList.add('active');
+            this.loadingScreen.style.display = 'flex';
+            this.isLoading = true;
+        } else {
+            this.loadingScreen.style.display = 'none';
+        }
+
         this.loadBikeSVG();
     }
 
     checkIfRefresh() {
-        // Check if page was loaded via refresh
         const navEntries = performance.getEntriesByType('navigation');
         if (navEntries.length > 0) {
             const navEntry = navEntries[0];
             return navEntry.type === 'reload';
         }
 
-        // Fallback for older browsers
         if (performance.navigation) {
             return performance.navigation.type === 1;
         }
@@ -35,28 +46,20 @@ class LoadingScreen {
 
     async loadBikeSVG() {
         try {
-            const path = window.location.pathname;
-            const svgPath = path.includes('../projects/')
-                ? '../assets/svgs/loading/loading-bike.svg'
-                : 'assets/svgs/loading/loading-bike.svg';
+            const svgPath = 'assets/svgs/loading/loading-bike.svg';
 
             const response = await fetch(svgPath);
             const svgText = await response.text();
             this.bikeTrack.innerHTML = svgText;
             this.bike = document.getElementById('loading-bike');
 
-            // Show loading screen on initial load OR refresh
             if (this.isInitialLoad || this.isRefresh) {
                 this.showInitialLoad();
                 if (this.isInitialLoad) {
                     sessionStorage.setItem('hasLoadedBefore', 'true');
                 }
-            } else {
-                // Hide immediately for subsequent navigation
-                this.loadingScreen.style.display = 'none';
             }
 
-            // Initialize link handlers
             this.init();
         } catch (error) {
             console.error('Error loading bike SVG:', error);
@@ -73,7 +76,6 @@ class LoadingScreen {
             this.attachLinkHandlers();
         }
 
-        // Handle browser back/forward button
         window.addEventListener('pageshow', (event) => {
             if (event.persisted) {
                 this.hide();
@@ -82,10 +84,7 @@ class LoadingScreen {
     }
 
     showInitialLoad() {
-        if (!this.bike || this.isLoading) return;
-
-        this.isLoading = true;
-        this.loadingScreen.classList.add('active');
+        if (!this.bike) return;
 
         this.animateLoading(this.initialLoadTime, () => {
             this.hide();
@@ -94,14 +93,10 @@ class LoadingScreen {
 
     attachLinkHandlers() {
         const links = document.querySelectorAll('a[href]');
-
         links.forEach(link => {
             const href = link.getAttribute('href');
-
             if (this.isInternalLink(href)) {
                 link.addEventListener('click', (e) => {
-                    // For internal links, just navigate directly (no loading screen)
-                    // Loading screen only appears on initial load or refresh
                     return;
                 });
             }
