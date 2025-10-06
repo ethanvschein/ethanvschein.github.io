@@ -14,12 +14,21 @@ class LoadingScreen {
         this.initialLoadTime = 3000;
         this.isLoading = false;
 
-        // Check if this is the first page load OR a refresh
-        this.isInitialLoad = !sessionStorage.getItem('hasLoadedBefore');
+        // Check if we're on index.html
+        this.isIndexPage = window.location.pathname === '/' ||
+                           window.location.pathname.endsWith('index.html') ||
+                           window.location.pathname.endsWith('/');
+
+        // Check if this is the first visit to index.html
+        this.isFirstIndexVisit = this.isIndexPage && !sessionStorage.getItem('hasSeenInitialIndex');
+
+        // Check if this is a refresh
         this.isRefresh = this.checkIfRefresh();
 
-        // Show loading screen IMMEDIATELY if it's initial load or refresh
-        if (this.isInitialLoad || this.isRefresh) {
+        // Show loading screen if:
+        // 1. First visit to index.html, OR
+        // 2. Refresh on ANY page
+        if (this.isFirstIndexVisit || this.isRefresh) {
             this.loadingScreen.classList.add('active');
             this.loadingScreen.style.display = 'flex';
             this.isLoading = true;
@@ -46,17 +55,24 @@ class LoadingScreen {
 
     async loadBikeSVG() {
         try {
-            const svgPath = 'assets/svgs/loading/loading-bike.svg';
+            // Determine correct SVG path based on current location
+            const path = window.location.pathname;
+            const svgPath = path.includes('/projects/')
+                ? '../assets/svgs/loading/loading-bike.svg'
+                : 'assets/svgs/loading/loading-bike.svg';
 
             const response = await fetch(svgPath);
             const svgText = await response.text();
             this.bikeTrack.innerHTML = svgText;
             this.bike = document.getElementById('loading-bike');
 
-            if (this.isInitialLoad || this.isRefresh) {
+            // Start animation if conditions are met
+            if (this.isFirstIndexVisit || this.isRefresh) {
                 this.showInitialLoad();
-                if (this.isInitialLoad) {
-                    sessionStorage.setItem('hasLoadedBefore', 'true');
+
+                // Mark that we've seen the initial index page
+                if (this.isFirstIndexVisit) {
+                    sessionStorage.setItem('hasSeenInitialIndex', 'true');
                 }
             }
 
