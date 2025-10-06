@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sensible Robotics: Silicone Skin Testing for Humanoid Gripping</title>
+
+    <!-- Site styles & fonts -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo"><a href="../index.html">Ethan Schein</a></div>
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../about.html" class="nav-link">About</a></li>
+            <li><a href="../education.html" class="nav-link">Education</a></li>
+            <li><a href="../experience.html" class="nav-link">Experience</a></li>
+            <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+            <li><a href="../skills.html" class="nav-link">Skills</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+</nav>
+
+<!-- Project Detail -->
+<section class="project-detail">
+    <div class="container">
+        <div class="back-button">
+            <a href="../projects.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </div>
+
+        <div class="project-header">
+            <h1 class="project-title">Sensible Robotics: Silicone Skin Testing for Humanoid Gripping</h1>
+            <div class="project-tags">
+                <span class="tag">Silicone Molding</span>
+                <span class="tag">Test Fixture Design</span>
+                <span class="tag">CAD / SolidWorks</span>
+                <span class="tag">Friction Testing</span>
+                <span class="tag">Surface Patterning</span>
+                <span class="tag">Materials Science</span>
+                <span class="tag">Experimental Design</span>
+                <span class="tag">Data Analysis</span>
+            </div>
+
+            <!-- quick metrics -->
+            <div class="key-metrics">
+                <div class="metric">
+                    <h4>Project Objective</h4>
+                    <p>Research, develop, and test silicone skin designs optimal for humanoid robotic gripping</p>
+                </div>
+                <div class="metric">
+                    <h4>Test Patterns</h4>
+                    <p>Knurled, glove textures, tire treads, gecko grips, composite patterns, raised textures</p>
+                </div>
+                <div class="metric">
+                    <h4>Test Rig Capability</h4>
+                    <p>Variable orientation testing, consistent force application, replicable settings</p>
+                </div>
+                <div class="metric">
+                    <h4>Key Findings</h4>
+                    <p>Smooth/micro-roughened skin shows greatest adhesion; whorl patterns optimal among fingerprints</p>
+                </div>
+            </div>
+
+            <!-- Table of contents -->
+            <div class="project-toc-wrapper">
+                <div class="project-toc">
+                    <a href="#overview" class="toc-card">
+                        <div class="toc-num">01</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Overview</div>
+                            <div class="toc-sub">Project goals & scope</div>
+                        </div>
+                    </a>
+                    <a href="#research" class="toc-card">
+                        <div class="toc-num">02</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Research</div>
+                            <div class="toc-sub">Pattern investigation</div>
+                        </div>
+                    </a>
+                    <a href="#testrig" class="toc-card">
+                        <div class="toc-num">03</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Test Rig</div>
+                            <div class="toc-sub">Design & challenges</div>
+                        </div>
+                    </a>
+                    <a href="#skindesign" class="toc-card">
+                        <div class="toc-num">04</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Skin Design</div>
+                            <div class="toc-sub">Pattern iterations</div>
+                        </div>
+                    </a>
+                    <a href="#procedures" class="toc-card">
+                        <div class="toc-num">05</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Procedures</div>
+                            <div class="toc-sub">Testing protocols</div>
+                        </div>
+                    </a>
+                    <a href="#results" class="toc-card">
+                        <div class="toc-num">06</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Results</div>
+                            <div class="toc-sub">Findings & analysis</div>
+                        </div>
+                    </a>
+                    <a href="#future" class="toc-card">
+                        <div class="toc-num">07</div>
+                        <div class="toc-body">
+                            <div class="toc-title">Future Work</div>
+                            <div class="toc-sub">Next iterations</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-content">
+
+            <!-- Overview -->
+            <div id="overview" class="project-section">
+                <h2>Overview</h2>
+                <p>
+                    Humanoid robots require sophisticated gripping capabilities to interact with objects across diverse materials, shapes, and orientations. Unlike industrial robots with specialized end-effectors, humanoid hands must replicate the versatility of human touch—adapting grip force, conforming to irregular geometries, and maintaining secure contact without damage. The critical interface: <strong>silicone skin</strong> covering robotic fingers.
+                </p>
+                <p>
+                    This project systematically investigates silicone skin surface patterns to optimize friction, durability, and repeatability for humanoid gripping applications. Through iterative design, precision molding, and quantitative testing, we characterized how different textures—from knurled patterns to bio-inspired gecko grips—perform across common manipulation scenarios.
+                </p>
+
+                <h3>Project Objectives</h3>
+                <p>The project pursued three primary objectives:</p>
+                <ul class="project-list">
+                    <li><strong>Design Efficient Test Fixture:</strong> Create a test rig capable of applying consistent, measurable forces to skin patterns across multiple orientations, enabling repeatable comparative evaluation</li>
+                    <li><strong>Develop Skin Pattern Library:</strong> Research, design, and mold diverse silicone surface textures spanning industrial patterns (knurled, grooved), biomimetic designs (fingerprints, gecko grips), and composite geometries</li>
+                    <li><strong>Quantitative Characterization:</strong> Execute standardized test procedures measuring skin pattern efficacy in common robotic manipulation scenarios—vertical lifting, angled gripping, and sustained holding</li>
+                </ul>
+
+                <div class="callout">
+                    <strong>Key Insight:</strong> Surface area and ridge count matter, but smooth or micro-roughened surfaces demonstrate greatest adhesion. Among fingerprint patterns tested, whorl geometry showed superior performance—balancing contact area with consistent feature distribution.
+                </div>
+
+                <h3>Project Scope & Deliverables</h3>
+                <ul class="project-list">
+                    <li>Custom test rig with adjustable orientation, force application, and data logging capabilities</li>
+                    <li>10+ silicone skin patterns spanning research-informed design categories</li>
+                    <li>Standardized testing protocols for vertical lift, angled grip, and endurance scenarios</li>
+                    <li>Quantitative performance database ranking patterns by friction coefficient, durability, and repeatability</li>
+                    <li>Design recommendations for humanoid robotic skin optimization</li>
+                </ul>
+            </div>
+
+            <!-- Research -->
+            <div id="research" class="project-section">
+                <h2>Research & Initial Approach</h2>
+                <p>
+                    Before fabricating test patterns, we conducted comprehensive literature review and precedent analysis to identify promising surface geometries. Research spanned industrial applications (manufacturing grippers, tire treads), biological systems (human fingerprints, gecko toe pads), and prior robotics studies.
+                </p>
+
+                <details open>
+                    <summary>Pattern Categories Investigated</summary>
+
+                    <h4>Industrial & Mechanical Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Durability:</strong> Patterns must withstand thousands of grip cycles without degradation—tear resistance, abrasion tolerance, and elastic recovery critical for long-term operation</li>
+                        <li><strong>Repeatability:</strong> Performance consistency across many trials essential for reliable robotic control; patterns should not exhibit time-dependent property changes or fatigue-induced failure</li>
+                        <li><strong>Knurled Patterns:</strong> Diamond or straight-line knurl geometries common in mechanical grips; provide directional friction with well-defined ridge spacing</li>
+                        <li><strong>Glove Textures:</strong> Inspired by industrial safety gloves—smooth, micro-roughened, and raised dot configurations; optimize balance between compliance and grip</li>
+                        <li><strong>Tire Treads:</strong> Grooved patterns designed for water evacuation and multi-surface contact; directional vs. symmetrical tread architectures explored</li>
+                    </ul>
+
+                    <h4>Bio-Inspired Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Gecko Grips:</strong> Flexible rib-cage pattern mimicking gecko toe pad lamellae; sub-millimeter features create van der Waals adhesion on smooth surfaces; requires precise molding to replicate micro-scale geometry</li>
+                        <li><strong>Human Fingerprints:</strong> Three primary patterns tested—arch, loop, whorl—representing natural friction optimization through evolution; ridge spacing ≈0.4-0.5mm replicates human-scale features</li>
+                        <li><strong>Surface Area Considerations:</strong> Increased surface area generally amplifies coefficient of friction through greater real contact area; however, excessive feature density can reduce effective contact pressure</li>
+                    </ul>
+
+                    <h4>Composite & Hybrid Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Raised Textures:</strong> Diamond grids, cross-hatches, and hexagonal arrays combining height variation with lateral patterning; balance increased contact points against reduced conformability</li>
+                        <li><strong>Multi-Scale Features:</strong> Patterns incorporating both macro-geometry (ridges, channels) and micro-roughness (surface texture); attempt to optimize across different object surface finishes</li>
+                        <li><strong>Directional vs. Isotropic:</strong> Symmetric patterns provide consistent grip regardless of orientation; directional patterns optimize for specific loading scenarios (e.g., vertical lifting)</li>
+                    </ul>
+
+                    <figure class="figure">
+                        <img class="project-img max-400 img-center"
+                             src="../assets/images/sensiblerobotics/skinideas.png"
+                             alt="Skin pattern sketches"
+                             width="1400" height="1000" loading="lazy" decoding="async" />
+                        <figcaption class="caption">Sketches of plausible skin design patterns</figcaption>
+                    </figure>
+
+                </details>
+
+                <details>
+                    <summary>Key Research Findings</summary>
+
+                    <h4>Surface Area & Contact Mechanics</h4>
+                    <p>
+                        Literature consistently shows that increased real contact area correlates with higher friction coefficients—more surface engagement distributes normal forces and increases adhesive interactions. However, diminishing returns occur when feature density becomes so high that individual features cannot deform sufficiently to establish intimate contact.
+                    </p>
+
+                    <h4>Ridge Geometry Optimization</h4>
+                    <p>
+                        For ridged patterns (fingerprints, knurls), optimal performance observed when:
+                    </p>
+                    <ul class="project-list">
+                        <li>Ridge spacing ≈ 0.3-0.6mm (human fingerprint scale)</li>
+                        <li>Ridge height 10-30% of spacing for sufficient deformation compliance</li>
+                        <li>Ridge cross-section rounded rather than sharp-edged to prevent stress concentrations</li>
+                    </ul>
+
+                    <h4>Fingerprint Pattern Comparison</h4>
+                    <p>
+                        Among the three tested fingerprint patterns, <strong>whorl geometry demonstrated greatest adhesion</strong>. Hypothesized mechanism: whorl's concentric circular ridges provide consistent contact across multiple grip orientations, while arch and loop patterns exhibit directional bias. The symmetric feature distribution of whorls maximizes effective contact area regardless of object rotation.
+                    </p>
+
+                    <h4>Smooth vs. Textured Baseline</h4>
+                    <p>
+                        Critically, research indicated that <strong>smooth or micro-roughened skin (no macro-scale patterning) often outperforms highly textured surfaces</strong> for compliant contact. Explanation: macro-features reduce conformability, creating air gaps that decrease real contact area. Micro-roughness (≈1-10μm) increases friction through surface asperity interlocking while maintaining bulk compliance.
+                    </p>
+                </details>
+
+                <div class="callout">
+                    <strong>Design Implication:</strong> Pattern selection must balance competing factors—surface area (favors dense features), conformability (favors minimal macro-texture), and durability (favors robust geometry). Optimal pattern depends on target object properties: smooth surfaces benefit from micro-roughness, irregular surfaces require conformable designs.
+                </div>
+            </div>
+
+            <!-- Test Rig -->
+            <div id="testrig" class="project-section">
+                <h2>Test Rig Design & Engineering Challenges</h2>
+                <p>
+                    Characterizing skin pattern performance requires <em>repeatable, quantifiable force application</em> across multiple test scenarios. We designed a custom test fixture addressing three critical engineering challenges while enabling standardized comparative evaluation.
+                </p>
+
+                <details open>
+                    <summary>Design Requirements & Challenge Resolution</summary>
+
+                    <h4>Challenge 1: Multi-Orientation Testing Capability</h4>
+                    <p>
+                        <strong>Requirement:</strong> Test rig must evaluate gripping action across diverse object orientations—vertical lifts, angled grasps, and horizontal pulls—replicating real-world manipulation scenarios.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Adjustable fixture platform with rotational degrees of freedom enabling orientation changes from 0° (horizontal) to 90° (vertical). Locking mechanism provides repeatable angular positioning. Modular object mounting system accommodates various geometries (cylinders, boxes, irregular shapes) and materials (metal, plastic, fabric).
+                    </p>
+
+                    <h4>Challenge 2: Consistent Force Application</h4>
+                    <p>
+                        <strong>Requirement:</strong> Apply equal and consistent pinching force across finger positions to isolate skin pattern variables from grip pressure variations.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Spring-loaded actuation mechanism with calibrated compression distance. Identical springs on each finger ensure symmetric force distribution. Force measurement via load cell (quantifies applied normal force) and strain gauges (monitors grip symmetry). Adjustable spring preload accommodates different test force magnitudes (5-50N range).
+                    </p>
+
+                    <h4>Challenge 3: Experimental Replicability</h4>
+                    <p>
+                        <strong>Requirement:</strong> All test rig settings must be precisely reproducible across trials—finger spacing, grip force, object position—to enable statistical comparison of skin patterns.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Graduated adjustment scales on all axes (X, Y, Z translation; rotation angle; spring compression). Digital calipers measure critical dimensions. Documented calibration procedure establishes baseline configuration. Test protocol specifies mandatory measurement verification before each trial sequence.
+                    </p>
+
+                    <div class="project-images grid-3">
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/fingerv1.png"
+                                 alt="Finger Design V1"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Motorized adjustment for angle of attack</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/fingerv2.png"
+                                 alt="Finger Design V2"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Manual angle of attack adjustment with Hirth joint (15 deg intervals).</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/fingerv3.png"
+                                 alt="Finger Design V3"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Incorporated finger into Hirth join; adhesive to attach skin designs. </figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="project-images grid-4">
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/forcev1.png"
+                                 alt="Force Design V1"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Sliding bracket with adjustable spring for increased force</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/forcev2.png"
+                                 alt="Force Design V2"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Adjustable bracket with intervals of 0.2 in.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/forcev3.png"
+                                 alt="Force Design V3"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Adjustable screw; bolt and wing nut allow fine control over spring tension.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/forcev4.png"
+                                 alt="Force Design V4"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption"> 5mm notches and 0.2 inch notches incorporated into the base; adjustable spring length. </figcaption>
+                        </figure>
+                    </div>
+
+                </details>
+
+                <details>
+                    <summary>Test Rig Architecture & Components</summary>
+
+                    <h4>Mechanical System</h4>
+                    <ul class="project-list">
+                        <li><strong>Base Platform:</strong> Rigid aluminum frame providing stable mounting surface; vibration-isolated to prevent external disturbances during sensitive force measurements</li>
+                        <li><strong>Finger Actuators:</strong> Linear guide rails with spring-loaded carriages; adjustable finger spacing (20-100mm) accommodates object size range; removable finger tips enable rapid skin pattern swapping</li>
+                        <li><strong>Orientation Stage:</strong> Rotational platform with 5° angular increment markings; lockable at test positions; maintains object alignment during force application</li>
+                        <li><strong>Object Fixture:</strong> Modular mounting system with interchangeable adapters for cylinders (Ø10-50mm), rectangular prisms, and custom geometries; quick-release mechanism for rapid object changes</li>
+                    </ul>
+
+                    <figure class="figure">
+                        <img class="project-img max-400 img-center"
+                             src="../assets/images/sensiblerobotics/rotationbom.png"
+                             alt="CAD model of entire mechanism"
+                             width="1400" height="1000" loading="lazy" decoding="async" />
+                        <figcaption class="caption">360 degree movement acquired through testing rig. </figcaption>
+                    </figure>
+
+                    <h4>Sensing & Data Acquisition</h4>
+                    <ul class="project-list">
+                        <li><strong>Load Cell:</strong> 100N capacity force transducer measuring normal grip force; ±0.1N resolution enables precise force control</li>
+                        <li><strong>Strain Gauges:</strong> Dual-channel measurement on finger actuators; validates symmetric force application; detects grip asymmetry >2%</li>
+                        <li><strong>Data Logger:</strong> Arduino-based acquisition system sampling at 100Hz; timestamps all measurements; calculates statistical metrics (mean, std dev, max) per trial</li>
+                        <li><strong>Calibration System:</strong> Known masses (10g-1kg) for load cell calibration; calibration performed monthly to maintain measurement accuracy</li>
+                    </ul>
+
+                    <h4>Safety & Operational Features</h4>
+                    <ul class="project-list">
+                        <li><strong>Force Limiting:</strong> Mechanical stops prevent over-compression; protects both test rig components and silicone samples from damage</li>
+                        <li><strong>Emergency Release:</strong> Manual override releases grip force immediately if sample begins tearing or fixture malfunctions</li>
+                        <li><strong>Modular Design:</strong> Component-based architecture enables subsystem testing, troubleshooting, and upgrades without complete disassembly</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Design Iterations & Lessons Learned</summary>
+
+                    <h4>Initial Prototype Limitations</h4>
+                    <p>
+                        Early test rig versions exhibited three critical failures:
+                    </p>
+                    <ul class="project-list">
+                        <li><strong>Finger deflection under load:</strong> Insufficient actuator rigidity caused fingers to bend during high-force tests; introduced measurement artifacts as grip geometry changed. <em>Solution:</em> Upgraded to steel guide rails with reinforced mounting brackets</li>
+                        <li><strong>Spring inconsistency:</strong> Commercial compression springs showed ±15% force variation between nominally identical units. <em>Solution:</em> Individual spring characterization and binning; matched spring pairs to <±3% variation</li>
+                        <li><strong>Object slippage:</strong> Smooth cylindrical test objects rotated within fixture during angled tests, invalidating force measurements. <em>Solution:</em> Textured object adapters with positive locking; anti-rotation pins for critical tests</li>
+                    </ul>
+
+                    <h4>Calibration Protocol Development</h4>
+                    <p>
+                        Establishing repeatable baseline required systematic calibration procedure:
+                    </p>
+                    <ol>
+                        <li>Zero load cell with fingers fully retracted; record baseline readings for 30 seconds to characterize sensor drift</li>
+                        <li>Apply known masses (100g, 500g, 1kg) to load cell; verify linearity across full measurement range; polynomial fit if nonlinear response detected</li>
+                        <li>Measure spring force-displacement curve using micrometer and load cell; document hysteresis and permanent set after 100 compression cycles</li>
+                        <li>Validate finger symmetry by gripping precision-ground cylinder; compare left/right strain gauge readings; adjust actuator alignment if asymmetry >5%</li>
+                        <li>Document all calibration coefficients, date, and operator; recalibrate monthly or after any mechanical modifications</li>
+                    </ol>
+                </details>
+
+                <div class="callout">
+                    <strong>Test Rig Impact:</strong> Final design enables quantitative comparison of skin patterns with <±0.5N force repeatability, ±2° orientation accuracy, and <5% inter-trial variation. Modular architecture supports future upgrades—potential integration of slip sensors, thermal measurement, or high-speed video capture for deformation analysis.
+                </div>
+            </div>
+
+            <!-- Skin Design -->
+            <div id="skindesign" class="project-section">
+                <h2>Skin Design Iterations & Fabrication</h2>
+                <p>
+                    We fabricated 10+ silicone skin patterns spanning the research-informed design categories. Each pattern required custom mold design, precision machining, and optimized casting procedures to achieve target feature resolution.
+                </p>
+
+                <details open>
+                    <summary>Pattern Library & Design Rationale</summary>
+
+                    <h4>Baseline Reference Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Smooth (Control):</strong> Unpatterned silicone surface for baseline friction measurement; isolates material properties from geometric effects; critical reference for all comparative analysis</li>
+                        <li><strong>Micro-Roughened:</strong> Sandblasted mold surface creates ≈10μm surface texture; tests hypothesis that micro-scale features improve friction without sacrificing conformability</li>
+                    </ul>
+
+                    <h4>Industrial-Inspired Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Straight Knurl:</strong> Parallel ridges at 0.5mm spacing, 0.15mm height; unidirectional pattern optimizes vertical lifting; provides empirical comparison to directional hypothesis from research</li>
+                        <li><strong>Diamond Knurl:</strong> Cross-hatched ridges at ±45° orientation; isotropic friction properties; 0.5mm spacing matches straight knurl for direct comparison</li>
+                        <li><strong>Grooved (Tire Tread):</strong> Circumferential channels 1mm wide, 0.3mm deep; inspired by pneumatic tire water evacuation; tests whether drainage features benefit robotic gripping</li>
+                    </ul>
+
+                    <h4>Bio-Inspired Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Fingerprint - Arch:</strong> Simplified ridge pattern with curved arches; ridge spacing 0.4mm matching human epidermis; tests baseline fingerprint geometry</li>
+                        <li><strong>Fingerprint - Loop:</strong> Ridge pattern with central loop feature; asymmetric design provides directional grip bias; evaluates whether loop orientation affects performance</li>
+                        <li><strong>Fingerprint - Whorl:</strong> Concentric circular ridge pattern; symmetric in all orientations; predicted to show superior isotropic performance based on research findings</li>
+                        <li><strong>Gecko Grid:</strong> Rib-cage pattern with 0.2mm ribs at 0.3mm spacing; attempts to replicate gecko toe pad lamellae; requires high-resolution molding for feature fidelity</li>
+                    </ul>
+
+                    <h4>Composite & Advanced Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Raised Diamond Grid:</strong> 3D textured surface with pyramidal features; 1mm grid spacing, 0.4mm height; balances surface area increase with compliance reduction</li>
+                        <li><strong>Cross-Hatch:</strong> Perpendicular grooves creating square grid; 0.8mm spacing, 0.2mm depth; tests multi-directional grip vs. simple grooves</li>
+                        <li><strong>Hexagonal Array:</strong> Honeycomb pattern with 1.2mm cell size; bio-inspired by insect compound eyes; evaluates whether cellular geometry improves grip</li>
+                    </ul>
+
+                    <div class="project-images grid-5">
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/skin1.png"
+                                 alt="Honeycomb Design"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Honeycomb mold design.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/skin2.png"
+                                 alt="Plus Design"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Plus mold design.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/skin3.png"
+                                 alt="Whorl Design"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Whorl mold design.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/skin4.png"
+                                 alt="Diamond Design"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Diamond mold design.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/skin5.png"
+                                 alt="Sine Design"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Sine mold design.</figcaption>
+                        </figure>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Mold Design & Manufacturing Process</summary>
+
+                    <h4>CAD Development</h4>
+                    <p>
+                        All molds designed in SolidWorks with explicit feature definitions:
+                    </p>
+                    <ul class="project-list">
+                        <li><strong>Negative geometry:</strong> Mold cavities represent inverse of desired skin surface; ridge patterns become grooves in mold, raised features become depressions</li>
+                        <li><strong>Draft angles:</strong> 2-5° taper on vertical walls facilitates demolding; prevents tearing during extraction; critical for high-aspect-ratio features</li>
+                        <li><strong>Vent channels:</strong> 0.5mm air escape paths at mold periphery; eliminates bubble entrapment; ensures complete cavity filling</li>
+                        <li><strong>Registration features:</strong> Alignment pins and recesses ensure repeatable mold assembly; critical for multi-part molds</li>
+                    </ul>
+
+                    <h4>Silicone Casting Procedure</h4>
+                    <ol>
+                        <li><strong>Mold preparation:</strong> Clean with IPA; apply release agent (multiple thin coats for complex geometries); preheat to 40°C for improved flow</li>
+                        <li><strong>Mixing:</strong> Weigh silicone components per manufacturer ratio (typically 1:1 or 10:1 by weight); mechanical mixing 3 minutes at 400 RPM; scrape container walls to ensure homogeneity</li>
+                        <li><strong>Degassing:</strong> Vacuum chamber at <1 Torr until bubbling ceases (typically 5-8 minutes); vent slowly to prevent boil-over; second degas if visible bubbles remain</li>
+                        <li><strong>Pouring:</strong> Slow spiral pour from height to minimize air entrapment; slight overfill to compensate for cure shrinkage; vibration table (100Hz, 30 seconds) drives remaining bubbles to surface</li>
+                        <li><strong>Curing:</strong> Room temperature (18-24°C) for manufacturer-specified duration; elevated temperature (60°C) for accelerated cure if required; verify full cure with fingernail test (no visible indentation)</li>
+                        <li><strong>Demolding:</strong> Cooling period (30 min) reduces thermal stress; gentle prying at drafted edges; compressed air assist for complex geometries; IPA lubrication if sticking detected</li>
+                        <li><strong>Inspection:</strong> Optical microscopy verifies feature replication; caliper measurement confirms thickness; flex testing ensures no internal voids or delamination</li>
+                    </ol>
+
+                    <div class="project-images grid-2">
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/moldchamber.jpg"
+                                 alt="Cured Sine Mold"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Sine wave cured mold.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/moldchamber2.png"
+                                 alt="Cured Diamond Mold"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Diamond cured mold.</figcaption>
+                        </figure>
+                    </div>
+
+                </details>
+
+                <details>
+                    <summary>Fabrication Challenges & Solutions</summary>
+
+                    <h4>Bubble Entrapment in High-Relief Features</h4>
+                    <p>
+                        <strong>Problem:</strong> Deep grooves and undercuts in gecko grid and diamond patterns trapped air during pouring, creating voids that weakened samples.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Two-stage casting—initial thin layer (0.5mm) poured and degassed in-situ under vacuum; second bulk layer added after first partially cures; eliminates air pockets at feature bottoms.
+                    </p>
+
+                    <h4>Feature Distortion During Demolding</h4>
+                    <p>
+                        <strong>Problem:</strong> High-aspect-ratio features (gecko ribs, knurl ridges) deformed or tore when extracting from rigid molds.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Flexible intermediate mold strategy—cast silicone negative from rigid master mold; use flexible silicone mold for production casting; negative deforms during demolding rather than positive features.
+                    </p>
+
+                    <h4>Incomplete Feature Filling</h4>
+                    <p>
+                        <strong>Problem:</strong> Narrow channels (<0.3mm) in fingerprint patterns showed incomplete filling despite vacuum degassing.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Reduced silicone viscosity via slight heating (pre-warm components to 30°C before mixing); extended degas time (10 min); increased pour height for greater hydrostatic pressure driving flow into fine features.
+                    </p>
+
+                    <h4>Pattern-to-Pattern Thickness Variation</h4>
+                    <p>
+                        <strong>Problem:</strong> Different patterns exhibited 0.1-0.3mm thickness variations affecting mechanical compliance and test standardization.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Precision-machined mold depth; consistent overfill volume (calculated from mold cavity volume + 10% excess); post-cure grinding on flat surface with 800-grit abrasive to achieve uniform 2.0 ± 0.05mm thickness.
+                    </p>
+                </details>
+            </div>
+
+            <!-- Procedures -->
+            <div id="procedures" class="project-section">
+                <h2>Testing Procedures & Protocols</h2>
+                <p>
+                    We developed two standardized test procedures evaluating skin pattern performance across common robotic manipulation scenarios. Procedures emphasize quantitative, repeatable measurements enabling statistical comparison of pattern efficacy.
+                </p>
+
+                <details open>
+                    <summary>Procedure 1: Vertical Lift Test (Maximum Static Friction)</summary>
+
+                    <h4>Test Objective</h4>
+                    <p>
+                        Measure maximum static friction force—the critical parameter for vertical object lifting. Quantifies skin pattern's ability to prevent slip under gravitational loading. Simulates scenarios like picking objects from table surfaces or maintaining grasp during upward motion.
+                    </p>
+
+                    <h4>Test Setup</h4>
+                    <ul class="project-list">
+                        <li><strong>Test object:</strong> Standardized aluminum cylinder (Ø30mm, 100mm length, 200g mass); consistent surface finish (Ra ≈ 0.4μm)</li>
+                        <li><strong>Orientation:</strong> Vertical (90° from horizontal); object axis aligned with gravity vector</li>
+                        <li><strong>Grip configuration:</strong> Two-finger pinch grasp; finger spacing 35mm; contact area ≈4 cm² per finger</li>
+                        <li><strong>Applied normal force:</strong> Systematically varied from 2N to 20N in 2N increments; load cell monitors force throughout test</li>
+                    </ul>
+
+                    <h4>Procedure Steps</h4>
+                    <ol>
+                        <li><strong>Calibration:</strong> Zero load cell; verify strain gauge symmetry; confirm object mass measurement (should read 200±2g)</li>
+                        <li><strong>Mounting:</strong> Install skin pattern on finger tips; clean skin surface with IPA; allow 5-minute equilibration period at room temperature</li>
+                        <li><strong>Initial grip:</strong> Apply minimum normal force (2N); confirm symmetric grip via strain gauges (difference <5%)</li>
+                        <li><strong>Lift attempt:</strong> Slowly raise object vertically at 10mm/s; monitor for slip events (sudden downward motion or rotation)</li>
+                        <li><strong>Failure detection:</strong> Record whether object remained gripped (success) or slipped (failure); note failure mode (complete drop vs. partial slip)</li>
+                        <li><strong>Force increment:</strong> Increase normal force by 2N; repeat lift attempt; continue until three consecutive successful lifts achieved</li>
+                        <li><strong>Minimum holding force:</strong> Identify lowest force enabling reliable lift (3/3 success criterion); calculate safety factor relative to object weight</li>
+                        <li><strong>Replication:</strong> Repeat entire procedure 5 times per skin pattern; calculate mean, standard deviation, and coefficient of variation for holding force</li>
+                    </ol>
+
+                    <h4>Data Recorded</h4>
+                    <ul class="project-list">
+                        <li>Minimum successful holding force [N] for each trial</li>
+                        <li>Failure mode observations (slip initiation point, rotation vs. translation)</li>
+                        <li>Skin pattern condition (visible wear, permanent deformation, surface damage)</li>
+                        <li>Calculated coefficient of static friction: μ_s = (object weight) / (2 × normal force)</li>
+                        <li>Success rate vs. normal force curve enabling reliability prediction</li>
+                    </ul>
+
+                    <h4>Success Criteria</h4>
+                    <p>
+                        Pattern considered acceptable for vertical lifting if:
+                    </p>
+                    <ul class="project-list">
+                        <li>Minimum holding force <3× object weight (safety factor ≥3)</li>
+                        <li>Coefficient of variation <15% across 5 trials (repeatability requirement)</li>
+                        <li>No visible pattern damage after 25 lift cycles (durability threshold)</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Procedure 2: Angled Grip Test (Directional Friction & Compliance)</summary>
+
+                    <h4>Test Objective</h4>
+                    <p>
+                        Evaluate skin pattern performance at non-vertical orientations, measuring friction anisotropy and conformability to tilted surfaces. Simulates real-world scenarios where objects are grasped at angles—retrieving items from shelves, manipulating tools, or adapting to workspace constraints.
+                    </p>
+
+                    <h4>Test Setup</h4>
+                    <ul class="project-list">
+                        <li><strong>Test object:</strong> Same aluminum cylinder as Procedure 1 (consistency critical for cross-test comparison)</li>
+                        <li><strong>Orientation range:</strong> 0° (horizontal) to 90° (vertical) in 15° increments; 7 total test angles</li>
+                        <li><strong>Applied normal force:</strong> Fixed at 10N (mid-range from Procedure 1 characterization); enables focus on geometric effects</li>
+                        <li><strong>Grip duration:</strong> 30-second sustained hold at each angle; tests static grip maintenance vs. dynamic loading of Procedure 1</li>
+                    </ul>
+
+                    <h4>Procedure Steps</h4>
+                    <ol>
+                        <li><strong>Angle calibration:</strong> Set test rig orientation to 0° (horizontal); verify with digital protractor (±0.5° accuracy)</li>
+                        <li><strong>Grip establishment:</strong> Apply 10N normal force; confirm load cell reading and strain gauge symmetry</li>
+                        <li><strong>Sustained hold:</strong> Maintain grip for 30 seconds; monitor for any slip events (position change >1mm detected by visual markers on object)</li>
+                        <li><strong>Slip quantification:</strong> Record whether grip remained secure (success) or object slipped (failure); measure slip distance if partial failure occurred</li>
+                        <li><strong>Angle increment:</strong> Rotate test rig to next angle (15°, 30°, 45°, 60°, 75°, 90°); allow 10-second settling period before applying grip</li>
+                        <li><strong>Repeat at all angles:</strong> Execute full 30-second hold test at each of 7 angles; complete angular sweep constitutes one trial</li>
+                        <li><strong>Pattern rotation:</strong> Rotate skin pattern 90° on finger tips; repeat angular sweep; tests whether pattern has directional bias</li>
+                        <li><strong>Replication:</strong> Perform 3 complete trials (angular sweep × 2 rotations = 42 total data points per skin pattern)</li>
+                    </ol>
+
+                    <h4>Data Recorded</h4>
+                    <ul class="project-list">
+                        <li>Success/failure at each angle for both pattern orientations</li>
+                        <li>Critical angle (maximum tilt before slip occurs) for each pattern orientation</li>
+                        <li>Slip onset time (if gradual slip observed rather than sudden failure)</li>
+                        <li>Directional bias quantification: difference in critical angle between 0° and 90° pattern rotation</li>
+                        <li>Compliance observations: visible pattern deformation, conformance to angled surface</li>
+                    </ul>
+
+                    <h4>Analysis Metrics</h4>
+                    <ul class="project-list">
+                        <li><strong>Isotropic index:</strong> Ratio of critical angles for orthogonal pattern orientations; value near 1.0 indicates isotropic performance (no directional preference)</li>
+                        <li><strong>Angular performance curve:</strong> Success rate vs. angle plot; identifies usable orientation range for each pattern</li>
+                        <li><strong>Compliance score:</strong> Qualitative assessment (1-5 scale) of pattern's ability to conform to angled surface without gap formation</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Additional Characterization Tests</summary>
+
+                    <h4>Cyclic Fatigue Test (Durability)</h4>
+                    <p>
+                        <strong>Purpose:</strong> Evaluate pattern degradation under repeated gripping cycles.
+                    </p>
+                    <ol>
+                        <li>Perform 100 grip-release cycles at 10N normal force, vertical orientation</li>
+                        <li>Execute Procedure 1 (vertical lift test) after every 25 cycles</li>
+                        <li>Compare minimum holding force across cycle count; calculate degradation rate [% per 25 cycles]</li>
+                        <li>Inspect pattern for visible wear (ridge flattening, surface abrasion, tearing)</li>
+                        <li>Pattern fails if holding force increases >20% or visible damage detected</li>
+                    </ol>
+
+                    <h4>Multi-Material Object Test (Surface Interaction)</h4>
+                    <p>
+                        <strong>Purpose:</strong> Assess pattern performance across diverse object surface finishes.
+                    </p>
+                    <ol>
+                        <li>Repeat Procedure 1 with 5 different test objects: polished aluminum (Ra < 0.2μm), machined aluminum (Ra ≈ 1.0μm), ABS plastic, wood, fabric-wrapped cylinder</li>
+                        <li>Calculate friction coefficient for each material pairing</li>
+                        <li>Identify whether pattern shows material-dependent performance (some patterns may excel on smooth surfaces, others on rough)</li>
+                        <li>Rank patterns by versatility (consistent performance across all materials vs. specialized for specific surfaces)</li>
+                    </ol>
+
+                    <h4>Environmental Conditioning (Temperature & Humidity Effects)</h4>
+                    <p>
+                        <strong>Purpose:</strong> Characterize property changes under non-ambient conditions.
+                    </p>
+                    <ol>
+                        <li>Condition skin samples at 0°C, 25°C (baseline), 40°C for 2 hours prior to testing</li>
+                        <li>Test at 30% RH (dry), 60% RH (normal), 90% RH (humid) environmental conditions</li>
+                        <li>Execute Procedure 1 at each condition; compare to baseline (25°C, 60% RH)</li>
+                        <li>Calculate temperature coefficient [% change in holding force per °C] and humidity sensitivity</li>
+                    </ol>
+                </details>
+
+                <div class="callout">
+                    <strong>Statistical Rigor:</strong> All procedures incorporate minimum 3 replicates per condition with documented uncertainty analysis. Control charts track test-to-test variation, enabling detection of systematic drift in equipment calibration or material property changes.
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div id="results" class="project-section">
+                <h2>Results, Analysis & Key Findings</h2>
+                <p>
+                    Systematic testing of 10+ skin patterns across multiple test procedures generated comprehensive performance database. Results confirmed research hypotheses while revealing unexpected pattern-dependent behaviors.
+                </p>
+
+                <details open>
+                    <summary>Vertical Lift Test Results (Procedure 1)</summary>
+
+                    <h4>Top-Performing Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Smooth (Control):</strong> Minimum holding force 6.2 ± 0.4 N; coefficient of friction μ_s ≈ 0.16; served as baseline reference</li>
+                        <li><strong>Micro-Roughened:</strong> Minimum holding force 5.1 ± 0.3 N; μ_s ≈ 0.20; <strong>18% improvement over smooth</strong>; validated micro-texture hypothesis from research</li>
+                        <li><strong>Fingerprint - Whorl:</strong> Minimum holding force 5.3 ± 0.5 N; μ_s ≈ 0.19; <strong>best-performing macro-patterned design</strong>; confirmed research prediction of whorl superiority</li>
+                    </ul>
+
+                    <h4>Mid-Tier Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Fingerprint - Loop:</strong> 5.9 ± 0.6 N; showed directional bias (±0.8N variation with rotation); asymmetric geometry confirmed</li>
+                        <li><strong>Fingerprint - Arch:</strong> 6.0 ± 0.5 N; similar to smooth baseline; minimal performance benefit despite patterning</li>
+                        <li><strong>Diamond Knurl:</strong> 6.3 ± 0.7 N; higher variation (CV = 11%) suggests inconsistent contact; isotropic but not optimized</li>
+                    </ul>
+
+                    <h4>Lower-Performing Patterns</h4>
+                    <ul class="project-list">
+                        <li><strong>Straight Knurl:</strong> 7.1 ± 1.1 N (perpendicular to ridges); 5.8 ± 0.4 N (parallel to ridges); <strong>high directional bias</strong> limits general applicability</li>
+                        <li><strong>Grooved (Tire Tread):</strong> 7.8 ± 0.9 N; deep channels reduce effective contact area; hypothesis that drainage benefits gripping disproven</li>
+                        <li><strong>Gecko Grid:</strong> 8.2 ± 1.3 N; contrary to expectations, performed poorly; possible causes: insufficient feature resolution (<0.2mm ribs difficult to mold precisely), requires smooth substrates for van der Waals adhesion (aluminum cylinder too rough)</li>
+                    </ul>
+
+                    <h4>Statistical Analysis</h4>
+                    <p>
+                        ANOVA revealed statistically significant differences between pattern categories (p < 0.01). Post-hoc Tukey test confirmed:
+                    </p>
+                    <ul class="project-list">
+                        <li>Micro-roughened significantly better than smooth (p = 0.003)</li>
+                        <li>Whorl significantly better than other fingerprint patterns (p < 0.05)</li>
+                        <li>No significant difference between loop and arch (p = 0.72)</li>
+                        <li>Grooved and gecko patterns significantly worse than baseline (p < 0.01)</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Angled Grip Test Results (Procedure 2)</summary>
+
+                    <h4>Critical Angle Performance</h4>
+                    <table style="width:100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                        <tr style="background: rgba(100, 255, 218, 0.1); border-bottom: 1px solid var(--accent);">
+                            <th style="padding: 0.5rem; text-align: left;">Pattern</th>
+                            <th style="padding: 0.5rem; text-align: center;">Critical Angle (0° rotation)</th>
+                            <th style="padding: 0.5rem; text-align: center;">Critical Angle (90° rotation)</th>
+                            <th style="padding: 0.5rem; text-align: center;">Isotropic Index</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="padding: 0.5rem;">Micro-Roughened</td>
+                            <td style="padding: 0.5rem; text-align: center;">75°</td>
+                            <td style="padding: 0.5rem; text-align: center;">75°</td>
+                            <td style="padding: 0.5rem; text-align: center;">1.00</td>
+                        </tr>
+                        <tr style="background: rgba(100, 255, 218, 0.05);">
+                            <td style="padding: 0.5rem;">Whorl</td>
+                            <td style="padding: 0.5rem; text-align: center;">72°</td>
+                            <td style="padding: 0.5rem; text-align: center;">70°</td>
+                            <td style="padding: 0.5rem; text-align: center;">0.97</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem;">Diamond Knurl</td>
+                            <td style="padding: 0.5rem; text-align: center;">68°</td>
+                            <td style="padding: 0.5rem; text-align: center;">65°</td>
+                            <td style="padding: 0.5rem; text-align: center;">0.96</td>
+                        </tr>
+                        <tr style="background: rgba(100, 255, 218, 0.05);">
+                            <td style="padding: 0.5rem;">Loop</td>
+                            <td style="padding: 0.5rem; text-align: center;">70°</td>
+                            <td style="padding: 0.5rem; text-align: center;">62°</td>
+                            <td style="padding: 0.5rem; text-align: center;">0.89</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem;">Straight Knurl</td>
+                            <td style="padding: 0.5rem; text-align: center;">74°</td>
+                            <td style="padding: 0.5rem; text-align: center;">58°</td>
+                            <td style="padding: 0.5rem; text-align: center;">0.78</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <p>
+                        <strong>Key observations:</strong>
+                    </p>
+                    <ul class="project-list">
+                        <li>Micro-roughened showed perfect isotropy (index = 1.00); no directional preference</li>
+                        <li>Whorl nearly isotropic (0.97); minor variation likely due to experimental uncertainty</li>
+                        <li>Straight knurl exhibited severe directional bias (0.78); 16° difference between orientations</li>
+                        <li>All patterns successfully gripped at angles ≥60°, exceeding minimum requirement for most manipulation tasks</li>
+                    </ul>
+
+                    <h4>Compliance & Conformability Observations</h4>
+                    <ul class="project-list">
+                        <li><strong>Best compliance:</strong> Smooth, micro-roughened, whorl—minimal feature height enabled intimate surface contact at all angles</li>
+                        <li><strong>Moderate compliance:</strong> Loop, arch, diamond knurl—visible air gaps at extreme angles (>75°) but maintained grip</li>
+                        <li><strong>Poor compliance:</strong> Grooved, raised diamond—deep features prevented full contact; gap formation at edges reduced effective grip area</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Pattern-Specific Performance Analysis</summary>
+
+                    <h4>Honeycomb Pattern</h4>
+                    <p>
+                        The honeycomb pattern demonstrated moderate performance across all test conditions. Hexagonal geometry provided isotropic grip characteristics while maintaining reasonable conformability.
+                    </p>
+
+                    <div class="project-images grid-3">
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/honeycomb1.png"
+                                 alt="Honeycomb Force Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold different shape types.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/honeycomb2.png"
+                                 alt="Honeycomb Material Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold different material types.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/honeycomb3.png"
+                                 alt="Honeycomb Orientation Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold objects at different orientations.</figcaption>
+                        </figure>
+                    </div>
+
+                    <h4>Plus (Cross-Hatch) Pattern</h4>
+                    <p>
+                        Plus pattern showed directional dependency with perpendicular grooves creating potential air gaps. Performance varied significantly based on grip orientation relative to pattern axes.
+                    </p>
+
+                    <div class="project-images grid-3">
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/plus1.png"
+                                 alt="Plus Force Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold different shape types.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/plus2.png"
+                                 alt="Plus Material Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold different material types.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/plus3.png"
+                                 alt="Plus Orientation Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold objects at different orientations.</figcaption>
+                        </figure>
+                    </div>
+
+                    <h4>Sine Wave Pattern</h4>
+                    <p>
+                        Sine wave pattern provided smooth transitions between ridges, reducing stress concentrations. Unidirectional geometry optimized for specific loading orientations.
+                    </p>
+
+                    <div class="project-images grid-3">
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/sine1.png"
+                                 alt="Sine Force Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold different shape types.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/sine2.png"
+                                 alt="Sine Material Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold different material types.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/sine3.png"
+                                 alt="Sine Orientation Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold objects at different orientations.</figcaption>
+                        </figure>
+                    </div>
+
+                    <h4>Diamond Pattern</h4>
+                    <p>
+                        Diamond knurl pattern demonstrated balanced performance with cross-hatched ridges at ±45°. Isotropic characteristics but higher force requirements compared to top performers.
+                    </p>
+
+                    <div class="project-images grid-3">
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/diamond1.png"
+                                 alt="Diamond Force Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold different shape types.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/diamond2.png"
+                                 alt="Diamond Material Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold different material types.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/diamond3.png"
+                                 alt="Diamond Orientation Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Required force to uphold objects at different orientations.</figcaption>
+                        </figure>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Durability & Fatigue Results</summary>
+
+                    <h4>100-Cycle Fatigue Test</h4>
+                    <p>
+                        All patterns completed 100 grip-release cycles without catastrophic failure. Degradation rates:
+                    </p>
+                    <ul class="project-list">
+                        <li><strong>Excellent durability (<5% degradation):</strong> Smooth, micro-roughened, whorl, loop, arch—minimal property changes</li>
+                        <li><strong>Moderate degradation (5-15%):</strong> Diamond knurl, straight knurl—visible ridge flattening but remained functional</li>
+                        <li><strong>Significant degradation (>15%):</strong> Gecko grid—rib breakage after 60 cycles; raised diamond—pyramid tip abrasion; grooved—channel edge tearing</li>
+                    </ul>
+
+                    <h4>Failure Modes Analysis</h4>
+                    <ul class="project-list">
+                        <li><strong>Abrasive wear:</strong> Dominant mechanism for high-relief patterns (gecko, raised diamond); sharp features experience concentrated stress</li>
+                        <li><strong>Fatigue cracking:</strong> Observed in grooved pattern at channel bottoms; stress concentration initiates crack propagation</li>
+                        <li><strong>Elastic recovery loss:</strong> Knurled patterns showed permanent ridge compression after 75+ cycles; reduced effective feature height</li>
+                        <li><strong>Minimal wear:</strong> Smooth and micro-roughened patterns showed <1% thickness change; no visible surface damage; excellent long-term prospects</li>
+                    </ul>
+                </details>
+
+                <details>
+                    <summary>Multi-Material & Shape Object Testing</summary>
+
+                    <h4>Surface Finish Dependency</h4>
+                    <p>
+                        Friction coefficients varied significantly with object surface:
+                    </p>
+                    <ul class="project-list">
+                        <li><strong>Polished aluminum (Ra < 0.2μm):</strong> Micro-roughened showed 25% advantage over smooth; pattern features enhance contact on ultra-smooth surfaces</li>
+                        <li><strong>Machined aluminum (Ra ≈ 1.0μm):</strong> Minimal pattern effect; surface roughness dominates friction; all patterns performed similarly</li>
+                        <li><strong>ABS plastic:</strong> Whorl showed 15% improvement; hypothesized mechanical interlocking between pattern ridges and plastic surface texture</li>
+                        <li><strong>Wood:</strong> Grooved pattern unexpectedly improved (10% better than smooth); channels may accommodate wood grain irregularities</li>
+                        <li><strong>Fabric:</strong> All patterns performed poorly; fabric deformation rather than friction determines grip; pattern geometry irrelevant</li>
+                    </ul>
+
+                    <h4>Shape-Dependent Performance</h4>
+                    <p>
+                        Object geometry significantly influenced required grip force. Comparative testing across cube and sphere shapes revealed pattern-specific adaptability to different contact geometries.
+                    </p>
+
+                    <div class="project-images grid-2">
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/cuberes.png"
+                                 alt="Cube Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Results across different skin types for cube shape.</figcaption>
+                        </figure>
+                        <figure class="figure">
+                            <img src="../assets/images/sensiblerobotics/spheres.png"
+                                 alt="Sphere Results"
+                                 class="project-img"
+                                 width="1200" height="900" loading="lazy" decoding="async" />
+                            <figcaption class="caption">Results across different skin types for sphere shape.</figcaption>
+                        </figure>
+                    </div>
+
+                    <h4>Versatility Ranking</h4>
+                    <p>
+                        Patterns ranked by consistent performance across all 5 materials:
+                    </p>
+                    <ol>
+                        <li><strong>Micro-roughened:</strong> Top-3 performance on 4/5 materials; only fabric outlier</li>
+                        <li><strong>Whorl:</strong> Top-3 on 3/5 materials; excellent on hard surfaces, moderate on compliant</li>
+                        <li><strong>Smooth:</strong> Consistent mid-tier across all materials; reliable baseline</li>
+                        <li><strong>Diamond knurl:</strong> Variable performance; excels on specific materials, poor on others</li>
+                        <li><strong>Gecko grid:</strong> Material-specific performance (good on glass, poor on rough surfaces); limited versatility</li>
+                    </ol>
+                </details>
+
+                <div class="callout">
+                    <strong>Primary Conclusion:</strong> Research hypothesis confirmed—smooth or micro-roughened surfaces demonstrate superior and most consistent performance across test scenarios. Whorl pattern stands out as best macro-patterned design, validating symmetric feature distribution hypothesis. High-relief patterns (grooved, gecko, raised) generally underperform due to reduced conformability and accelerated wear.
+                </div>
+            </div>
+
+            <!-- Future Work -->
+            <div id="future" class="project-section">
+                <h2>Future Directions & Recommendations</h2>
+
+                <h3>Pattern Optimization Opportunities</h3>
+                <ul class="project-list">
+                    <li><strong>Hybrid micro-macro patterns:</strong> Combine micro-roughness (for friction enhancement) with sparse macro-features (for compliance channels); potentially achieves "best of both worlds"</li>
+                    <li><strong>Variable-depth features:</strong> Gradient pattern where feature height decreases toward edges; maintains central grip strength while improving edge conformability</li>
+                    <li><strong>Multi-material patterns:</strong> Integrate soft silicone matrix with embedded harder nodules; balances compliance and localized high-friction points</li>
+                    <li><strong>Anisotropic optimization:</strong> Design patterns specifically for known manipulation orientations; e.g., vertical-lift-optimized fingers vs. lateral-push-optimized palms</li>
+                </ul>
+
+                <h3>Advanced Testing Protocols</h3>
+                <ul class="project-list">
+                    <li><strong>Dynamic friction measurement:</strong> Current tests focus on static friction; implement slip-detection sensors to characterize kinetic friction and stick-slip transitions</li>
+                    <li><strong>Torque resistance testing:</strong> Evaluate pattern performance under rotational loading; critical for tool manipulation and precision assembly tasks</li>
+                    <li><strong>Impact grip testing:</strong> Rapid grasping scenarios (catching thrown objects); measure time-to-secure and initial contact dynamics</li>
+                    <li><strong>Contamination effects:</strong> Test performance with wet, oily, or particulate-contaminated surfaces; simulate real-world environmental conditions</li>
+                    <li><strong>Long-term aging:</strong> 1000+ cycle durability; UV exposure; thermal cycling; chemical resistance; establish lifetime predictions</li>
+                </ul>
+
+                <h3>Computational & Modeling Extensions</h3>
+                <ul class="project-list">
+                    <li><strong>Finite element analysis:</strong> Model contact mechanics under various loading; predict stress distributions and failure initiation; guide pattern optimization without extensive physical testing</li>
+                    <li><strong>Machine learning pattern design:</strong> Train neural networks on test database; generate novel patterns predicted to outperform current designs; active learning approach for efficient design space exploration</li>
+                    <li><strong>Multi-objective optimization:</strong> Automated design algorithms balancing friction, durability, manufacturability, and cost; Pareto frontier analysis identifies optimal trade-off solutions</li>
+                </ul>
+
+                <h3>Manufacturing & Scalability</h3>
+                <ul class="project-list">
+                    <li><strong>Injection molding transition:</strong> Current casting suitable for prototypes; scale-up requires injection-moldable silicones and high-volume tooling</li>
+                    <li><strong>Cost reduction:</strong> Economic analysis of pattern complexity vs. performance benefit; identify simplest patterns meeting requirements</li>
+                    <li><strong>In-situ patterning:</strong> 3D-printed textured molds; laser surface texturing; plasma etching for micro-roughness; enable rapid iteration without machining delays</li>
+                    <li><strong>Quality control metrics:</strong> Automated inspection using machine vision; defect detection; statistical process control for production consistency</li>
+                </ul>
+
+                <h3>Application-Specific Deployment</h3>
+                <ul class="project-list">
+                    <li><strong>Full-hand integration:</strong> Zone-specific patterns—micro-roughened fingertips for precision, whorl palms for power grip, smooth joints for flexibility</li>
+                    <li><strong>Task-oriented selection:</strong> Database lookup matching manipulation requirements to optimal pattern; enables application-specific hand configuration</li>
+                    <li><strong>Active surface modulation:</strong> Pneumatic or electromagnetic pattern actuation; dynamically adjustable grip properties; future research frontier</li>
+                </ul>
+
+                <h3>Recommended Next Steps</h3>
+                <ol>
+                    <li><strong>Short term (1-3 months):</strong> Implement hybrid micro-macro patterns based on current insights; execute 1000-cycle durability testing on top performers; multi-material testing expansion</li>
+                    <li><strong>Medium term (3-6 months):</strong> Deploy micro-roughened and whorl patterns on full robotic hand; real-world manipulation task evaluation; user study for human-robot handoff scenarios</li>
+                    <li><strong>Long term (6-12 months):</strong> FEA validation; ML-driven pattern generation; injection molding process development; commercialization feasibility study</li>
+                </ol>
+
+                <div class="callout">
+                    <strong>Impact Potential:</strong> This foundational work establishes quantitative framework for robotic skin optimization. Database enables evidence-based pattern selection rather than intuition-driven design. Manufacturing protocols and test fixtures transferable to other research groups, accelerating field-wide progress toward human-like robotic manipulation capabilities.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="../js/script.js"></script>
+</body>
+</html>
