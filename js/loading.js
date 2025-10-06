@@ -8,7 +8,7 @@ class LoadingScreen {
         this.bikeTrack = document.getElementById('bike-track');
         this.bike = null;
         this.minLoadTime = 2000; // 2 seconds for navigation
-        this.initialLoadTime = 5000; // 5 seconds for initial load
+        this.initialLoadTime = 3000; // 3 seconds for initial load (reduced from 5)
         this.isLoading = false;
 
         // Check if this is truly the first visit
@@ -33,6 +33,9 @@ class LoadingScreen {
             if (this.isInitialLoad) {
                 this.showInitialLoad();
                 sessionStorage.setItem('hasLoadedBefore', 'true');
+            } else {
+                // If not initial load, hide immediately
+                this.hide();
             }
 
             // Initialize link handlers
@@ -62,12 +65,16 @@ class LoadingScreen {
     showInitialLoad() {
         if (!this.bike || this.isLoading) return;
 
+        console.log('Starting initial load animation'); // Debug
         this.isLoading = true;
         const duration = this.initialLoadTime;
 
-        this.loadingScreen.classList.add('active');
+        // Make sure loading screen is visible
+        this.loadingScreen.classList.remove('fade-out');
+        this.loadingScreen.style.display = 'flex';
 
         this.animateLoading(duration, () => {
+            console.log('Initial load complete, hiding now'); // Debug
             this.hide();
             this.isInitialLoad = false;
         });
@@ -104,10 +111,12 @@ class LoadingScreen {
     show(targetUrl) {
         if (this.isLoading || !this.bike) return;
 
+        console.log('Showing loading for navigation'); // Debug
         this.isLoading = true;
         const duration = this.minLoadTime;
 
-        this.loadingScreen.classList.add('active');
+        this.loadingScreen.classList.remove('fade-out');
+        this.loadingScreen.style.display = 'flex';
 
         this.animateLoading(duration, () => {
             this.navigate(targetUrl);
@@ -127,8 +136,11 @@ class LoadingScreen {
             if (progress < 100) {
                 requestAnimationFrame(animate);
             } else {
-                const remaining = Math.max(0, duration - elapsed);
-                setTimeout(callback, remaining);
+                console.log('Animation complete, executing callback'); // Debug
+                // Ensure callback fires even if there's a tiny delay
+                setTimeout(() => {
+                    callback();
+                }, 100);
             }
         };
 
@@ -140,7 +152,6 @@ class LoadingScreen {
             const trackWidth = this.bikeTrack.offsetWidth;
             const bikeWidth = 330;
 
-            // Start: 0px, End: trackWidth - bikeWidth
             const startPosition = 0;
             const endPosition = trackWidth - bikeWidth;
             const travelDistance = endPosition - startPosition;
@@ -152,15 +163,22 @@ class LoadingScreen {
     }
 
     navigate(url) {
+        console.log('Navigating to:', url); // Debug
         window.location.href = url;
     }
 
     hide() {
-        this.loadingScreen.classList.remove('active');
-        this.isLoading = false;
-        if (this.bike) {
-            this.bike.style.left = '0px';
-        }
+        console.log('Hiding loading screen'); // Debug
+        this.loadingScreen.classList.add('fade-out');
+
+        // After fade transition, hide completely
+        setTimeout(() => {
+            this.loadingScreen.style.display = 'none';
+            this.isLoading = false;
+            if (this.bike) {
+                this.bike.style.left = '0px';
+            }
+        }, 500); // Match CSS transition duration
     }
 }
 

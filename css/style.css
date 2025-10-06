@@ -1034,14 +1034,15 @@ img[width][height] {
    =================================== */
 
 /* Loading screen container */
+/* Loading screen container */
 .loading-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
+    background: var(--navy);
+    display: flex; /* Changed from none to flex */
     flex-direction: column;
     justify-content: center;
     align-items: center;
