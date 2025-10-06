@@ -7,25 +7,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <style>
-        .edu-page .section-header { text-align:center; margin-bottom:1.25rem; }
-        .edu-card {
-          border:1px solid #e5e7eb; border-radius:.75rem; padding:1rem 1.25rem; background:#fff;
-          display:grid; gap:.5rem;
-        }
-        .edu-grid { display:grid; gap:1rem; }
-        .edu-meta { display:flex; flex-wrap:wrap; gap:.75rem; color:#6b7280; font-size:.95rem; }
-        .course-tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem; }
-        .course-tags .tag {
-          background:#e0f2fe;   /* soft blue background */
-          border:1px solid #bae6fd; /* light blue border */
-          color:#075985;        /* dark teal/blue text */
-          padding:.25rem .5rem;
-          border-radius:.5rem;
-          font-size:.85rem;
-          font-weight:500;
-        }
-    </style>
 </head>
 <body>
 
@@ -63,26 +44,53 @@
                     <span><i class="fa-solid fa-star"></i> GPA: 3.9 / 4.0</span>
                 </div>
 
-                <h3>Selected Coursework</h3>
-                <div class="course-tags">
-                    <span class="tag">Structure & Interpretation of Computer Programs</span>
-                    <span class="tag">Data Structures</span>
-                    <span class="tag">Computer Architecture & Machine Structures</span>
-                    <span class="tag">Great Ideas in Computer Architecture</span>
-                    <span class="tag">Discrete Math & Probability Theory</span>
-                    <span class="tag">Designing Info Devices & Systems I/II</span>
-                    <span class="tag">Engineering Molecules</span>
-                    <span class="tag">Biological Mass Transport & Fluid Dynamics</span>
-                    <span class="tag">Engineering Devices</span>
-                    <span class="tag">Microelectronic Devices</span>
-                    <span class="tag">Properties of Materials</span>
-                </div>
-
-                <h3 style="margin-top:.75rem;">Focus & Interests</h3>
+                <h3 style="margin-top: 1.5rem;">Focus & Interests</h3>
                 <p>
                     Bio-inspired sensing, soft/robotic materials, embedded systems, and PCB design —
                     with a cross-disciplinary emphasis on materials science, signal processing, and control for dexterous manipulation.
                 </p>
+
+                <!-- EECS Coursework -->
+                <div class="coursework-section">
+                    <h3><i class="fa-solid fa-microchip"></i> Electrical Engineering & Computer Science Coursework</h3>
+                    <div class="course-tags">
+                        <span class="tag">Structure & Interpretation of Computer Programs</span>
+                        <span class="tag">Data Structures</span>
+                        <span class="tag">Computer Architecture & Machine Structures</span>
+                        <span class="tag">Foundation of Signals and Information Processing</span>
+                        <span class="tag">Introduction to Circuits and Devices</span>
+                        <span class="tag">Discrete Math & Probability Theory</span>
+                        <span class="tag">Microelectronic Devices & Circuits</span>
+                    </div>
+                </div>
+
+                <!-- Bioengineering Coursework -->
+                <div class="coursework-section">
+                    <h3><i class="fa-solid fa-dna"></i> Bioengineering Coursework</h3>
+                    <div class="course-tags">
+                        <span class="tag">Introduction to Biomedicine</span>
+                        <span class="tag">Introduction to Bioengineering</span>
+                        <span class="tag">Engineering Molecules</span>
+                        <span class="tag">Biological Mass Transport & Fluid Dynamics</span>
+                        <span class="tag">Engineering Devices</span>
+                        <span class="tag">General Chemistry</span>
+                        <span class="tag">Organic Chemistry</span>
+                    </div>
+                </div>
+
+                <!-- General Engineering Coursework -->
+                <div class="coursework-section">
+                    <h3><i class="fa-solid fa-gears"></i> General Engineering Coursework</h3>
+                    <div class="course-tags">
+                        <span class="tag">Properties of Materials</span>
+                        <span class="tag">Introduction to Computer Programming for Scientists & Engineers</span>
+                        <span class="tag">Multivariable Calculus</span>
+                        <span class="tag">Linear Algebra & Differential Equations</span>
+                        <span class="tag">Physics Mechanics & Waves</span>
+                        <span class="tag">Physics Electricity & Magnetism</span>
+                        <span class="tag">Ethics in Engineering</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
