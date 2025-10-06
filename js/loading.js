@@ -1,3 +1,7 @@
+// ===================================
+// LOADING SCREEN FUNCTIONALITY
+// ===================================
+
 class LoadingScreen {
     constructor() {
         this.loadingScreen = document.getElementById('loading-screen');
@@ -7,7 +11,7 @@ class LoadingScreen {
         this.minLoadTime = 3000; // 3 seconds for navigation
         this.initialLoadTime = 5000; // 5 seconds for initial load
         this.isLoading = false;
-        this.isInitialLoad = true; // Track if this is the first load
+        this.isInitialLoad = true;
 
         this.loadBikeSVG();
     }
@@ -16,25 +20,29 @@ class LoadingScreen {
         try {
             const path = window.location.pathname;
             const svgPath = path.includes('/projects/')
-                ? '../assets/images/loading-bike.svg'
-                : 'assets/images/loading-bike.svg';
+                ? '../assets/images/loading/loading-bike.svg'
+                : 'assets/images/loading/loading-bike.svg';
 
             const response = await fetch(svgPath);
             const svgText = await response.text();
             this.bikeTrack.innerHTML = svgText;
             this.bike = document.getElementById('loading-bike');
 
-            // Initialize after SVG is loaded
+            // Show initial load animation after SVG is loaded
+            if (this.isInitialLoad) {
+                this.showInitialLoad();
+            }
+
+            // Initialize link handlers
             this.init();
         } catch (error) {
             console.error('Error loading bike SVG:', error);
+            // Hide loading screen if SVG fails to load
+            this.hide();
         }
     }
 
     init() {
-        // Show initial loading screen
-        this.showInitialLoad();
-
         // Wait for DOM to be ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
@@ -53,11 +61,11 @@ class LoadingScreen {
     }
 
     showInitialLoad() {
-        if (!this.bike) return;
+        if (!this.bike || this.isLoading) return;
 
         this.isLoading = true;
         const startTime = Date.now();
-        const duration = this.initialLoadTime; // 5 seconds for initial load
+        const duration = this.initialLoadTime;
 
         // Show loading screen
         this.loadingScreen.classList.add('active');
@@ -80,7 +88,7 @@ class LoadingScreen {
 
                 setTimeout(() => {
                     this.hide();
-                    this.isInitialLoad = false; // Mark initial load as complete
+                    this.isInitialLoad = false;
                 }, remaining);
             }
 
@@ -121,7 +129,7 @@ class LoadingScreen {
 
         this.isLoading = true;
         const startTime = Date.now();
-        const duration = this.minLoadTime; // 3 seconds for navigation
+        const duration = this.minLoadTime;
 
         // Show loading screen
         this.loadingScreen.classList.add('active');
