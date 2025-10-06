@@ -1069,13 +1069,13 @@ img[width][height] {
     overflow: hidden;
 }
 
-.loading-bike {
+#loading-bike {
     position: absolute;
     left: -220px;
     top: 0;
     width: 220px;
     height: 130px;
-    transition: left 0.1s linear;
+    transition: none;
 }
 
 /* Wheel rotation animation */
