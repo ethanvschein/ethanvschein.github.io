@@ -142,14 +142,18 @@ class LoadingScreen {
         // Update progress bar
         this.progressBar.style.width = `${progress}%`;
 
-        // Update bike position
+        // Update bike position - synchronized with progress bar
         if (this.bike && this.bikeTrack) {
             const trackWidth = this.bikeTrack.offsetWidth;
-            const bikeWidth = 220;
+            const bikeWidth = 330; // Updated for 1.5x size
 
-            // Calculate position: start at -220px (off-screen left), end at trackWidth (off-screen right)
-            const totalDistance = trackWidth + bikeWidth;
-            const currentPosition = -bikeWidth + (totalDistance * (progress / 100));
+            // Start position: fully visible on left edge (0px)
+            // End position: fully visible on right edge (trackWidth - bikeWidth)
+            const startPosition = 0;
+            const endPosition = trackWidth - bikeWidth;
+            const travelDistance = endPosition - startPosition;
+
+            const currentPosition = startPosition + (travelDistance * (progress / 100));
 
             this.bike.style.left = `${currentPosition}px`;
         }
@@ -164,7 +168,7 @@ class LoadingScreen {
         this.isLoading = false;
         this.progressBar.style.width = '0%';
         if (this.bike) {
-            this.bike.style.left = '-220px';
+            this.bike.style.left = '0px'; // Reset to start position
         }
     }
 }
