@@ -535,6 +535,7 @@ img[width][height] {
 .project-toc-wrapper {
     margin: 1rem 0 2rem;
     overflow-x: auto;
+    padding-top: 10px;
 }
 
 .project-toc {
@@ -557,12 +558,14 @@ img[width][height] {
     position: relative;
     transition: all 0.3s ease;
     overflow: hidden;
+    z-index: 1;
 }
 
 .toc-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px #e5e7eb;
     border-color: #14b8a6;
+    z-index: 10;
 }
 
 .toc-card::before {
@@ -592,7 +595,18 @@ img[width][height] {
 }
 
 .toc-body a:hover {
-    color: #14b8a6;
+    color: var(--accent);
+}
+
+.toc-card:hover .toc-title {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+}
+
+.toc-card:hover .toc-num {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
 }
 
 .toc-title {
