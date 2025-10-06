@@ -135,3 +135,13 @@ if (document.readyState === 'loading') {
 } else {
     new BikeMetrics();
 }
+
+// Scroll progress bar
+window.addEventListener('scroll', () => {
+    const progressBar = document.querySelector('.scroll-progress-bar');
+    if (!progressBar) return;
+
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (window.scrollY / windowHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+});

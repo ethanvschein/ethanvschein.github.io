@@ -9,72 +9,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
-    <!-- Page-scoped tweaks -->
-    <style>
-        .about-page { padding: 120px 0 2rem; }
-        .about-grid {
-          display: grid;
-          grid-template-columns: 340px 1fr;
-          gap: 1.25rem;
-          align-items: start;
-        }
-        @media (max-width: 920px) {
-          .about-grid { grid-template-columns: 1fr; }
-        }
-
-        .about-card, .about-panel {
-          border: 1px solid #e5e7eb; background: #fff; border-radius: .75rem; padding: 1rem 1.25rem;
-        }
-
-        /* Left column (profile) */
-        .avatar-wrap { text-align: center; }
-        .avatar {
-          width: 200px; height: 200px; object-fit: cover; border-radius: 9999px;
-          border: 6px solid #f3f4f6; background: #f9fafb; display: inline-block;
-        }
-        .contact-links { display: grid; gap: .5rem; margin-top: .75rem; }
-        .contact-links a { display: inline-flex; align-items: center; gap: .5rem; }
-        .quick-list { display: grid; gap: .4rem; margin-top: .75rem; }
-        .quick-list li { display: flex; align-items: baseline; gap: .5rem; }
-
-        /* Right column (bio & sections) */
-        .about-panel h2 { margin: .25rem 0 .5rem; }
-        .lead {
-          font-size: 1.05rem; line-height: 1.65; color: #111827;
-        }
-        .subtle { color: #6b7280; }
-        .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
-        .chip {
-          background: #e0f2fe; border:1px solid #bae6fd; color:#075985;
-          padding:.25rem .6rem; border-radius:.5rem; font-size:.85rem; font-weight:500;
-        }
-
-        .two-col {
-          display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-        }
-        @media (max-width: 920px) {
-          .two-col { grid-template-columns: 1fr; }
-        }
-
-        .list-check { padding-left: 1.25rem; }
-        .list-check li { margin: .3rem 0; }
-
-        .section-header { text-align: center; margin-bottom: 1.25rem; }
-        .underline { width: 80px; height: 3px; background: #14b8a6; margin: .4rem auto 0; border-radius: 999px; }
-
-        .cta {
-          display: flex; gap: .75rem; flex-wrap: wrap; align-items: center;
-          border: 1px dashed #cbd5e1; padding: .9rem 1rem; border-radius: .75rem; background: #f8fafc;
-          justify-content: space-between;
-        }
-        .cta .btn { margin-left: auto; }
-        .btn {
-          display:inline-flex; align-items:center; gap:.5rem;
-          background:#111827; color:#fff; padding:.5rem .85rem; border-radius:.5rem; text-decoration:none; font-weight:600;
-        }
-        .btn.secondary { background:#0ea5e9; }
-    </style>
 </head>
 <body>
 
@@ -102,6 +36,8 @@
     </div>
 </nav>
 
+<div class="scroll-progress-bar"></div>
+
 <!-- About -->
 <section class="about-page">
     <div class="container">
@@ -122,14 +58,14 @@
 
                 <ul class="quick-list">
                     <li><i class="fa-solid fa-location-dot"></i> Berkeley, CA</li>
-                    <li><i class="fa-solid fa-graduation-cap"></i> B.S. BioE + B.S. EECS (’27)</li>
+                    <li><i class="fa-solid fa-graduation-cap"></i> B.S. BioE + B.S. EECS ('27)</li>
                     <li><i class="fa-solid fa-flask"></i> LBNL (Kern Lab) &amp; UCSF (Chen Lab)</li>
                     <li><i class="fa-solid fa-robot"></i> Soft robotics, tactile sensing, embedded systems</li>
                 </ul>
 
                 <div class="contact-links">
                     <!-- Update hrefs to your actual profiles -->
-                    <a href="mailto:ethanschein@berkeley.edu"><i class="fa-solid fa-envelope"></i> ethanschein@example.com</a>
+                    <a href="mailto:ethanschein@berkeley.edu"><i class="fa-solid fa-envelope"></i> ethanschein@berkeley.edu</a>
                     <a href="https://www.linkedin.com/in/ethan-schein" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
                     <a href="https://github.com/ethanschein" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
                 </div>
@@ -137,18 +73,18 @@
 
             <!-- Right column: bio & content -->
             <main class="about-panel">
-                <h2>Hi, I’m Ethan — I design and build bio-inspired sensing systems.</h2>
+                <h2>Hi, I'm Ethan — I design and build bio-inspired sensing systems.</h2>
                 <p class="lead">
                     I split my time between <strong>materials-driven prototyping</strong> and <strong>embedded electronics</strong>.
-                    Recent work spans <em>tactile “e-skin”</em> stacks for humanoid hands (Dragon Skin + tuned PU foams),
+                    Recent work spans <em>tactile "e-skin"</em> stacks for humanoid hands (Dragon Skin + tuned PU foams),
                     high-density electrode arrays for shear/normal sensing, and low-noise acquisition over RS-485.
-                    In the lab, I’ve helped on XFEL sample delivery (multi-valve DOT systems) and RNA sensor engineering
+                    In the lab, I've helped on XFEL sample delivery (multi-valve DOT systems) and RNA sensor engineering
                     (ADAR-based designs, AAV/LV workflows). I like projects where mechanics, materials, and signal processing meet.
                 </p>
 
                 <div class="two-col" style="margin-top:1rem;">
                     <section class="about-card">
-                        <h3>What I’m focused on now</h3>
+                        <h3>What I'm focused on now</h3>
                         <ul class="list-check">
                             <li>Scaling thin silicone/foam manufacturing for compliant robotic skins.</li>
                             <li>Improving tactile readout fidelity (guarding, shielding, better AFE/ADC pipelines).</li>
@@ -209,15 +145,15 @@
                             <h4 style="margin:.25rem 0 .5rem; display:flex; align-items:center; gap:.5rem;">
                                 <i class="fa-solid fa-bicycle"></i> Endurance Biking
                             </h4>
-                            <p style="margin-bottom:.6rem; color:#374151;">
+                            <p style="margin-bottom:.6rem; color:#6b7280;">
                                 I enjoy long-distance endurance cycling and have participated in events like the Berkeley Triathlon
                                 and the ALS Napa Valley Ride, where my team personally raised over $800 for ALS research.
                             </p>
                             <div style="display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin-top:.6rem;">
                                 <img src="assets/images/other/bikelift.jpeg" alt="Biking event 1"
-                                     style="width:100%; border-radius:.5rem; border:1px solid #e5e7eb;"/>
+                                     style="width:100%; border-radius:.5rem; border:1px solid rgba(245, 158, 11, 0.2);"/>
                                 <img src="assets/images/other/bike2.jpg" alt="Biking event 2"
-                                     style="width:100%; border-radius:.5rem; border:1px solid #e5e7eb;"/>
+                                     style="width:100%; border-radius:.5rem; border:1px solid rgba(245, 158, 11, 0.2);"/>
                             </div>
                         </div>
 
@@ -226,14 +162,14 @@
                             <h4 style="margin:.25rem 0 .5rem; display:flex; align-items:center; gap:.5rem;">
                                 <i class="fa-solid fa-dumbbell"></i> Strength Training
                             </h4>
-                            <p style="margin-bottom:.6rem; color:#374151;">
+                            <p style="margin-bottom:.6rem; color:#6b7280;">
                                 Active strength lifter and current executive member at <strong>Barbell at Berkeley</strong>,
                                 UC Berkeley's premium weightlifting club. I'm passionate about progressive overload,
                                 proper form, and the discipline that comes with consistent training.
                             </p>
                             <div style="display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin-top:.6rem;">
                                 <img src="assets/images/other/barbell.png" alt="Barbell At Berkeley"
-                                     style="width:100%; border-radius:.5rem; border:1px solid #e5e7eb;"/>
+                                     style="width:100%; border-radius:.5rem; border:1px solid rgba(245, 158, 11, 0.2);"/>
                             </div>
                         </div>
                     </div>
@@ -245,7 +181,7 @@
                             <strong>Collaborations &amp; questions welcome.</strong>
                             <div class="subtle">Have a project at the intersection of materials, sensing, and embedded systems?</div>
                         </div>
-                        <a class="btn secondary" href="mailto:ethanschein@example.com"><i class="fa-solid fa-paper-plane"></i> Get in touch</a>
+                        <a class="btn secondary" href="mailto:ethanschein@berkeley.edu"><i class="fa-solid fa-paper-plane"></i> Get in touch</a>
                     </div>
                 </section>
             </main>
