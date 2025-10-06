@@ -5,14 +5,13 @@
 class LoadingScreen {
     constructor() {
         this.loadingScreen = document.getElementById('loading-screen');
-        this.progressBar = document.getElementById('progress-bar');
         this.bikeTrack = document.getElementById('bike-track');
         this.bike = null;
         this.minLoadTime = 2000; // 2 seconds for navigation
         this.initialLoadTime = 5000; // 5 seconds for initial load
         this.isLoading = false;
 
-        // Check if this is truly the first visit (use sessionStorage)
+        // Check if this is truly the first visit
         this.isInitialLoad = !sessionStorage.getItem('hasLoadedBefore');
 
         this.loadBikeSVG();
@@ -64,7 +63,6 @@ class LoadingScreen {
         if (!this.bike || this.isLoading) return;
 
         this.isLoading = true;
-        const startTime = Date.now();
         const duration = this.initialLoadTime;
 
         this.loadingScreen.classList.add('active');
@@ -119,13 +117,12 @@ class LoadingScreen {
     animateLoading(duration, callback) {
         const startTime = Date.now();
         let progress = 0;
-        const interval = 16; // ~60fps
 
         const animate = () => {
             const elapsed = Date.now() - startTime;
             progress = Math.min((elapsed / duration) * 100, 100);
 
-            this.updateProgress(progress);
+            this.updateBikePosition(progress);
 
             if (progress < 100) {
                 requestAnimationFrame(animate);
@@ -138,17 +135,12 @@ class LoadingScreen {
         requestAnimationFrame(animate);
     }
 
-    updateProgress(progress) {
-        // Update progress bar
-        this.progressBar.style.width = `${progress}%`;
-
-        // Update bike position - synchronized with progress bar
+    updateBikePosition(progress) {
         if (this.bike && this.bikeTrack) {
             const trackWidth = this.bikeTrack.offsetWidth;
-            const bikeWidth = 330; // Updated for 1.5x size
+            const bikeWidth = 330;
 
-            // Start position: fully visible on left edge (0px)
-            // End position: fully visible on right edge (trackWidth - bikeWidth)
+            // Start: 0px, End: trackWidth - bikeWidth
             const startPosition = 0;
             const endPosition = trackWidth - bikeWidth;
             const travelDistance = endPosition - startPosition;
@@ -166,9 +158,8 @@ class LoadingScreen {
     hide() {
         this.loadingScreen.classList.remove('active');
         this.isLoading = false;
-        this.progressBar.style.width = '0%';
         if (this.bike) {
-            this.bike.style.left = '0px'; // Reset to start position
+            this.bike.style.left = '0px';
         }
     }
 }
