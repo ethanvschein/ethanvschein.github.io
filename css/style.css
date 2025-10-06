@@ -1030,11 +1030,9 @@ img[width][height] {
 }
 
 /* ===================================
-   LOADING SCREEN STYLES
+   LOADING SCREEN
    =================================== */
 
-/* Loading screen container */
-/* Loading screen container */
 .loading-screen {
     position: fixed;
     top: 0;
@@ -1042,59 +1040,54 @@ img[width][height] {
     width: 100%;
     height: 100%;
     background: var(--navy);
-    display: flex; /* Changed from none to flex */
-    flex-direction: column;
+    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-}
-
-.loading-screen.fade-out {
+    z-index: 10000;
     opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Loading content wrapper */
-.loading-content {
+.loading-screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loading-container {
     text-align: center;
-    color: white;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 2rem;
 }
 
-/* Bike track container */
 .bike-track {
     position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 100%;
     height: 280px;
     margin-bottom: 2rem;
-    overflow: visible;
+    overflow: hidden;
     display: flex;
     align-items: flex-end;
     padding-bottom: 60px;
 }
 
-/* Terrain SVG background */
+/* Terrain SVG as background */
 .bike-track::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 75px;
+    height: 75px; /* Adjust based on your SVG height */
     background-image: url('../assets/images/loading/terrain.svg');
     background-size: 100% 100%;
+    background-position: bottom center;
     background-repeat: no-repeat;
     z-index: 2;
 }
 
-/* Remove old CSS grass */
-.bike-track::after {
-    content: none;
-}
-
-/* Bike SVG */
 #loading-bike {
     position: absolute;
     left: 0;
@@ -1102,49 +1095,58 @@ img[width][height] {
     width: 330px;
     height: 195px;
     filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
-    z-index: 1; /* Behind terrain */
+    z-index: 1;
 }
 
-/* Loading text */
+/* Wheel rotation animations */
+@keyframes rotate-wheel {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Rear wheel rotation */
+.loading-screen.active #rear-wheel {
+    animation: rotate-wheel 0.6s linear infinite;
+    transform-origin: 430px 1219px;
+}
+
+/* Front wheel rotation */
+.loading-screen.active #front-wheel {
+    animation: rotate-wheel 0.6s linear infinite;
+    transform-origin: 1610px 1220px;
+}
+
+/* Crank/pedal rotation */
+@keyframes rotate-crank {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-screen.active #crank,
+.loading-screen.active #crankset,
+.loading-screen.active #drivetrain {
+    animation: rotate-crank 0.9s linear infinite;
+    transform-origin: 902px 1298px;
+}
+
+/* Loading Text */
 .loading-text {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    letter-spacing: 0.05em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Progress bar container */
-.progress-container {
-    width: 100%;
-    max-width: 400px;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 1rem;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Progress bar fill */
-.progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-    border-radius: 10px;
-    transition: width 0.3s ease;
-    box-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
-}
-
-/* Loading percentage text */
-.loading-percentage {
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
+    color: var(--accent);
+    font-size: 1.1rem;
     font-weight: 500;
-    opacity: 0.9;
+    letter-spacing: 2px;
+    margin: 0;
 }
 
-/* Dots animation for loading text */
-.loading-text::after {
+.loading-dots::after {
     content: '';
     animation: dots 1.5s steps(4, end) infinite;
 }
@@ -1164,101 +1166,49 @@ img[width][height] {
     }
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
-    .bike-track {
-        max-width: 90%;
-        height: 200px;
-        padding-bottom: 40px;
+    .loading-container {
+        padding: 0 1rem;
     }
 
-    #loading-bike {
-        width: 250px;
-        height: 148px;
+    .bike-track {
+        height: 240px;
+        padding-bottom: 50px;
     }
 
     .bike-track::before {
-        height: 60px;
+        height: 65px; /* Adjust for mobile */
     }
 
-    .loading-text {
-        font-size: 1.5rem;
-    }
-
-    .progress-container {
-        max-width: 300px;
-    }
-
-    .loading-percentage {
-        font-size: 1rem;
+    #loading-bike {
+        width: 270px;
+        height: 160px;
+        bottom: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .bike-track {
-        height: 150px;
-        padding-bottom: 30px;
+    .loading-container {
+        padding: 0 0.5rem;
     }
 
-    #loading-bike {
-        width: 200px;
-        height: 118px;
+    .bike-track {
+        height: 200px;
+        padding-bottom: 40px;
     }
 
     .bike-track::before {
-        height: 50px;
+        height: 55px; /* Adjust for small mobile */
+    }
+
+    #loading-bike {
+        width: 220px;
+        height: 130px;
+        bottom: 8px;
     }
 
     .loading-text {
-        font-size: 1.2rem;
-    }
-
-    .loading-percentage {
-        font-size: 0.9rem;
-    }
-}
-
-/* Optional: Add a subtle pulse to loading text */
-.loading-text {
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.7;
-    }
-}
-
-/* Optional: Add shimmer effect to progress bar */
-.progress-bar {
-    position: relative;
-    overflow: hidden;
-}
-
-.progress-bar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    );
-    animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
+        font-size: 1rem;
     }
 }

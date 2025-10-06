@@ -8,7 +8,7 @@ class LoadingScreen {
         this.bikeTrack = document.getElementById('bike-track');
         this.bike = null;
         this.minLoadTime = 2000; // 2 seconds for navigation
-        this.initialLoadTime = 3000; // 3 seconds for initial load (reduced from 5)
+        this.initialLoadTime = 3000; // 3 seconds for initial load
         this.isLoading = false;
 
         // Check if this is truly the first visit
@@ -65,16 +65,15 @@ class LoadingScreen {
     showInitialLoad() {
         if (!this.bike || this.isLoading) return;
 
-        console.log('Starting initial load animation'); // Debug
+        console.log('Starting initial load animation');
         this.isLoading = true;
         const duration = this.initialLoadTime;
 
-        // Make sure loading screen is visible
-        this.loadingScreen.classList.remove('fade-out');
-        this.loadingScreen.style.display = 'flex';
+        // Add active class to show loading screen and trigger animations
+        this.loadingScreen.classList.add('active');
 
         this.animateLoading(duration, () => {
-            console.log('Initial load complete, hiding now'); // Debug
+            console.log('Initial load complete, hiding now');
             this.hide();
             this.isInitialLoad = false;
         });
@@ -111,12 +110,12 @@ class LoadingScreen {
     show(targetUrl) {
         if (this.isLoading || !this.bike) return;
 
-        console.log('Showing loading for navigation'); // Debug
+        console.log('Showing loading for navigation');
         this.isLoading = true;
         const duration = this.minLoadTime;
 
-        this.loadingScreen.classList.remove('fade-out');
-        this.loadingScreen.style.display = 'flex';
+        // Add active class to show loading screen and trigger animations
+        this.loadingScreen.classList.add('active');
 
         this.animateLoading(duration, () => {
             this.navigate(targetUrl);
@@ -136,7 +135,7 @@ class LoadingScreen {
             if (progress < 100) {
                 requestAnimationFrame(animate);
             } else {
-                console.log('Animation complete, executing callback'); // Debug
+                console.log('Animation complete, executing callback');
                 // Ensure callback fires even if there's a tiny delay
                 setTimeout(() => {
                     callback();
@@ -152,6 +151,7 @@ class LoadingScreen {
             const trackWidth = this.bikeTrack.offsetWidth;
             const bikeWidth = 330;
 
+            // Start at left edge (0), end at right edge
             const startPosition = 0;
             const endPosition = trackWidth - bikeWidth;
             const travelDistance = endPosition - startPosition;
@@ -163,17 +163,16 @@ class LoadingScreen {
     }
 
     navigate(url) {
-        console.log('Navigating to:', url); // Debug
+        console.log('Navigating to:', url);
         window.location.href = url;
     }
 
     hide() {
-        console.log('Hiding loading screen'); // Debug
-        this.loadingScreen.classList.add('fade-out');
+        console.log('Hiding loading screen');
+        this.loadingScreen.classList.remove('active');
 
-        // After fade transition, hide completely
+        // After fade transition, reset state
         setTimeout(() => {
-            this.loadingScreen.style.display = 'none';
             this.isLoading = false;
             if (this.bike) {
                 this.bike.style.left = '0px';
