@@ -8,10 +8,12 @@ class LoadingScreen {
         this.progressBar = document.getElementById('progress-bar');
         this.bikeTrack = document.getElementById('bike-track');
         this.bike = null;
-        this.minLoadTime = 3000; // 3 seconds for navigation
+        this.minLoadTime = 2000; // 2 seconds for navigation
         this.initialLoadTime = 5000; // 5 seconds for initial load
         this.isLoading = false;
-        this.isInitialLoad = true;
+
+        // Check if this is truly the first visit (use sessionStorage)
+        this.isInitialLoad = !sessionStorage.getItem('hasLoadedBefore');
 
         this.loadBikeSVG();
     }
@@ -28,22 +30,21 @@ class LoadingScreen {
             this.bikeTrack.innerHTML = svgText;
             this.bike = document.getElementById('loading-bike');
 
-            // Show initial load animation after SVG is loaded
+            // Only show initial load on first visit
             if (this.isInitialLoad) {
                 this.showInitialLoad();
+                sessionStorage.setItem('hasLoadedBefore', 'true');
             }
 
             // Initialize link handlers
             this.init();
         } catch (error) {
             console.error('Error loading bike SVG:', error);
-            // Hide loading screen if SVG fails to load
             this.hide();
         }
     }
 
     init() {
-        // Wait for DOM to be ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 this.attachLinkHandlers();
@@ -52,7 +53,6 @@ class LoadingScreen {
             this.attachLinkHandlers();
         }
 
-        // Handle browser back/forward buttons
         window.addEventListener('pageshow', (event) => {
             if (event.persisted) {
                 this.hide();
@@ -67,33 +67,12 @@ class LoadingScreen {
         const startTime = Date.now();
         const duration = this.initialLoadTime;
 
-        // Show loading screen
         this.loadingScreen.classList.add('active');
 
-        // Animate progress bar and bike
-        let progress = 0;
-        const interval = 50;
-        const increment = (interval / duration) * 100;
-
-        const animationInterval = setInterval(() => {
-            progress += increment;
-
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(animationInterval);
-
-                // Ensure minimum load time has passed
-                const elapsed = Date.now() - startTime;
-                const remaining = Math.max(0, duration - elapsed);
-
-                setTimeout(() => {
-                    this.hide();
-                    this.isInitialLoad = false;
-                }, remaining);
-            }
-
-            this.updateProgress(progress);
-        }, interval);
+        this.animateLoading(duration, () => {
+            this.hide();
+            this.isInitialLoad = false;
+        });
     }
 
     attachLinkHandlers() {
@@ -128,47 +107,52 @@ class LoadingScreen {
         if (this.isLoading || !this.bike) return;
 
         this.isLoading = true;
-        const startTime = Date.now();
         const duration = this.minLoadTime;
 
-        // Show loading screen
         this.loadingScreen.classList.add('active');
 
-        // Animate progress bar and bike
+        this.animateLoading(duration, () => {
+            this.navigate(targetUrl);
+        });
+    }
+
+    animateLoading(duration, callback) {
+        const startTime = Date.now();
         let progress = 0;
-        const interval = 50;
-        const increment = (interval / duration) * 100;
+        const interval = 16; // ~60fps
 
-        const animationInterval = setInterval(() => {
-            progress += increment;
-
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(animationInterval);
-
-                const elapsed = Date.now() - startTime;
-                const remaining = Math.max(0, duration - elapsed);
-
-                setTimeout(() => {
-                    this.navigate(targetUrl);
-                }, remaining);
-            }
+        const animate = () => {
+            const elapsed = Date.now() - startTime;
+            progress = Math.min((elapsed / duration) * 100, 100);
 
             this.updateProgress(progress);
-        }, interval);
+
+            if (progress < 100) {
+                requestAnimationFrame(animate);
+            } else {
+                const remaining = Math.max(0, duration - elapsed);
+                setTimeout(callback, remaining);
+            }
+        };
+
+        requestAnimationFrame(animate);
     }
 
     updateProgress(progress) {
+        // Update progress bar
         this.progressBar.style.width = `${progress}%`;
 
-        const bikeTrack = this.bike.parentElement;
-        const trackWidth = bikeTrack.offsetWidth;
-        const bikeWidth = 220;
+        // Update bike position
+        if (this.bike && this.bikeTrack) {
+            const trackWidth = this.bikeTrack.offsetWidth;
+            const bikeWidth = 220;
 
-        const totalDistance = trackWidth + bikeWidth;
-        const currentPosition = -bikeWidth + (totalDistance * (progress / 100));
+            // Calculate position: start at -220px (off-screen left), end at trackWidth (off-screen right)
+            const totalDistance = trackWidth + bikeWidth;
+            const currentPosition = -bikeWidth + (totalDistance * (progress / 100));
 
-        this.bike.style.left = `${currentPosition}px`;
+            this.bike.style.left = `${currentPosition}px`;
+        }
     }
 
     navigate(url) {
