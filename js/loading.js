@@ -7,14 +7,30 @@ class LoadingScreen {
         this.loadingScreen = document.getElementById('loading-screen');
         this.bikeTrack = document.getElementById('bike-track');
         this.bike = null;
-        this.minLoadTime = 1500; // 2 seconds for navigation
-        this.initialLoadTime = 3000; // 3 seconds for initial load
+        this.initialLoadTime = 3000; // 3 seconds for first visit/refresh
         this.isLoading = false;
 
-        // Check if this is truly the first visit
+        // Check if this is the first page load OR a refresh
         this.isInitialLoad = !sessionStorage.getItem('hasLoadedBefore');
+        this.isRefresh = this.checkIfRefresh();
 
         this.loadBikeSVG();
+    }
+
+    checkIfRefresh() {
+        // Check if page was loaded via refresh
+        const navEntries = performance.getEntriesByType('navigation');
+        if (navEntries.length > 0) {
+            const navEntry = navEntries[0];
+            return navEntry.type === 'reload';
+        }
+
+        // Fallback for older browsers
+        if (performance.navigation) {
+            return performance.navigation.type === 1;
+        }
+
+        return false;
     }
 
     async loadBikeSVG() {
@@ -29,13 +45,15 @@ class LoadingScreen {
             this.bikeTrack.innerHTML = svgText;
             this.bike = document.getElementById('loading-bike');
 
-            // Only show initial load on first visit
-            if (this.isInitialLoad) {
+            // Show loading screen on initial load OR refresh
+            if (this.isInitialLoad || this.isRefresh) {
                 this.showInitialLoad();
-                sessionStorage.setItem('hasLoadedBefore', 'true');
+                if (this.isInitialLoad) {
+                    sessionStorage.setItem('hasLoadedBefore', 'true');
+                }
             } else {
-                // If not initial load, hide immediately
-                this.hide();
+                // Hide immediately for subsequent navigation
+                this.loadingScreen.style.display = 'none';
             }
 
             // Initialize link handlers
@@ -55,6 +73,7 @@ class LoadingScreen {
             this.attachLinkHandlers();
         }
 
+        // Handle browser back/forward button
         window.addEventListener('pageshow', (event) => {
             if (event.persisted) {
                 this.hide();
@@ -65,17 +84,11 @@ class LoadingScreen {
     showInitialLoad() {
         if (!this.bike || this.isLoading) return;
 
-        console.log('Starting initial load animation');
         this.isLoading = true;
-        const duration = this.initialLoadTime;
-
-        // Add active class to show loading screen and trigger animations
         this.loadingScreen.classList.add('active');
 
-        this.animateLoading(duration, () => {
-            console.log('Initial load complete, hiding now');
+        this.animateLoading(this.initialLoadTime, () => {
             this.hide();
-            this.isInitialLoad = false;
         });
     }
 
@@ -87,8 +100,9 @@ class LoadingScreen {
 
             if (this.isInternalLink(href)) {
                 link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    this.show(href);
+                    // For internal links, just navigate directly (no loading screen)
+                    // Loading screen only appears on initial load or refresh
+                    return;
                 });
             }
         });
@@ -107,21 +121,6 @@ class LoadingScreen {
         return true;
     }
 
-    show(targetUrl) {
-        if (this.isLoading || !this.bike) return;
-
-        console.log('Showing loading for navigation');
-        this.isLoading = true;
-        const duration = this.minLoadTime;
-
-        // Add active class to show loading screen and trigger animations
-        this.loadingScreen.classList.add('active');
-
-        this.animateLoading(duration, () => {
-            this.navigate(targetUrl);
-        });
-    }
-
     animateLoading(duration, callback) {
         const startTime = Date.now();
         let progress = 0;
@@ -135,11 +134,7 @@ class LoadingScreen {
             if (progress < 100) {
                 requestAnimationFrame(animate);
             } else {
-                console.log('Animation complete, executing callback');
-                // Ensure callback fires even if there's a tiny delay
-                setTimeout(() => {
-                    callback();
-                }, 100);
+                setTimeout(callback, 100);
             }
         };
 
@@ -150,34 +145,25 @@ class LoadingScreen {
         if (this.bike && this.bikeTrack) {
             const trackWidth = this.bikeTrack.offsetWidth;
             const bikeWidth = 330;
-
-            // Start at left edge (0), end at right edge
             const startPosition = 0;
             const endPosition = trackWidth - bikeWidth;
             const travelDistance = endPosition - startPosition;
-
             const currentPosition = startPosition + (travelDistance * (progress / 100));
 
             this.bike.style.left = `${currentPosition}px`;
         }
     }
 
-    navigate(url) {
-        console.log('Navigating to:', url);
-        window.location.href = url;
-    }
-
     hide() {
-        console.log('Hiding loading screen');
         this.loadingScreen.classList.remove('active');
 
-        // After fade transition, reset state
         setTimeout(() => {
+            this.loadingScreen.style.display = 'none';
             this.isLoading = false;
             if (this.bike) {
                 this.bike.style.left = '0px';
             }
-        }, 500); // Match CSS transition duration
+        }, 500);
     }
 }
 

@@ -1284,6 +1284,20 @@ img[width][height] {
     margin-bottom: 0.75rem;
 }
 
+.edu-card h3 {
+    color: #374151;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.edu-card h3 i {
+    color: #3b82f6;
+    font-size: 1rem;
+}
+
 .edu-grid {
     display: grid;
     gap: 1rem;
@@ -1308,46 +1322,125 @@ img[width][height] {
     font-size: 0.9rem;
 }
 
-.coursework-section {
-    margin-top: 1.75rem;
+/* Involvements Section */
+.involvements-section {
+    margin-top: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.coursework-section h3 {
-    color: #374151;
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.coursework-section h3 i {
-    color: #3b82f6;
-    font-size: 1rem;
-}
-
-.course-tags {
+.involvements-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 0.5rem;
 }
 
-.course-tags .tag {
-    background: #e0f2fe;
-    border: 1px solid #bae6fd;
-    color: #075985;
-    padding: 0.35rem 0.65rem;
+.involvement-item {
+    background: #dbeafe;
+    border: 1px solid #93c5fd;
+    color: #1e40af;
+    padding: 0.35rem 0.75rem;
     border-radius: 0.5rem;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.2s ease;
 }
 
-.course-tags .tag:hover {
-    background: #bae6fd;
+.involvement-item:hover {
+    background: #bfdbfe;
     transform: translateY(-1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Coursework Section */
+.coursework-section {
+    margin-top: 1.5rem;
+}
+
+/* Dropdown styling */
+.coursework-dropdown {
+    border: 1px solid #bae6fd;
+    border-radius: 0.5rem;
+    background: #f0f9ff;
+    overflow: hidden;
+}
+
+.coursework-header {
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #075985;
+    background: #e0f2fe;
+    transition: background 0.2s ease;
+    list-style: none;
+}
+
+.coursework-header::-webkit-details-marker {
+    display: none;
+}
+
+.coursework-header::before {
+    content: '▼';
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+    color: #0284c7;
+}
+
+details:not([open]) .coursework-header::before {
+    transform: rotate(-90deg);
+}
+
+.coursework-header:hover {
+    background: #bae6fd;
+}
+
+.coursework-header i {
+    color: #0284c7;
+    font-size: 1rem;
+}
+
+/* Course list styling */
+.course-list {
+    list-style: none;
+    padding: 1rem 1.25rem 1rem 2.5rem;
+    margin: 0;
+    background: #fff;
+}
+
+.course-list li {
+    position: relative;
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-bottom: 1px solid #f0f9ff;
+}
+
+.course-list li:last-child {
+    border-bottom: none;
+}
+
+.course-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #0284c7;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.course-list li:hover {
+    color: #075985;
+    background: #f0f9ff;
+    padding-left: 1.75rem;
+    transition: all 0.2s ease;
 }
 
 /* Responsive adjustments */
@@ -1360,12 +1453,27 @@ img[width][height] {
         font-size: 0.9rem;
     }
 
-    .coursework-section h3 {
-        font-size: 1rem;
+    .involvements-list {
+        gap: 0.4rem;
     }
 
-    .course-tags .tag {
-        font-size: 0.8rem;
-        padding: 0.3rem 0.55rem;
+    .involvement-item {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .coursework-header {
+        font-size: 0.95rem;
+        padding: 0.75rem 0.85rem;
+    }
+
+    .course-list {
+        padding: 0.75rem 1rem 0.75rem 2rem;
+    }
+
+    .course-list li {
+        font-size: 0.9rem;
+        padding: 0.4rem 0;
+        padding-left: 1.25rem;
     }
 }

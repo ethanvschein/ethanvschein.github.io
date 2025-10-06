@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RISC-V CPU Design</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo"><a href="../index.html">Ethan Schein</a></div>
+    <ul class="nav-menu">
+      <li><a href="../index.html" class="nav-link">Home</a></li>
+      <li><a href="../about.html" class="nav-link">About</a></li>
+      <li><a href="../education.html" class="nav-link">Education</a></li>
+      <li><a href="../experience.html" class="nav-link">Experience</a></li>
+      <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+      <li><a href="../skills.html" class="nav-link">Skills</a></li>
+    </ul>
+    <div class="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<section class="project-detail">
+  <div class="container">
+    <!-- Back Button -->
+    <a href="../projects.html" class="back-button">
+      <i class="fa-solid fa-arrow-left"></i> Back to Projects
+    </a>
+
+    <!-- Project Header -->
+    <div class="project-header">
+      <h1>RISC-V CPU Design</h1>
+      <div class="project-meta">
+        <span class="status-badge in-progress"><i class="fa-solid fa-clock"></i> In Progress</span>
+      </div>
+    </div>
+
+    <!-- Project Content -->
+    <div class="project-content">
+      <div class="content-section">
+        <h2>Overview</h2>
+        <p>
+          Currently designing and implementing a 32-bit RISC-V CPU from scratch as part of UC Berkeley's
+          CS61C (Computer Architecture) course. This project involves building a fully functional
+          processor capable of executing RISC-V assembly instructions using hardware description
+          in Logisim.
+        </p>
+      </div>
+
+      <div class="content-section">
+        <h2>Planned Features</h2>
+        <ul class="feature-list">
+          <li><strong>Two-Stage Pipeline:</strong> Will implement instruction fetch and execute stages with hazard detection</li>
+          <li><strong>ALU Design:</strong> Building arithmetic logic unit to support all RISC-V R-type and I-type instructions</li>
+          <li><strong>Register File:</strong> Designing 32-register file with simultaneous read/write capabilities</li>
+          <li><strong>Control Logic:</strong> Developing control unit for instruction decoding and datapath coordination</li>
+          <li><strong>Memory Interface:</strong> Integrating instruction and data memory with proper addressing</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2>Technologies & Tools</h2>
+        <div class="tech-tags">
+          <span class="tech-tag">Logisim</span>
+          <span class="tech-tag">RISC-V ISA</span>
+          <span class="tech-tag">Digital Logic</span>
+          <span class="tech-tag">Hardware Design</span>
+          <span class="tech-tag">Assembly Language</span>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2>What I'm Learning</h2>
+        <p>
+          This project is providing hands-on experience with low-level computer architecture concepts,
+          including instruction set architectures, datapath design, control logic, and the relationship
+          between hardware and software. It's deepening my understanding of how high-level code translates
+          to machine instructions and executes on physical hardware.
+        </p>
+      </div>
+
+      <!-- Check Back Later Notice -->
+      <div class="content-section check-back">
+        <div class="check-back-content">
+          <i class="fa-solid fa-hourglass-half"></i>
+          <h3>Project In Development</h3>
+          <p>This project is currently underway. Check back later for updates, results, and implementation details!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Surge Battery System</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo"><a href="../index.html">Ethan Schein</a></div>
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../about.html" class="nav-link">About</a></li>
+            <li><a href="../education.html" class="nav-link">Education</a></li>
+            <li><a href="../experience.html" class="nav-link">Experience</a></li>
+            <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+            <li><a href="../skills.html" class="nav-link">Skills</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+</nav>
+
+<section class="project-detail">
+    <div class="container">
+        <!-- Back Button -->
+        <a href="../projects.html" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i> Back to Projects
+        </a>
+
+        <!-- Project Header -->
+        <div class="project-header">
+            <h1>Electric Motorcycle Battery & BMS Design</h1>
+            <div class="project-meta">
+                <span><i class="fa-solid fa-calendar"></i> 2024 - Present</span>
+                <span><i class="fa-solid fa-motorcycle"></i> Surge Electric Motorcycle</span>
+                <span><i class="fa-solid fa-users"></i> Team Project</span>
+                <span class="status-badge in-progress"><i class="fa-solid fa-clock"></i> In Progress</span>
+            </div>
+        </div>
+
+        <!-- Project Content -->
+        <div class="project-content">
+            <div class="content-section">
+                <h2>Overview</h2>
+                <p>
+                    Currently designing and building a high-performance lithium-ion battery pack and battery management
+                    system (BMS) for an electric motorcycle project. The system utilizes 224 Samsung 21700 cells
+                    arranged in a modular 28S8P configuration to deliver reliable power, thermal management, and safety
+                    features for electric vehicle applications.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>Battery Pack Specifications</h2>
+                <ul class="feature-list">
+                    <li><strong>Cell Type:</strong> Samsung 21700 lithium-ion cells (high energy density, ~5000mAh)</li>
+                    <li><strong>Module Configuration:</strong> 7S8P (7 series, 8 parallel) = 56 cells per module</li>
+                    <li><strong>Total System:</strong> 4 modules in series → 28S8P configuration (224 total cells)</li>
+                    <li><strong>Nominal Voltage:</strong> ~100.8V (3.6V × 28S)</li>
+                    <li><strong>Total Capacity:</strong> ~40Ah (5000mAh × 8P)</li>
+                    <li><strong>Energy Storage:</strong> ~4 kWh total system capacity</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>Battery Management System (BMS)</h2>
+                <ul class="feature-list">
+                    <li><strong>Cell Balancing:</strong> Implementing active balancing circuitry to equalize cell voltages</li>
+                    <li><strong>Voltage Monitoring:</strong> Real-time tracking of individual cell voltages to prevent over/under-voltage conditions</li>
+                    <li><strong>Current Sensing:</strong> Precision current measurement for State of Charge (SOC) estimation</li>
+                    <li><strong>Thermal Management:</strong> Temperature sensors with thermal shutdown protection</li>
+                    <li><strong>Safety Features:</strong> Over-current protection, short-circuit detection, and emergency shutdown</li>
+                    <li><strong>Communication:</strong> CAN bus interface for vehicle integration and diagnostics</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>Mechanical & Electrical Design</h2>
+                <ul class="feature-list">
+                    <li><strong>Modular Architecture:</strong> Four independent battery boxes for easy maintenance and thermal isolation</li>
+                    <li><strong>Busbar Design:</strong> Custom copper busbars for low-resistance series connections between modules</li>
+                    <li><strong>Wiring Harness:</strong> High-gauge silicone wire for parallel connections and BMS integration</li>
+                    <li><strong>Enclosure:</strong> Vibration-resistant housing with IP65 protection rating</li>
+                    <li><strong>Bill of Materials:</strong> Complete BOM including cells, BMS components, connectors, and hardware</li>
+                    <li><strong>Thermal Interface:</strong> Thermal pads and heat sinks for effective heat dissipation</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>Technologies & Skills</h2>
+                <div class="tech-tags">
+                    <span class="tech-tag">Lithium-Ion Battery Design</span>
+                    <span class="tech-tag">Battery Management Systems</span>
+                    <span class="tech-tag">Power Electronics</span>
+                    <span class="tech-tag">CAD (OnShape)</span>
+                    <span class="tech-tag">Electrical Engineering</span>
+                    <span class="tech-tag">Thermal Analysis</span>
+                    <span class="tech-tag">CAN Bus Protocol</span>
+                    <span class="tech-tag">Safety Standards (UL/IEC)</span>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Design Challenges</h2>
+                <p>
+                    This project involves balancing multiple engineering constraints including energy density,
+                    thermal management, safety compliance, cost optimization, and packaging within the motorcycle's
+                    limited space. Key challenges include designing robust cell-to-cell connections, implementing
+                    reliable BMS algorithms for accurate SOC estimation, and ensuring the system can handle high
+                    discharge currents during acceleration while maintaining safe operating temperatures.
+                </p>
+            </div>
+
+            <div class="content-section">
+                <h2>What I'm Learning</h2>
+                <p>
+                    This hands-on project is providing deep experience in battery chemistry, power electronics,
+                    embedded systems programming, and mechanical integration. I'm gaining practical knowledge in
+                    electrical safety standards, thermal modeling, manufacturing processes for battery assembly,
+                    and the real-world trade-offs involved in electric vehicle design. Working with a team has also
+                    enhanced my collaboration and project management skills.
+                </p>
+            </div>
+
+            <!-- Check Back Later Notice -->
+            <div class="content-section check-back">
+                <div class="check-back-content">
+                    <i class="fa-solid fa-battery-three-quarters"></i>
+                    <h3>Project In Development</h3>
+                    <p>This battery system is currently being designed and assembled. Check back later for testing results, performance data, and final integration photos!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="../js/script.js"></script>
+</body>
+</html>
