@@ -1093,25 +1093,17 @@ img[width][height] {
 
 .toc-body a {
     display: inline-block;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: var(--steel-gray); /* Silver/gray underline */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px; /* Space between text and line */
     color: var(--text-white);
-    transition: color 0.3s;
+    transition: all 0.3s;
 }
 
 .toc-body a:hover {
     color: var(--accent);
-}
-
-.toc-card:hover .toc-title {
-    color: var(--accent);
-}
-
-.toc-card:hover .toc-num {
-    color: var(--accent);
-}
-
-.toc-card:hover .toc-sub {
-    color: var(--accent);
+    text-decoration-color: var(--accent); /* Orange on hover */
 }
 
 .toc-title {
@@ -2144,7 +2136,7 @@ details:not([open]) .coursework-header::before {
 
 .bike-scroll-indicator {
     position: fixed;
-    top: 70px;
+    top: 61px;
     left: 0;
     width: 100%;
     height: 20px; /* ← INCREASED to fit the bike */
