@@ -2149,14 +2149,14 @@ details:not([open]) .coursework-header::before {
     width: 100%;
     height: 20px; /* ← INCREASED to fit the bike */
     background: transparent; /* ← No background on container */
-    z-index: 998;
+    z-index: 1001;
     pointer-events: none;
     overflow: visible;
 }
 
 .bike-scroll-track {
     position: absolute;
-    top: 8px; /* ← Position bar lower in the 20px container */
+    top: -10px; /* ← Position bar lower in the 20px container */
     left: 0;
     height: 3px; /* ← Actual bar is still 3px */
     background: linear-gradient(90deg, var(--accent), rgba(245, 158, 11, 0.8));
@@ -2177,6 +2177,7 @@ details:not([open]) .coursework-header::before {
     justify-content: center;
     width: 16px;
     height: 16px;
+    z-index: 1002;
 }
 
 .bike-icon svg {
