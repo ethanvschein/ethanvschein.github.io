@@ -2158,7 +2158,7 @@ details:not([open]) .coursework-header::before {
     position: absolute;
     top: 0px; /* ← Position bar lower in the 20px container */
     left: 0;
-    height: 100%; /* ← Actual bar is still 3px */
+    height: 3px; /* ← Actual bar is still 3px */
     background: linear-gradient(90deg, var(--accent), rgba(245, 158, 11, 0.8));
     width: 0%;
     transition: width 0.1s ease;
