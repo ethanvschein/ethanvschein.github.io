@@ -101,55 +101,43 @@
     </div>
 </section>
 
-<!-- Bike Stats Dashboard -->
-<section class="bike-stats-section">
-    <div class="container">
-        <h2 class="section-title">On the Road</h2>
-        <div class="bike-stats-grid">
-            <div class="bike-stat-card">
-                <div class="stat-icon">🚴</div>
-                <div class="stat-value" id="total-miles">3,847</div>
-                <div class="stat-label">Total Miles</div>
-            </div>
-
-            <div class="bike-stat-card">
-                <div class="stat-icon">⛰️</div>
-                <div class="stat-value" id="elevation">127,420</div>
-                <div class="stat-label">Feet Climbed</div>
-            </div>
-
-            <div class="bike-stat-card">
-                <div class="stat-icon">⏱️</div>
-                <div class="stat-value" id="ride-time">0:00:00</div>
-                <div class="stat-label">Session Time</div>
-            </div>
-
-            <div class="bike-stat-card">
-                <div class="stat-icon">🔥</div>
-                <div class="stat-value" id="avg-speed">18.4</div>
-                <div class="stat-label">Avg Speed (mph)</div>
-            </div>
-        </div>
-
-        <!-- Optional: Add a favorite route showcase -->
-        <div class="route-showcase">
-            <h3>Latest Adventure</h3>
-            <div class="route-details">
-                <div class="route-info">
-                    <strong>ALS 65 Mile Napa Valley Ride</strong>
-                    <p>63.43 miles · 2,172 ft elevation · 4H 39min</p>
-                    <p class="route-quote">"Beautiful weather, beautiful event, great views."</p>
-                </div>
-                <div class="route-stats">
-                    <span><i class="fas fa-map-marker-alt"></i> Napa, CA</span>
-                    <span><i class="fas fa-calendar"></i> Sep 27, 2025</span>
-                </div>
-            </div>
-        </div>
+<div class="bike-stats-grid">
+    <div class="bike-stat-card">
+        <div class="stat-icon">🚴</div>
+        <div class="stat-value" id="total-miles">0.0</div>
+        <div class="stat-label">Total Miles</div>
+        <div class="stat-subtext">Lines of Code Explored</div>
     </div>
-</section>
 
-<!-- Featured Projects Preview -->
+    <div class="bike-stat-card">
+        <div class="stat-icon">⛰️</div>
+        <div class="stat-value" id="elevation">0</div>
+        <div class="stat-label">Feet Climbed</div>
+        <div class="stat-subtext">Scroll Distance</div>
+    </div>
+
+    <div class="bike-stat-card">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-value" id="ride-time">0:00:00</div>
+        <div class="stat-label">Session Time</div>
+        <div class="stat-subtext">Time on Site</div>
+    </div>
+
+    <div class="bike-stat-card">
+        <div class="stat-icon">🔥</div>
+        <div class="stat-value" id="avg-speed">0.0</div>
+        <div class="stat-label">Avg Speed (mph)</div>
+        <div class="stat-subtext">Miles ÷ Hours</div>
+    </div>
+</div>
+
+<!-- Reset button -->
+<div style="text-align: center; margin-top: 1.5rem;">
+    <button onclick="resetBikeStats()" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+        <i class="fas fa-redo"></i> Reset Stats
+    </button>
+</div>
+
 <section class="featured-projects">
     <div class="container">
         <h2 class="section-title">Featured Work</h2>
@@ -173,6 +161,7 @@
     </div>
 </section>
 
+<script src="js/bike-stat.js"></script>
 <script src="js/loading.js"></script>
 <script src="js/script.js"></script>
 </body>
