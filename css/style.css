@@ -2216,7 +2216,7 @@ details:not([open]) .coursework-header::before {
     justify-content: center;
     width: 16px;
     height: 16px;
-    z-index: 1002;
+    z-index: 10000;
 }
 
 .bike-icon svg {
@@ -2267,10 +2267,11 @@ details:not([open]) .coursework-header::before {
     height: 100%;
     background: linear-gradient(
         180deg,
-        #1a2332 0%,
-        #1a2d4a 30%,                         
-        #0f2847 60%,
-        #0a1e3d 100%
+        #2c2c2c 0%,          /* Carbon fiber charcoal */
+        #262f38 25%,         /* Charcoal with blue tint */
+        #1f3240 50%,         /* Mid blue-gray */
+        #183548 75%,         /* Deeper blue */
+        #0a1e3d 100%         /* Dark navy blue */
     );
     z-index: 0;
     pointer-events: none;
