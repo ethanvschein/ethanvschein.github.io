@@ -2185,7 +2185,7 @@ details:not([open]) .coursework-header::before {
 
 .bike-icon {
     position: absolute;
-    top: 2px; /* ← Positioned from top of 20px container */
+    top: -2px; /* ← Positioned from top of 20px container */
     left: 0;
     transform: translateX(-8px); /* Centers the 16px icon */
     transition: left 0.1s ease;
