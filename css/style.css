@@ -2144,25 +2144,26 @@ details:not([open]) .coursework-header::before {
 
 .bike-scroll-indicator {
     position: fixed;
-    top: 61px;
+    top: 70px;
     left: 0;
     width: 100%;
     height: 20px; /* ← INCREASED to fit the bike */
     background: transparent; /* ← No background on container */
-    z-index: 1001;
+    z-index: 998;
     pointer-events: none;
     overflow: visible;
 }
 
 .bike-scroll-track {
     position: absolute;
-    top: -10px; /* ← Position bar lower in the 20px container */
+    top: 0px; /* ← Position bar lower in the 20px container */
     left: 0;
-    height: 3px; /* ← Actual bar is still 3px */
+    height: 100%; /* ← Actual bar is still 3px */
     background: linear-gradient(90deg, var(--accent), rgba(245, 158, 11, 0.8));
     width: 0%;
     transition: width 0.1s ease;
     box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    z-index: 1;
 }
 
 .bike-icon {

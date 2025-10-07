@@ -1,57 +1,31 @@
-// Bike Stats Tracking System - DEBUG VERSION
+// Bike Stats Tracking System
 class BikeStats {
     constructor() {
-        console.log('🚴 BikeStats constructor called');
-
         // Get DOM elements
         this.totalMilesEl = document.getElementById('total-miles');
         this.elevationEl = document.getElementById('elevation');
         this.rideTimeEl = document.getElementById('ride-time');
         this.avgSpeedEl = document.getElementById('avg-speed');
 
-        console.log('🔍 Elements found:', {
-            totalMiles: this.totalMilesEl,
-            elevation: this.elevationEl,
-            rideTime: this.rideTimeEl,
-            avgSpeed: this.avgSpeedEl
-        });
-
         // Exit if not on stats page
-        if (!this.totalMilesEl) {
-            console.log('⚠️ total-miles element not found!');
-            return;
-        }
+        if (!this.totalMilesEl) return;
 
-        console.log('📊 Current display values:', {
-            miles: this.totalMilesEl.textContent,
-            elevation: this.elevationEl.textContent,
-            time: this.rideTimeEl.textContent,
-            speed: this.avgSpeedEl.textContent
-        });
-
-        // Load stats
+        // Load stats from localStorage
         this.totalScrollDistance = parseFloat(localStorage.getItem('totalScrollDistance')) || 0;
         this.totalElevation = parseFloat(localStorage.getItem('totalElevation')) || 0;
 
-        console.log('💾 Loaded from localStorage:', {
-            distance: this.totalScrollDistance,
-            elevation: this.totalElevation
-        });
-
-        // Timer
+        // Session timer
         const storedStart = sessionStorage.getItem('bikeSessionStart');
         if (storedStart) {
             this.sessionStart = parseInt(storedStart);
-            console.log('⏱️ Continuing session');
         } else {
             this.sessionStart = Date.now();
             sessionStorage.setItem('bikeSessionStart', this.sessionStart.toString());
-            console.log('⏱️ New session started');
         }
 
         this.lastScrollPosition = window.scrollY;
 
-        // Page line counts
+        // Page line counts (for distance calculation)
         this.pageLineCount = {
             'index.html': 168,
             'about.html': 196,
@@ -81,9 +55,7 @@ class BikeStats {
     }
 
     init() {
-        console.log('🎯 Initializing...');
-
-        // Scroll tracking
+        // Scroll tracking with debounce
         let scrollTimeout;
         window.addEventListener('scroll', () => {
             clearTimeout(scrollTimeout);
@@ -93,11 +65,8 @@ class BikeStats {
         // Update display every second
         this.updateInterval = setInterval(() => this.updateDisplay(), 1000);
 
-        // IMMEDIATE first update
-        console.log('🔄 Calling updateDisplay() NOW...');
+        // Initial update
         this.updateDisplay();
-
-        console.log('✅ Init complete');
     }
 
     trackScroll() {
@@ -115,8 +84,6 @@ class BikeStats {
             const elevationGain = scrollDelta * 0.5;
             this.totalElevation += elevationGain;
             localStorage.setItem('totalElevation', this.totalElevation.toString());
-
-            console.log(`🚴 Scroll: +${metersGained.toFixed(1)}m, +${elevationGain.toFixed(0)}ft`);
         }
 
         this.lastScrollPosition = currentScroll;
@@ -127,12 +94,7 @@ class BikeStats {
     }
 
     updateDisplay() {
-        console.log('🔄 updateDisplay() called');
-
-        if (!this.totalMilesEl) {
-            console.error('❌ totalMilesEl is null!');
-            return;
-        }
+        if (!this.totalMilesEl) return;
 
         // Calculate values
         const totalMiles = this.metersToMiles(this.totalScrollDistance);
@@ -143,41 +105,26 @@ class BikeStats {
         const sessionHours = sessionSeconds / 3600;
         const avgSpeed = sessionHours > 0.001 ? (totalMiles / sessionHours) : 0;
 
-        console.log('📊 Setting values:', {
-            miles: totalMiles.toFixed(1),
-            elevation: Math.floor(this.totalElevation),
-            time: `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`,
-            speed: Math.min(avgSpeed, 999).toFixed(1)
-        });
-
         // Update DOM
         this.totalMilesEl.textContent = totalMiles.toFixed(1);
         this.elevationEl.textContent = Math.floor(this.totalElevation).toLocaleString();
         this.rideTimeEl.textContent = `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         this.avgSpeedEl.textContent = Math.min(avgSpeed, 999).toFixed(1);
-
-        console.log('✅ DOM updated');
     }
 }
 
-// Initialize with detailed logging
-console.log('📜 bike-stat.js loaded, readyState:', document.readyState);
-
+// Initialize when DOM is ready
 if (!window.bikeStatsInstance) {
     if (document.readyState === 'loading') {
-        console.log('⏳ Waiting for DOMContentLoaded...');
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('📄 DOMContentLoaded fired, creating BikeStats');
             window.bikeStatsInstance = new BikeStats();
         });
     } else {
-        console.log('📄 DOM already ready, creating BikeStats immediately');
         window.bikeStatsInstance = new BikeStats();
     }
-} else {
-    console.log('⚠️ BikeStats instance already exists');
 }
 
+// Reset function for the reset button
 function resetBikeStats() {
     if (confirm('Reset all bike stats?')) {
         localStorage.removeItem('totalScrollDistance');
