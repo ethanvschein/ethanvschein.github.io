@@ -2144,14 +2144,14 @@ details:not([open]) .coursework-header::before {
 
 .bike-scroll-indicator {
     position: fixed;
-    top: 70px; /* Below navbar */
+    top: 70px;
     left: 0;
     width: 100%;
-    height: 4px; /* BACK TO 4px - just the bar */
-    background: rgba(245, 158, 11, 0.1);
-    z-index: 998; /* BELOW navbar which is 1000 */
+    height: 3px; /* Slightly thicker so it's visible */
+    background: rgba(245, 158, 11, 0.15); /* Light background */
+    z-index: 998;
     pointer-events: none;
-    overflow: visible; /* Allows bike to extend above bar */
+    overflow: visible;
 }
 
 .bike-scroll-track {
@@ -2159,23 +2159,24 @@ details:not([open]) .coursework-header::before {
     top: 0;
     left: 0;
     height: 100%;
-    background: linear-gradient(90deg, var(--accent), rgba(245, 158, 11, 0.6));
+    background: linear-gradient(90deg, var(--accent), rgba(245, 158, 11, 0.8));
     width: 0%;
     transition: width 0.1s ease;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); /* Glow effect */
 }
 
 .bike-icon {
     position: absolute;
-    top: -8px;
+    top: -6px; /* Centers bike on 3px bar */
     left: 0;
-    transform: translateX(-7px); /* CENTERS the 14px icon */
+    transform: translateX(-7px);
     transition: left 0.1s ease;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
 }
 
 .bike-icon svg {
@@ -2183,19 +2184,6 @@ details:not([open]) .coursework-header::before {
     height: 100%;
     display: block;
     fill: var(--road-white);
-}
-
-@media (max-width: 768px) {
-    .bike-icon {
-        top: -6px;
-        width: 16px;
-        height: 16px;
-    }
-
-    .bike-icon svg {
-        width: 10px !important; /* EVEN SMALLER on mobile */
-        height: 10px !important;
-    }
 }
 
 
