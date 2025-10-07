@@ -1,25 +1,42 @@
-// Bike Stats Tracking System - Scroll-Based Distance (Re-scroll Counting)
+// Bike Stats Tracking System - FIXED VERSION
 class BikeStats {
     constructor() {
-        // Persistent stats from localStorage
+        console.log('🚴 BikeStats initializing...');
+
+        // Get DOM elements first
+        this.totalMilesEl = document.getElementById('total-miles');
+        this.elevationEl = document.getElementById('elevation');
+        this.rideTimeEl = document.getElementById('ride-time');
+        this.avgSpeedEl = document.getElementById('avg-speed');
+
+        // Exit if not on stats page
+        if (!this.totalMilesEl) {
+            console.log('⚠️ Not on stats page, skipping initialization');
+            return;
+        }
+
+        // ===== FIX: PERSISTENT STATS =====
         this.totalScrollDistance = parseFloat(localStorage.getItem('totalScrollDistance')) || 0;
         this.totalElevation = parseFloat(localStorage.getItem('totalElevation')) || 0;
 
-        // ===== PERSISTENT SESSION TIMER =====
-        const storedSessionStart = sessionStorage.getItem('sessionStart');
-        if (storedSessionStart) {
-            this.sessionStart = parseInt(storedSessionStart);
-            console.log(`🚴 Continuing session from ${new Date(this.sessionStart).toLocaleTimeString()}`);
+        console.log(`📊 Loaded stats: ${this.totalScrollDistance.toFixed(1)}m, ${this.totalElevation.toFixed(0)}ft`);
+
+        // ===== FIX: PERSISTENT TIMER =====
+        const storedStart = sessionStorage.getItem('bikeSessionStart');
+        if (storedStart) {
+            this.sessionStart = parseInt(storedStart);
+            const elapsed = Math.floor((Date.now() - this.sessionStart) / 1000);
+            console.log(`⏱️ Continuing session (${elapsed}s elapsed)`);
         } else {
             this.sessionStart = Date.now();
-            sessionStorage.setItem('sessionStart', this.sessionStart.toString());
-            console.log(`🚴 New session started at ${new Date(this.sessionStart).toLocaleTimeString()}`);
+            sessionStorage.setItem('bikeSessionStart', this.sessionStart.toString());
+            console.log(`⏱️ New session started`);
         }
 
-        // Track scroll position (no max tracking - allow re-scrolling!)
+        // Track scroll
         this.lastScrollPosition = window.scrollY;
 
-        // Page line counts (lines of code = meters when fully scrolled)
+        // Page line counts
         this.pageLineCount = {
             'index.html': 168,
             'about.html': 196,
@@ -41,17 +58,15 @@ class BikeStats {
 
     getCurrentPage() {
         const path = window.location.pathname;
-        const filename = path.split('/').pop() || 'index.html';
-        return filename;
+        return path.split('/').pop() || 'index.html';
     }
 
     getPageLineCount() {
-        const currentPage = this.getCurrentPage();
-        return this.pageLineCount[currentPage] || 100;
+        return this.pageLineCount[this.getCurrentPage()] || 100;
     }
 
     init() {
-        // Track scrolling for distance AND elevation
+        // Scroll tracking
         let scrollTimeout;
         window.addEventListener('scroll', () => {
             clearTimeout(scrollTimeout);
@@ -61,34 +76,31 @@ class BikeStats {
         // Update display every second
         setInterval(() => this.updateDisplay(), 1000);
 
-        // Initial display
+        // Immediate first update
         this.updateDisplay();
+
+        console.log('✅ BikeStats initialized successfully');
     }
 
     trackScroll() {
         const currentScroll = window.scrollY;
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
-        // Calculate scroll delta (positive = scrolling down)
         const scrollDelta = currentScroll - this.lastScrollPosition;
 
-        // ===== COUNT ALL DOWNWARD SCROLLING =====
-        if (scrollDelta > 0) {
+        // Only count downward scrolling
+        if (scrollDelta > 0 && maxScroll > 0) {
             const pageLines = this.getPageLineCount();
-
-            // Convert pixels scrolled to "meters" based on page line count
-            // Formula: (pixels scrolled / total scrollable pixels) × total lines = meters traveled
             const metersGained = (scrollDelta / maxScroll) * pageLines;
 
             this.totalScrollDistance += metersGained;
             localStorage.setItem('totalScrollDistance', this.totalScrollDistance.toString());
 
-            console.log(`🚴 Distance: +${metersGained.toFixed(2)}m (total: ${this.totalScrollDistance.toFixed(1)}m)`);
-
-            // ELEVATION: Scrolling down = climbing up
-            const elevationGain = scrollDelta * 0.5; // 2 pixels = 1 foot
+            // Elevation
+            const elevationGain = scrollDelta * 0.5;
             this.totalElevation += elevationGain;
             localStorage.setItem('totalElevation', this.totalElevation.toString());
+
+            console.log(`🚴 +${metersGained.toFixed(1)}m (total: ${this.totalScrollDistance.toFixed(1)}m)`);
         }
 
         this.lastScrollPosition = currentScroll;
@@ -99,51 +111,46 @@ class BikeStats {
     }
 
     updateDisplay() {
-        const milesEl = document.getElementById('total-miles');
-        const elevationEl = document.getElementById('elevation');
-        const timeEl = document.getElementById('ride-time');
-        const speedEl = document.getElementById('avg-speed');
+        if (!this.totalMilesEl) return;
 
-        if (!milesEl) return; // Not on a page with stats
-
-        // Total Miles (from total scroll distance)
+        // Miles
         const totalMiles = this.metersToMiles(this.totalScrollDistance);
-        milesEl.textContent = totalMiles.toFixed(1);
+        this.totalMilesEl.textContent = totalMiles.toFixed(1);
 
         // Elevation
-        elevationEl.textContent = Math.floor(this.totalElevation).toLocaleString();
+        this.elevationEl.textContent = Math.floor(this.totalElevation).toLocaleString();
 
-        // Session Time (persists across pages)
+        // Session time
         const sessionSeconds = Math.floor((Date.now() - this.sessionStart) / 1000);
         const hours = Math.floor(sessionSeconds / 3600);
         const minutes = Math.floor((sessionSeconds % 3600) / 60);
         const seconds = sessionSeconds % 60;
-        timeEl.textContent = `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        this.rideTimeEl.textContent = `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-        // Average Speed (miles per hour)
+        // Speed
         const sessionHours = sessionSeconds / 3600;
         const avgSpeed = sessionHours > 0.001 ? (totalMiles / sessionHours) : 0;
-        const displaySpeed = Math.min(avgSpeed, 999);
-        speedEl.textContent = displaySpeed.toFixed(1);
+        this.avgSpeedEl.textContent = Math.min(avgSpeed, 999).toFixed(1);
     }
 }
 
-// Initialize (singleton pattern)
-let bikeStatsInstance;
-if (!bikeStatsInstance) {
-    bikeStatsInstance = new BikeStats();
+// ===== CRITICAL: Wait for DOM before initializing =====
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('📄 DOM loaded, starting BikeStats');
+        window.bikeStatsInstance = new BikeStats();
+    });
+} else {
+    console.log('📄 DOM already loaded, starting BikeStats');
+    window.bikeStatsInstance = new BikeStats();
 }
 
 // Reset function
 function resetBikeStats() {
     if (confirm('Reset all bike stats? This cannot be undone!')) {
-        // Clear all localStorage
         localStorage.removeItem('totalScrollDistance');
         localStorage.removeItem('totalElevation');
-
-        // Clear all sessionStorage
-        sessionStorage.clear();
-
+        sessionStorage.removeItem('bikeSessionStart');
         location.reload();
     }
 }
