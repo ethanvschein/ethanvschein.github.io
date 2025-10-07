@@ -2171,6 +2171,7 @@ details:not([open]) .coursework-header::before {
     background: rgba(245, 158, 11, 0.1);
     z-index: 998;
     pointer-events: none;
+    overflow: visible;
 }
 
 .bike-scroll-track {
@@ -2185,8 +2186,8 @@ details:not([open]) .coursework-header::before {
 
 .bike-icon {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%) scale(0.2);
+    bottom: -2px;
+    transform: scale(0.1);
     left: 0;
     transition: left 0.1s ease;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
@@ -2196,8 +2197,8 @@ details:not([open]) .coursework-header::before {
 }
 
 .bike-icon svg {
-    width: 30px;
-    height: 30px;
+    width: 18px;
+    height: 18px;
     display: block;
 }
 
