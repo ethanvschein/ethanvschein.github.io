@@ -2238,74 +2238,63 @@ details:not([open]) .coursework-header::before {
 }
 
 /* Parallax road background */
+/* Parallax horizon background */
 .featured-projects {
     position: relative;
-    overflow: hidden;
+    overflow: visible; /* ← Don't cut button */
+    padding-bottom: 80px; /* ← Space for button */
 }
 
+/* Gradient background layer */
 .featured-projects::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background:
-        /* Road texture */
-        linear-gradient(180deg,
-            rgba(30, 35, 45, 0.95) 0%,
-            rgba(20, 25, 35, 0.98) 100%
-        ),
-        /* Subtle asphalt pattern */
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 2px,
-            rgba(255, 255, 255, 0.01) 2px,
-            rgba(255, 255, 255, 0.01) 4px
-        );
+    height: calc(100% - 120px); /* ← Stop before button */
+    background: linear-gradient(
+        180deg,
+        rgba(20, 25, 35, 1) 0%,
+        rgba(30, 35, 45, 0.95) 50%,
+        rgba(40, 45, 55, 0.9) 100%
+    );
     z-index: 0;
 }
 
+/* Moving horizon effect */
 .featured-projects::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
+    bottom: 120px; /* ← Stop before button */
+    left: -50%;
     width: 200%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        90deg,
-        transparent 0px,
-        transparent 60px,
-        rgba(245, 158, 11, 0.15) 60px,  /* Orange lane lines */
-        rgba(245, 158, 11, 0.15) 80px,
-        transparent 80px,
-        transparent 140px
-    );
-    animation: road-scroll 60s linear infinite;
+    height: 50%;
+    max-height: 300px; /* ← Limit height */
+    background:
+        radial-gradient(
+            ellipse at bottom,
+            rgba(245, 158, 11, 0.08) 0%,
+            rgba(245, 158, 11, 0.03) 40%,
+            transparent 70%
+        );
+    animation: horizon-drift 80s ease-in-out infinite alternate;
     z-index: 0;
-    opacity: 0.3;
-    pointer-events: none;
+    pointer-events: none; /* ← Click through to button */
 }
 
-/* Ensure content appears above parallax */
+/* Ensure content appears above */
 .featured-projects .container {
     position: relative;
     z-index: 1;
 }
 
-/* Road animation */
-@keyframes road-scroll {
+/* Horizon animation */
+@keyframes horizon-drift {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(50%);
+        transform: translateX(25%);
     }
-}
-
-/* Pause animation on hover for accessibility */
-.featured-projects:hover::after {
-    animation-play-state: paused;
 }
