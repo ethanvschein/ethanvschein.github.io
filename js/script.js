@@ -145,3 +145,45 @@ window.addEventListener('scroll', () => {
     const scrolled = (window.scrollY / windowHeight) * 100;
     progressBar.style.width = scrolled + '%';
 });
+
+// ===================================
+// BICYCLE SCROLL INDICATOR
+// ===================================
+
+// Create bicycle scroll indicator
+const bikeIndicator = document.createElement('div');
+bikeIndicator.className = 'bike-scroll-indicator';
+bikeIndicator.innerHTML = `
+    <div class="bike-scroll-track"></div>
+    <div class="bike-icon">
+        <img src="assets/svgs/bikeicon.svg" alt="Bicycle">
+    </div>
+`;
+document.body.appendChild(bikeIndicator);
+
+const bikeTrack = bikeIndicator.querySelector('.bike-scroll-track');
+const bikeIcon = bikeIndicator.querySelector('.bike-icon');
+
+// Update bicycle position on scroll
+function updateBikePosition() {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Calculate scroll percentage
+    const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
+
+    // Update track width
+    bikeTrack.style.width = scrollPercentage + '%';
+
+    // Update bike position (with a small offset so it stays on the track)
+    const maxLeft = Math.min(scrollPercentage, 100);
+    bikeIcon.style.left = `calc(${maxLeft}% - 15px)`;
+}
+
+// Listen for scroll events
+window.addEventListener('scroll', updateBikePosition);
+window.addEventListener('resize', updateBikePosition);
+
+// Initial position
+updateBikePosition();

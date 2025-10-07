@@ -1133,10 +1133,11 @@ img[width][height] {
 .toc-title {
     font-weight: 700;
     margin-bottom: 0.2rem;
+    color: var(--text-white);
 }
 
 .toc-sub {
-    color: var(--text-light);
+    color: var(--steel-gray);
     font-size: 0.9rem;
     line-height: 1.3;
 }
@@ -2157,3 +2158,52 @@ details:not([open]) .coursework-header::before {
     }
 }
 
+/* ===================================
+   BICYCLE SCROLL INDICATOR
+   =================================== */
+
+.bike-scroll-indicator {
+    position: fixed;
+    top: 70px; /* Below navbar */
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(245, 158, 11, 0.1);
+    z-index: 998;
+    pointer-events: none;
+}
+
+.bike-scroll-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), rgba(245, 158, 11, 0.6));
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+.bike-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    transition: left 0.1s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bike-icon svg {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .bike-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+}
