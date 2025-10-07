@@ -67,15 +67,6 @@ document.querySelectorAll('.stat-card, .project-card, .timeline-item').forEach(e
     observer.observe(el);
 });
 
-// Initialize after DOM loads
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        new BikeMetrics();
-    });
-} else {
-    new BikeMetrics();
-}
-
 // ===================================
 // BICYCLE SCROLL INDICATOR (FIXED)
 // ===================================
