@@ -1,18 +1,22 @@
-// Bike Stats Tracking System - Scroll-Based Distance
+// Bike Stats Tracking System - Scroll-Based Distance (Re-scroll Counting)
 class BikeStats {
     constructor() {
         // Persistent stats from localStorage
         this.totalScrollDistance = parseFloat(localStorage.getItem('totalScrollDistance')) || 0;
         this.totalElevation = parseFloat(localStorage.getItem('totalElevation')) || 0;
 
-        // Session time - persists across pages until browser closes
-        if (!sessionStorage.getItem('sessionStart')) {
-            sessionStorage.setItem('sessionStart', Date.now().toString());
+        // ===== PERSISTENT SESSION TIMER =====
+        const storedSessionStart = sessionStorage.getItem('sessionStart');
+        if (storedSessionStart) {
+            this.sessionStart = parseInt(storedSessionStart);
+            console.log(`🚴 Continuing session from ${new Date(this.sessionStart).toLocaleTimeString()}`);
+        } else {
+            this.sessionStart = Date.now();
+            sessionStorage.setItem('sessionStart', this.sessionStart.toString());
+            console.log(`🚴 New session started at ${new Date(this.sessionStart).toLocaleTimeString()}`);
         }
-        this.sessionStart = parseInt(sessionStorage.getItem('sessionStart'));
 
-        // Track scroll position on THIS page
-        this.pageMaxScroll = 0;
+        // Track scroll position (no max tracking - allow re-scrolling!)
         this.lastScrollPosition = window.scrollY;
 
         // Page line counts (lines of code = meters when fully scrolled)
@@ -65,19 +69,21 @@ class BikeStats {
         const currentScroll = window.scrollY;
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
-        // DISTANCE: Track downward scrolling (can re-scroll same area)
+        // Calculate scroll delta (positive = scrolling down)
         const scrollDelta = currentScroll - this.lastScrollPosition;
 
+        // ===== COUNT ALL DOWNWARD SCROLLING =====
         if (scrollDelta > 0) {
-            // Scrolling DOWN = add distance
             const pageLines = this.getPageLineCount();
 
             // Convert pixels scrolled to "meters" based on page line count
             // Formula: (pixels scrolled / total scrollable pixels) × total lines = meters traveled
-            const metersGained = (Math.abs(scrollDelta) / maxScroll) * pageLines;
+            const metersGained = (scrollDelta / maxScroll) * pageLines;
 
             this.totalScrollDistance += metersGained;
             localStorage.setItem('totalScrollDistance', this.totalScrollDistance.toString());
+
+            console.log(`🚴 Distance: +${metersGained.toFixed(2)}m (total: ${this.totalScrollDistance.toFixed(1)}m)`);
 
             // ELEVATION: Scrolling down = climbing up
             const elevationGain = scrollDelta * 0.5; // 2 pixels = 1 foot
@@ -131,9 +137,13 @@ if (!bikeStatsInstance) {
 // Reset function
 function resetBikeStats() {
     if (confirm('Reset all bike stats? This cannot be undone!')) {
+        // Clear all localStorage
         localStorage.removeItem('totalScrollDistance');
         localStorage.removeItem('totalElevation');
-        sessionStorage.removeItem('sessionStart');
+
+        // Clear all sessionStorage
+        sessionStorage.clear();
+
         location.reload();
     }
 }
