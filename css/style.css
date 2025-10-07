@@ -2191,7 +2191,7 @@ details:not([open]) .coursework-header::before {
 
 .bike-icon {
     position: absolute;
-    top: -4px; /* ← Positioned from top of 20px container */
+    top: -3px; /* ← Positioned from top of 20px container */
     left: 0;
     transform: translateX(-8px); /* Centers the 16px icon */
     transition: left 0.1s ease;
@@ -2239,20 +2239,19 @@ details:not([open]) .coursework-header::before {
 
 /* Parallax road background */
 /* Parallax horizon background */
+/* Parallax horizon background */
 .featured-projects {
     position: relative;
-    overflow: visible; /* ← Don't cut button */
-    padding-bottom: 80px; /* ← Space for button */
 }
 
-/* Gradient background layer */
+/* Gradient background layer - FULL coverage */
 .featured-projects::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 120px); /* ← Stop before button */
+    height: 100%;
     background: linear-gradient(
         180deg,
         rgba(20, 25, 35, 1) 0%,
@@ -2260,17 +2259,17 @@ details:not([open]) .coursework-header::before {
         rgba(40, 45, 55, 0.9) 100%
     );
     z-index: 0;
+    pointer-events: none;
 }
 
-/* Moving horizon effect */
+/* Moving horizon effect - FULL coverage */
 .featured-projects::after {
     content: '';
     position: absolute;
-    bottom: 120px; /* ← Stop before button */
+    top: 0;
     left: -50%;
     width: 200%;
-    height: 50%;
-    max-height: 300px; /* ← Limit height */
+    height: 100%; /* ← Full height */
     background:
         radial-gradient(
             ellipse at bottom,
@@ -2280,21 +2279,18 @@ details:not([open]) .coursework-header::before {
         );
     animation: horizon-drift 80s ease-in-out infinite alternate;
     z-index: 0;
-    pointer-events: none; /* ← Click through to button */
+    pointer-events: none; /* ← Clicks pass through to button */
 }
 
-/* Ensure content appears above */
-.featured-projects .container {
+/* Button ALWAYS on top */
+.featured-projects .container,
+.featured-projects .view-all,
+.btn-primary {
     position: relative;
-    z-index: 1;
+    z-index: 100; /* ← Way above parallax (z-index: 0) */
 }
 
-/* Horizon animation */
 @keyframes horizon-drift {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(25%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(25%); }
 }
