@@ -64,6 +64,24 @@ body {
     border-bottom: 1px solid rgba(245, 158, 11, 0.1);
 }
 
+/* Lock navbar appearance - add after existing .navbar rule */
+.navbar,
+.navbar:focus,
+.navbar:active,
+.navbar:focus-within,
+.navbar:hover {
+    background-color: rgba(26, 26, 26, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Prevent body/html focus from affecting navbar */
+body:focus-within .navbar,
+html:focus .navbar,
+html:active .navbar {
+    background-color: rgba(26, 26, 26, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -281,16 +299,13 @@ body {
 .btn-secondary {
     border: 2px solid var(--accent);
     color: var(--accent);
+    margin-top: -20px;
 }
 
 .btn-secondary:hover {
     background-color: rgba(245, 158, 11, 0.1);
 }
 
-.reset-stats .btn-secondary,
-#reset-stats-btn {
-    margin-top: -20px;
-}
 
 /* ===================================
    SOCIAL LINKS
@@ -2254,7 +2269,7 @@ details:not([open]) .coursework-header::before {
     height: 100%;
     background: linear-gradient(
         180deg,
-        rgba(20, 25, 35, 1) 0%,
+        #0a192f 0%,
         rgba(30, 35, 45, 0.95) 50%,
         rgba(40, 45, 55, 0.9) 100%
     );
