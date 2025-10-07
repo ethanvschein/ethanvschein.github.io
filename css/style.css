@@ -1731,7 +1731,7 @@ details:not([open]) .coursework-header::before {
     bottom: 10px;
     width: 330px;
     height: 195px;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+    /*filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));*/
     z-index: 1;
 }
 
@@ -2252,8 +2252,6 @@ details:not([open]) .coursework-header::before {
     opacity: 0.7;
 }
 
-/* Parallax road background */
-/* Parallax horizon background */
 /* Parallax horizon background */
 .featured-projects {
     position: relative;
@@ -2269,9 +2267,10 @@ details:not([open]) .coursework-header::before {
     height: 100%;
     background: linear-gradient(
         180deg,
-        #0a192f 0%,
-        rgba(30, 35, 45, 0.95) 50%,
-        rgba(40, 45, 55, 0.9) 100%
+        #1a2332 0%,
+        #1a2d4a 30%,                         
+        #0f2847 60%,
+        #0a1e3d 100%
     );
     z-index: 0;
     pointer-events: none;
@@ -2300,9 +2299,11 @@ details:not([open]) .coursework-header::before {
 /* Button ALWAYS on top */
 .featured-projects .container,
 .featured-projects .view-all,
-.btn-primary {
+.btn-primary,
+.btn.secondary,
+.btn-secondary {  /* ← ADD THESE */
     position: relative;
-    z-index: 100; /* ← Way above parallax (z-index: 0) */
+    z-index: 100;
 }
 
 @keyframes horizon-drift {
