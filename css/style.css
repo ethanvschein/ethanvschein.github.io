@@ -486,7 +486,12 @@ html:active .navbar {
 
 .stats {
     padding: 80px 0;
-    background-color: var(--light-bg);
+    background: linear-gradient(
+        180deg,
+        var(--dark-bg) 0%,
+        var(--light-bg) 50%,
+        var(--dark-bg) 100%
+    );
     position: relative;
     overflow: hidden;
 }
@@ -2267,7 +2272,7 @@ details:not([open]) .coursework-header::before {
     height: 100%;
     background: linear-gradient(
         180deg,
-        #1a1a1a 0%,
+        var(--dark-bg) 0%,
         #1e1f21 10%,
         #212428 15%,
         #262f38 25%,
