@@ -64,24 +64,6 @@ body {
     border-bottom: 1px solid rgba(245, 158, 11, 0.1);
 }
 
-/* Lock navbar appearance - add after existing .navbar rule */
-.navbar,
-.navbar:focus,
-.navbar:active,
-.navbar:focus-within,
-.navbar:hover {
-    background-color: rgba(26, 26, 26, 0.95) !important;
-    backdrop-filter: blur(10px) !important;
-}
-
-/* Prevent body/html focus from affecting navbar */
-body:focus-within .navbar,
-html:focus .navbar,
-html:active .navbar {
-    background-color: rgba(26, 26, 26, 0.95) !important;
-    backdrop-filter: blur(10px) !important;
-}
-
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -570,6 +552,15 @@ html:active .navbar {
     color: var(--text-light);
 }
 
+.stat-conversion {
+    font-size: 0.7rem;
+    color: var(--accent);
+    margin-top: 0.5rem;
+    opacity: 0.8;
+    font-style: italic;
+    font-weight: 500;
+}
+
 /* ===================================
    BIKE STATS SECTION (LIVE METRICS)
    =================================== */
@@ -752,6 +743,14 @@ html:active .navbar {
     border: 1px solid rgba(245, 158, 11, 0.1);
     position: relative;
     margin: 20px 0 15px 20px;
+
+    isolation: isolate;           /* ← Isolates the card */
+    outline: none;
+}
+
+.project-card:focus,
+.project-card:active {
+    outline: none;
 }
 
 .project-card::before {
