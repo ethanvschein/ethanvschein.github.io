@@ -62,6 +62,15 @@ body {
     padding: 1rem 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+
+    pointer-events: auto;         /* ← Navbar can be clicked */
+    isolation: isolate;
+}
+
+body:focus-within .navbar {
+    background-color: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    /* NO !important */
 }
 
 .nav-container {
