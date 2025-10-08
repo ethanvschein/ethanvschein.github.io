@@ -67,12 +67,6 @@ body {
     isolation: isolate;
 }
 
-body:focus-within .navbar {
-    background-color: rgba(26, 26, 26, 0.95);
-    backdrop-filter: blur(10px);
-    /* NO !important */
-}
-
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
