@@ -53,7 +53,7 @@ body {
    =================================== */
 
 .navbar {
-    background-color: rgba(26, 26, 26, 0.95);
+    background-color: rgba(26, 26, 26, 1);
     backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
