@@ -1268,6 +1268,25 @@ a.toc-card:hover {
 .experience-page {
     padding: 120px 0 80px;
     min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.prismatic-burst-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.experience-page .container {
+    position: relative;
+    z-index: 1;
 }
 
 .timeline {
