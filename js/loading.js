@@ -35,6 +35,7 @@ class LoadingScreen {
         if (this.isFirstIndexVisit || this.isRefresh) {
             this.loadingScreen.classList.add('active');
             this.loadingScreen.style.display = 'flex';
+            document.body.classList.add('loading');
             this.isLoading = true;
         } else {
             this.loadingScreen.style.display = 'none';
@@ -95,19 +96,45 @@ class LoadingScreen {
 
     showInitialLoad() {
         if (!this.bike) return;
-        this.animateLoading(this.initialLoadTime, () => this.hide());
+        
+        // Start the animation immediately for smooth movement
+        // The page will load behind the loading screen
+        const startTime = performance.now();
+        const minLoadTime = 2500; // Minimum 2.5 seconds for smooth animation
+        
+        // Start animation immediately
+        this.animateLoading(minLoadTime, () => {
+            // Wait for page to fully load before hiding
+            const checkLoad = () => {
+                if (document.readyState === 'complete') {
+                    // Ensure minimum time has passed
+                    const elapsed = performance.now() - startTime;
+                    const remaining = Math.max(0, minLoadTime - elapsed);
+                    setTimeout(() => this.hide(), remaining);
+                } else {
+                    window.addEventListener('load', () => {
+                        const elapsed = performance.now() - startTime;
+                        const remaining = Math.max(0, minLoadTime - elapsed);
+                        setTimeout(() => this.hide(), remaining);
+                    }, { once: true });
+                }
+            };
+            
+            checkLoad();
+        });
     }
 
     animateLoading(duration, callback) {
-        const startTime = Date.now();
-        const animate = () => {
-            const elapsed = Date.now() - startTime;
+        const startTime = performance.now();
+        const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
             const progress = Math.min((elapsed / duration) * 100, 100);
             this.updateBikePosition(progress);
             if (progress < 100) {
                 requestAnimationFrame(animate);
             } else {
-                setTimeout(callback, 100);
+                // Animation complete, call callback
+                if (callback) callback();
             }
         };
         requestAnimationFrame(animate);
@@ -118,17 +145,24 @@ class LoadingScreen {
             const trackWidth = this.bikeTrack.offsetWidth;
             const bikeWidth = 330;
             const maxPosition = Math.max(0, trackWidth - bikeWidth);
-            this.bike.style.left = `${maxPosition * (progress / 100)}px`;
+            // Use transform for better performance and smoother animation
+            const position = maxPosition * (progress / 100);
+            // Use transform for GPU acceleration and smooth movement
+            this.bike.style.transform = `translateX(${position}px)`;
         }
     }
 
     hide() {
         if (!this.loadingScreen) return;
         this.loadingScreen.classList.remove('active');
+        document.body.classList.remove('loading');
         setTimeout(() => {
             this.loadingScreen.style.display = 'none';
             this.isLoading = false;
-            if (this.bike) this.bike.style.left = '0px';
+            if (this.bike) {
+                // Reset bike position for next time
+                this.bike.style.transform = 'translateX(0)';
+            }
         }, 500);
     }
 }
