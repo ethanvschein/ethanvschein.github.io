@@ -896,7 +896,7 @@ body {
 }
 
 /* Vanta Topology background container for project pages */
-.project-detail #vanta-bg {
+.project-detail #project-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -909,7 +909,7 @@ body {
 }
 
 /* Ensure VANTA canvas fills container */
-.project-detail #vanta-bg canvas {
+.project-detail #project-bg canvas {
     display: block;
     width: 100% !important;
     height: 100% !important;
