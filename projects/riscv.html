@@ -39,57 +39,66 @@
   <div id="project-bg"></div>
   
   <div class="container">
-    <!-- Back Button -->
-    <a href="../projects.html" class="back-button">
-      <i class="fa-solid fa-arrow-left"></i> Back to Projects
-    </a>
-
-    <!-- Project Header -->
-    <div class="project-header">
-      <h1>RISC-V CPU Design</h1>
-      <div class="project-meta">
-        <span class="status-badge completed"><i class="fa-solid fa-check-circle"></i> Completed</span>
-      </div>
+    <div class="back-button">
+      <a href="../projects.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
     </div>
 
-    <!-- Project Content -->
-    <div class="project-content">
-      <div class="content-section">
-        <h2>Overview</h2>
-        <p>
-          Designed and implemented a 32-bit RISC-V CPU from scratch as part of UC Berkeley's
-          CS61C (Computer Architecture) course. Built a fully functional processor capable
-          of executing RISC-V assembly instructions using digital circuit design in Logisim.
-        </p>
+    <div class="project-header">
+      <h1 class="project-title">RISC-V CPU Design</h1>
+      <div class="project-tags">
+        <span class="tag">Logisim</span>
+        <span class="tag">RISC-V ISA</span>
+        <span class="tag">Digital Logic</span>
+        <span class="tag">Hardware Design</span>
+        <span class="tag">Computer Architecture</span>
+        <span class="tag">Assembly Language</span>
       </div>
 
-      <div class="content-section">
-        <h2>Key Components</h2>
-        <p>
-          The implementation involved designing core CPU components including datapath elements,
-          control logic, and memory interfaces. The processor successfully executes RISC-V instructions
-          through carefully designed hardware circuits.
-        </p>
-      </div>
-
-      <div class="content-section">
-        <h2>Technologies & Tools</h2>
-        <div class="tech-tags">
-          <span class="tech-tag">Logisim</span>
-          <span class="tech-tag">RISC-V ISA</span>
-          <span class="tech-tag">Digital Logic</span>
-          <span class="tech-tag">Hardware Design</span>
-          <span class="tech-tag">Assembly Language</span>
+      <!-- quick metrics -->
+      <div class="key-metrics">
+        <div class="metric">
+          <h4>Architecture</h4>
+          <p>32-bit RISC-V processor with standard instruction set support</p>
+        </div>
+        <div class="metric">
+          <h4>Implementation</h4>
+          <p>Digital circuit design in Logisim with datapath and control components</p>
+        </div>
+        <div class="metric">
+          <h4>Instruction Types</h4>
+          <p>Support for instructions</p>
         </div>
       </div>
 
-      <div class="content-section">
-        <h2>What I Learned</h2>
+      <!-- Table of contents -->
+      <div class="project-toc-wrapper">
+        <div class="project-toc">
+          <a href="#summary" class="toc-card">
+            <div class="toc-num">01</div>
+            <div class="toc-body">
+              <div class="toc-title">Summary</div>
+              <div class="toc-sub">Project overview</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-content">
+
+      <!-- Summary -->
+      <div id="summary" class="project-section">
+        <h2>Summary</h2>
         <p>
-          This project provided hands-on experience with low-level computer architecture concepts,
-          including instruction set architectures, datapath design, and control logic. It deepened
-          my understanding of how high-level code translates to machine instructions and executes
-          on physical hardware.
+          Designed and implemented a 32-bit RISC-V CPU using digital circuit design in Logisim.
+          The processor executes RISC-V assembly instructions through carefully designed hardware
+          components including datapath elements, control logic, and memory interfaces.
+        </p>
+        <p>
+          This project provided hands-on experience with computer architecture fundamentals,
+          demonstrating how software instructions translate to hardware execution. The modular
+          design approach enabled systematic development and testing of individual components
+          before system integration.
         </p>
       </div>
     </div>
