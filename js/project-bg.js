@@ -1,5 +1,5 @@
 // ===================================
-// PROJECT BACKGROUND (Randomized Topology)
+// PROJECT BACKGROUND (Static Topology)
 // ===================================
 
 class ProjectBackground {
@@ -15,28 +15,6 @@ class ProjectBackground {
         } else {
             this.initVanta();
         }
-    }
-
-    // Generate random parameters for unique pattern/direction each load
-    getRandomConfig() {
-        // Random points (more = denser pattern)
-        const points = 8 + Math.floor(Math.random() * 10);  // 8-17 points
-        
-        // Random max distance (affects connection reach)
-        const maxDistance = 15 + Math.random() * 15;  // 15-30
-        
-        // Random spacing (affects node distribution)
-        const spacing = 10 + Math.random() * 10;  // 10-20
-        
-        // Random scale (zoom level)
-        const scale = 0.7 + Math.random() * 0.8;  // 0.7-1.5
-
-        return {
-            points,
-            maxDistance,
-            spacing,
-            scale
-        };
     }
 
     initVanta() {
@@ -69,10 +47,7 @@ class ProjectBackground {
                 return;
             }
 
-            // Get randomized config
-            const randomConfig = this.getRandomConfig();
-            
-            // Initialize Vanta TOPOLOGY with random pattern but fixed colors
+            // Initialize Vanta TOPOLOGY with fixed settings
             try {
                 this.vantaEffect = VANTA.TOPOLOGY({
                     el: bgContainer,
@@ -81,34 +56,13 @@ class ProjectBackground {
                     gyroControls: false,
                     minHeight: 200.00,
                     minWidth: 200.00,
-                    
-                    // MUTED COLORS (darker/more subtle)
-                    color: 0x4a3820,          // Dark muted gold
-                    backgroundColor: 0x1a1a1a, // Very dark background
-                    
-                    // RANDOMIZED PATTERN PARAMETERS
-                    scale: randomConfig.scale,
-                    scaleMobile: randomConfig.scale,
-                    points: randomConfig.points,
-                    maxDistance: randomConfig.maxDistance,
-                    spacing: randomConfig.spacing
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0xf59e0b,          // Olive/greenish color
+                    backgroundColor: 0x1a1a1a  // Dark gray (assuming 0x2222 meant 0x222222)
                 });
                 
-                // Apply transparency to the canvas after creation
-                setTimeout(() => {
-                    const canvas = bgContainer.querySelector('canvas');
-                    if (canvas) {
-                        canvas.style.opacity = '0.3';  // Make it 30% visible
-                    }
-                }, 100);
-                
-                // Log the random config for debugging
-                console.log('Project Background initialized with pattern:', {
-                    points: randomConfig.points,
-                    maxDistance: randomConfig.maxDistance.toFixed(2),
-                    spacing: randomConfig.spacing.toFixed(2),
-                    scale: randomConfig.scale.toFixed(2)
-                });
+                console.log('Project Background initialized successfully');
                 
             } catch (error) {
                 console.error('Failed to initialize Project Background:', error);
