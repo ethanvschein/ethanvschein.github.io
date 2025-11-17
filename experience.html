@@ -36,9 +36,6 @@
 
 <!-- Experience -->
 <section class="experience-page">
-    <!-- Prismatic Burst Background -->
-    <div id="prismatic-burst-bg" class="prismatic-burst-bg"></div>
-    
     <div class="container">
         <div class="section-header">
             <h1>PROFESSIONAL EXPERIENCE</h1>
@@ -192,31 +189,8 @@
     </div>
 </section>
 
-<!-- OGL Library for Prismatic Burst -->
-<script src="https://cdn.jsdelivr.net/npm/ogl@1.0.0/dist/ogl.umd.js"></script>
-<script src="js/prismatic-burst.js"></script>
 <script src="js/bike-stat.js"></script>
 <script src="js/loading.js"></script>
 <script src="js/script.js"></script>
-<script>
-    // Initialize Prismatic Burst background
-    document.addEventListener('DOMContentLoaded', () => {
-        const bgContainer = document.getElementById('prismatic-burst-bg');
-        if (bgContainer && typeof PrismaticBurst !== 'undefined') {
-            new PrismaticBurst(bgContainer, {
-                intensity: 1.5,
-                speed: 0.4,
-                animationType: 'rotate3d',
-                colors: ['#f59e0b', '#4d3dff', '#ffffff', '#00ff88'],
-                distort: 1.0,
-                paused: false,
-                offset: { x: 0, y: 0 },
-                hoverDampness: 0.25,
-                rayCount: 24,
-                mixBlendMode: 'lighten'
-            });
-        }
-    });
-</script>
 </body>
 </html>

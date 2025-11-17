@@ -1272,18 +1272,6 @@ a.toc-card:hover {
     overflow: hidden;
 }
 
-.prismatic-burst-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
 .experience-page .container {
     position: relative;
     z-index: 1;
@@ -1473,6 +1461,30 @@ a.toc-card:hover {
 /* ===================================
    EDUCATION PAGE
    =================================== */
+
+.edu-page {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Vanta background container */
+#vanta-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.edu-page .container {
+    position: relative;
+    z-index: 1;
+}
 
 .edu-page .section-header {
     text-align: center;
