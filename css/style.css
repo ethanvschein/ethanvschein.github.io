@@ -891,6 +891,36 @@ body {
 .project-detail {
     padding: 120px 0 80px;
     min-height: 100vh;
+    position: relative;
+    overflow: visible; /* Allow fixed background to show */
+}
+
+/* Vanta Topology background container for project pages */
+.project-detail #vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ensure VANTA canvas fills container */
+.project-detail #vanta-bg canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.project-detail .container {
+    position: relative;
+    z-index: 1;
 }
 
 .back-button {

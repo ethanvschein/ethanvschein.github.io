@@ -38,7 +38,10 @@
 
 <!-- Project Detail -->
 <section class="project-detail">
-    <div class="container">
+  <!-- Vanta Topology Background -->
+  <div id="vanta-bg"></div>
+  
+  <div class="container">
         <div class="back-button">
             <a href="../projects.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
         </div>
@@ -1064,6 +1067,10 @@
     </div>
 </section>
 
+<!-- p5.js and VANTA TOPOLOGY libraries must load before project-bg.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+<script src="../js/project-bg.js"></script>
 <script src="../js/bike-stat.js"></script>
 <script src="../js/loading.js"></script>
 <script src="../js/script.js"></script>
