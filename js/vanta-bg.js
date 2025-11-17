@@ -57,7 +57,7 @@ class VantaBackground {
                     minHeight: 200.00,
                     minWidth: 200.00,
                     highlightColor: 0x1a1a1a,
-                    midtoneColor: 0x334155,
+                    midtoneColor: 0x1a1a1a,
                     lowlightColor: 0xf59e0b,
                     baseColor: 0x1a1a1a,
                     blurFactor: 0.34,
