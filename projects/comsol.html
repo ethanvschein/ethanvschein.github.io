@@ -131,13 +131,13 @@
             <div id="overview" class="project-section">
                 <h2>Overview</h2>
                 <p>
-                    Transdermal drug delivery offers significant advantages over oral and injectable routes: it bypasses first-pass hepatic metabolism, maintains steady-state plasma concentrations, and improves patient compliance by eliminating injection pain. However, the skin's stratum corneum acts as a formidable barrier to most therapeutic molecules, limiting passive diffusion to compounds <500 Da with optimal lipophilicity. Microneedles—micron-scale projections that penetrate the stratum corneum without reaching pain receptors—have emerged as a minimally invasive strategy to enhance transdermal bioavailability.
+                    Transdermal drug delivery offers significant advantages over oral and injectable routes: it bypasses first-pass hepatic metabolism, maintains steady-state plasma concentrations, and improves patient compliance by eliminating injection pain. However, the skin's stratum corneum acts as a formidable barrier to most therapeutic molecules, limiting passive diffusion to compounds <500 Da with optimal lipophilicity. Microneedles-micron-scale projections that penetrate the stratum corneum without reaching pain receptors-have emerged as a minimally invasive strategy to enhance transdermal bioavailability.
                 </p>
                 <p>
-                    This project evaluates two competing microneedle architectures using <strong>COMSOL Multiphysics</strong> finite element modeling: <em>solid microneedles</em> with surface drug coatings relying on passive diffusion, and <em>hollow microneedles</em> with internal lumens enabling active convective delivery. To predict the behavior of <strong>doxorubicin (DOX)</strong>—a 543 g/mol chemotherapy agent with poor skin permeability—I characterized the transport dynamics of two model compounds: <strong>hydrocortisone</strong> (362.46 g/mol, corticosteroid) and <strong>caffeine</strong> (194.19 g/mol, xanthine alkaloid). These surrogates span a range of molecular weights and partition coefficients, enabling mechanistic insights into size-dependent and lipophilicity-dependent transport.
+                    This project evaluates two competing microneedle architectures using <strong>COMSOL Multiphysics</strong> finite element modeling: <em>solid microneedles</em> with surface drug coatings relying on passive diffusion, and <em>hollow microneedles</em> with internal lumens enabling active convective delivery. To predict the behavior of <strong>doxorubicin (DOX)</strong>-a 543 g/mol chemotherapy agent with poor skin permeability-I characterized the transport dynamics of two model compounds: <strong>hydrocortisone</strong> (362.46 g/mol, corticosteroid) and <strong>caffeine</strong> (194.19 g/mol, xanthine alkaloid). These surrogates span a range of molecular weights and partition coefficients, enabling mechanistic insights into size-dependent and lipophilicity-dependent transport.
                 </p>
                 <div class="callout">
-                    <strong>Research Question:</strong> Which microneedle geometry—solid (diffusion-only) or hollow (convection+diffusion)—delivers drugs more efficiently to the dermis and bloodstream? How do molecular properties (MW, partition coefficient, diffusivity) influence delivery kinetics, and what does this predict for doxorubicin transport?
+                    <strong>Research Question:</strong> Which microneedle geometry-solid (diffusion-only) or hollow (convection+diffusion)-delivers drugs more efficiently to the dermis and bloodstream? How do molecular properties (MW, partition coefficient, diffusivity) influence delivery kinetics, and what does this predict for doxorubicin transport?
                 </div>
             </div>
 
@@ -146,7 +146,7 @@
                 <h2>COMSOL Modeling Setup & Geometry</h2>
 
                 <details open>
-                    <summary>Solid Microneedle Configuration — Passive Diffusion Architecture</summary>
+                    <summary>Solid Microneedle Configuration - Passive Diffusion Architecture</summary>
 
                     <h4>Design Rationale</h4>
                     <p>
@@ -184,7 +184,7 @@
                 </details>
 
                 <details open>
-                    <summary>Hollow Microneedle Configuration — Convection-Diffusion Architecture</summary>
+                    <summary>Hollow Microneedle Configuration - Convection-Diffusion Architecture</summary>
 
                     <h4>Design Rationale</h4>
                     <p>
@@ -260,7 +260,7 @@
                 <h2>Material Properties & Transport Parameters</h2>
 
                 <details open>
-                    <summary>Hydrocortisone — Physicochemical Properties & Selection Rationale</summary>
+                    <summary>Hydrocortisone - Physicochemical Properties & Selection Rationale</summary>
 
                     <h4>Why Hydrocortisone as a Model Compound?</h4>
                     <p>
@@ -302,11 +302,11 @@
                 </details>
 
                 <details open>
-                    <summary>Caffeine — Physicochemical Properties & Selection Rationale</summary>
+                    <summary>Caffeine - Physicochemical Properties & Selection Rationale</summary>
 
                     <h4>Why Caffeine as a Complementary Model?</h4>
                     <p>
-                        Caffeine (MW = 194.19 g/mol) is a <strong>methylxanthine alkaloid</strong> with fundamentally different properties from hydrocortisone: smaller molecular size (2× smaller), higher polarity (log P ≈ −0.07), and faster aqueous diffusion. By comparing hydrocortisone (lipophilic, moderate MW) to caffeine (hydrophilic, small MW), I can decouple the effects of <em>molecular size</em> vs. <em>partition coefficient</em> on delivery efficiency—critical for predicting doxorubicin behavior.
+                        Caffeine (MW = 194.19 g/mol) is a <strong>methylxanthine alkaloid</strong> with fundamentally different properties from hydrocortisone: smaller molecular size (2× smaller), higher polarity (log P ≈ −0.07), and faster aqueous diffusion. By comparing hydrocortisone (lipophilic, moderate MW) to caffeine (hydrophilic, small MW), I can decouple the effects of <em>molecular size</em> vs. <em>partition coefficient</em> on delivery efficiency-critical for predicting doxorubicin behavior.
                     </p>
 
                     <h4>Diffusion Coefficients</h4>
@@ -325,12 +325,12 @@
 
                     <h4>Key Difference from Hydrocortisone</h4>
                     <div class="callout">
-                        <strong>Trade-off:</strong> Caffeine's <em>higher diffusivity</em> (4.23 vs. 2.16 × 10⁻⁹ cm²/s) is offset by its <em>lower partition coefficient</em> into the epidermis (0.05 vs. 0.15). This creates a scenario where <strong>partitioning becomes more important than diffusivity</strong> for determining initial skin uptake—a finding with direct implications for doxorubicin (large, hydrophilic molecule with expected low partition coefficients).
+                        <strong>Trade-off:</strong> Caffeine's <em>higher diffusivity</em> (4.23 vs. 2.16 × 10⁻⁹ cm²/s) is offset by its <em>lower partition coefficient</em> into the epidermis (0.05 vs. 0.15). This creates a scenario where <strong>partitioning becomes more important than diffusivity</strong> for determining initial skin uptake-a finding with direct implications for doxorubicin (large, hydrophilic molecule with expected low partition coefficients).
                     </div>
                 </details>
 
                 <details>
-                    <summary>Péclet Number Analysis — Identifying Dominant Transport Mechanisms</summary>
+                    <summary>Péclet Number Analysis - Identifying Dominant Transport Mechanisms</summary>
 
                     <h4>Theoretical Background</h4>
                     <p>
@@ -357,7 +357,7 @@
                         <li><strong>Mechanism:</strong> Pure diffusion; justified use of Fick's Second Law without convective term</li>
                     </ul>
 
-                    <h5>Hollow Microneedle — Hydrocortisone</h5>
+                    <h5>Hollow Microneedle - Hydrocortisone</h5>
                     <ul class="project-list">
                         <li>v = 2.976 × 10⁻⁴ m/s (syringe pump flow rate)</li>
                         <li>L = 500 μm (lumen length)</li>
@@ -366,7 +366,7 @@
                         <li><strong>Mechanism:</strong> Convection dominates 69× over diffusion; concentration front advected downstream; diffusion only relevant near lumen walls</li>
                     </ul>
 
-                    <h5>Hollow Microneedle — Caffeine</h5>
+                    <h5>Hollow Microneedle - Caffeine</h5>
                     <ul class="project-list">
                         <li>Same v and L as hydrocortisone</li>
                         <li>D = 4.23 × 10⁻⁹ cm²/s = 4.23 × 10⁻¹³ m²/s (2× higher than hydrocortisone)</li>
@@ -422,11 +422,11 @@
                 <h2>Results & Quantitative Analysis</h2>
 
                 <details open>
-                    <summary>Hydrocortisone Delivery — Concentration Distributions & Time Evolution</summary>
+                    <summary>Hydrocortisone Delivery - Concentration Distributions & Time Evolution</summary>
 
                     <h4>Spatial Distribution Comparison</h4>
                     <p>
-                        Hydrocortisone concentration profiles reveal fundamentally different delivery mechanisms between solid and hollow microneedles. Solid needles produce <strong>broad radial diffusion</strong> from the coating surface, creating a hemispherical concentration gradient extending ~200 μm laterally into the dermis. In contrast, hollow needles produce <strong>localized jets</strong> at the lumen outlet, with drug confined to a ~50 μm radius around the tip—an effect of high Péclet number convection.
+                        Hydrocortisone concentration profiles reveal fundamentally different delivery mechanisms between solid and hollow microneedles. Solid needles produce <strong>broad radial diffusion</strong> from the coating surface, creating a hemispherical concentration gradient extending ~200 μm laterally into the dermis. In contrast, hollow needles produce <strong>localized jets</strong> at the lumen outlet, with drug confined to a ~50 μm radius around the tip-an effect of high Péclet number convection.
                     </p>
 
                     <figure class="figure">
@@ -446,16 +446,16 @@
 
                     <h4>Mechanistic Interpretation</h4>
                     <p>
-                        The 2× efficiency advantage of solid microneedles arises from <strong>superior spatial distribution</strong> rather than absolute delivery rate. Although hollow needles deliver drug faster to the lumen outlet (high Pe convection), the drug remains confined near the injection point. Solid needles achieve lower peak concentrations but distribute drug over a much larger volume, accelerating the onset of systemic exposure. This finding challenges the conventional assumption that "active delivery = faster delivery"—for transdermal systems, <em>distribution efficiency matters more than injection rate</em>.
+                        The 2× efficiency advantage of solid microneedles arises from <strong>superior spatial distribution</strong> rather than absolute delivery rate. Although hollow needles deliver drug faster to the lumen outlet (high Pe convection), the drug remains confined near the injection point. Solid needles achieve lower peak concentrations but distribute drug over a much larger volume, accelerating the onset of systemic exposure. This finding challenges the conventional assumption that "active delivery = faster delivery"-for transdermal systems, <em>distribution efficiency matters more than injection rate</em>.
                     </p>
                 </details>
 
                 <details open>
-                    <summary>Caffeine Delivery — Comparing Size vs. Partitioning Effects</summary>
+                    <summary>Caffeine Delivery - Comparing Size vs. Partitioning Effects</summary>
 
                     <h4>Spatial Distribution Comparison</h4>
                     <p>
-                        Caffeine exhibits similar geometric patterns to hydrocortisone (broad diffusion for solid, localized jet for hollow) but with <strong>faster absolute diffusion</strong> due to its 2× higher diffusivity. However, caffeine's lower partition coefficient into the epidermis (K = 0.05 vs. 0.15 for hydrocortisone) creates a <em>delayed onset</em> despite faster diffusion—a counterintuitive result demonstrating that <strong>partitioning can be rate-limiting even when diffusivity is high</strong>.
+                        Caffeine exhibits similar geometric patterns to hydrocortisone (broad diffusion for solid, localized jet for hollow) but with <strong>faster absolute diffusion</strong> due to its 2× higher diffusivity. However, caffeine's lower partition coefficient into the epidermis (K = 0.05 vs. 0.15 for hydrocortisone) creates a <em>delayed onset</em> despite faster diffusion-a counterintuitive result demonstrating that <strong>partitioning can be rate-limiting even when diffusivity is high</strong>.
                     </p>
 
                     <figure class="figure">
@@ -480,7 +480,7 @@
                 </details>
 
                 <details>
-                    <summary>Efficiency Ratio Analysis — Why 2.0 for Both Drugs?</summary>
+                    <summary>Efficiency Ratio Analysis - Why 2.0 for Both Drugs?</summary>
 
                     <h4>Observation</h4>
                     <p>
@@ -518,11 +518,11 @@
                 <h2>Discussion & Transport Mechanism Analysis</h2>
 
                 <details open>
-                    <summary>Partitioning vs. Diffusivity — Which Matters More for Skin Delivery?</summary>
+                    <summary>Partitioning vs. Diffusivity - Which Matters More for Skin Delivery?</summary>
 
                     <h4>Conventional Wisdom: Diffusivity Dominates</h4>
                     <p>
-                        Classical drug delivery models (e.g., Higuchi equation) predict that transdermal flux is proportional to <strong>√(D × C_sat)</strong>, where D is diffusion coefficient and C_sat is solubility. This suggests smaller, faster-diffusing molecules should always penetrate better. However, these models assume <em>partition equilibrium</em>—they don't account for partitioning kinetics at layer interfaces.
+                        Classical drug delivery models (e.g., Higuchi equation) predict that transdermal flux is proportional to <strong>√(D × C_sat)</strong>, where D is diffusion coefficient and C_sat is solubility. This suggests smaller, faster-diffusing molecules should always penetrate better. However, these models assume <em>partition equilibrium</em>-they don't account for partitioning kinetics at layer interfaces.
                     </p>
 
                     <h4>Observed Behavior: Partitioning Can Dominate</h4>
@@ -541,7 +541,7 @@
                 </details>
 
                 <details open>
-                    <summary>Convection vs. Diffusion — Rethinking "Active Delivery" Assumptions</summary>
+                    <summary>Convection vs. Diffusion - Rethinking "Active Delivery" Assumptions</summary>
 
                     <h4>Conventional Expectation: Active Delivery Should Be Faster</h4>
                     <p>
@@ -569,7 +569,7 @@
                 </details>
 
                 <details>
-                    <summary>Péclet Number Regime Transitions — Two-Stage Delivery Process</summary>
+                    <summary>Péclet Number Regime Transitions - Two-Stage Delivery Process</summary>
 
                     <h4>Stage 1: Convection-Dominated Lumen Transport (Pe = 35-69)</h4>
                     <p>

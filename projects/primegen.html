@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Prime Number Generation Optimization - Ethan Schein</title>
+
+    <!-- Site styles & fonts -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+    <div class="loading-container">
+        <div id="bike-track" class="bike-track"></div>
+        <p class="loading-text">Loading<span class="loading-dots"></span></p>
+    </div>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo"><a href="../index.html">Ethan Schein</a></div>
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../about.html" class="nav-link">About</a></li>
+            <li><a href="../education.html" class="nav-link">Education</a></li>
+            <li><a href="../experience.html" class="nav-link">Experience</a></li>
+            <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+            <li><a href="../skills.html" class="nav-link">Skills</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+    </div>
+</nav>
+
+<!-- Project Detail -->
+<section class="project-detail">
+    <!-- Vanta Topology Background -->
+    <div id="project-bg"></div>
+    
+    <div class="container">
+        <div class="back-button">
+            <a href="../projects.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </div>
+
+        <div class="project-header">
+            <h1 class="project-title">Prime Number Generation Algorithm Optimization</h1>
+            <div class="project-meta">
+                <span class="status-badge in-progress"><i class="fa-solid fa-clock"></i> Work in Progress</span>
+            </div>
+            <div class="project-tags">
+                <span class="tag">Algorithms</span>
+                <span class="tag">Performance Optimization</span>
+                <span class="tag">Python</span>
+                <span class="tag">C</span>
+                <span class="tag">Assembly</span>
+                <span class="tag">Computational Efficiency</span>
+            </div>
+
+            <!-- quick metrics -->
+            <div class="key-metrics">
+                <div class="metric">
+                    <h4>Objective</h4>
+                    <p>Find the optimal algorithm for generating prime numbers through comparative analysis</p>
+                </div>
+                <div class="metric">
+                    <h4>Algorithms Compared</h4>
+                    <p>Sieve of Eratosthenes, Sieve of Atkin, Sieve of Sundaram</p>
+                </div>
+                <div class="metric">
+                    <h4>Optimization Path</h4>
+                    <p>Python → C → Assembly language implementations</p>
+                </div>
+                <div class="metric">
+                    <h4>Focus</h4>
+                    <p>Benchmarking time complexity, memory usage, and scalability</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-content">
+
+            <!-- Overview -->
+            <div id="overview" class="project-section">
+                <h2>Overview</h2>
+                <p>
+                    This project aims to identify the most efficient algorithm for generating prime numbers by systematically comparing three classical sieve algorithms: the <strong>Sieve of Eratosthenes</strong>, the <strong>Sieve of Atkin</strong>, and the <strong>Sieve of Sundaram</strong>. The goal is to understand their theoretical and practical performance characteristics, then optimize implementations across multiple programming languages—starting with Python for rapid prototyping, moving to C for performance gains, and finally exploring Assembly for maximum efficiency.
+                </p>
+                <p>
+                    Each sieve algorithm has distinct computational properties: Eratosthenes offers simplicity and good average-case performance, Atkin provides better asymptotic complexity for large ranges, and Sundaram offers an alternative approach with different memory trade-offs. By implementing and benchmarking all three, I'm analyzing their behavior across different input sizes and identifying optimization opportunities at each language level.
+                </p>
+                <div class="callout">
+                    <strong>Current Status:</strong> This project is in active development. I'm currently implementing and benchmarking the initial Python versions of each algorithm, with plans to optimize and port to lower-level languages as the analysis progresses.
+                </div>
+            </div>
+
+            <!-- Approach -->
+            <div id="approach" class="project-section">
+                <h2>Approach</h2>
+                <h3>Algorithm Comparison</h3>
+                <p>
+                    The project involves implementing each sieve algorithm with careful attention to correctness and initial optimization. Key metrics being measured include:
+                </p>
+                <ul class="project-list">
+                    <li><strong>Time Complexity:</strong> Theoretical vs. actual runtime performance across different input ranges</li>
+                    <li><strong>Space Complexity:</strong> Memory usage patterns and scalability</li>
+                    <li><strong>Cache Performance:</strong> How each algorithm interacts with CPU cache hierarchies</li>
+                    <li><strong>Scalability:</strong> Performance degradation as input size increases</li>
+                </ul>
+
+                <h3>Language Optimization Path</h3>
+                <p>
+                    The optimization journey follows a systematic progression:
+                </p>
+                <ol>
+                    <li><strong>Python Implementation:</strong> Prototype each algorithm with clear, readable code; establish baseline performance metrics</li>
+                    <li><strong>C Optimization:</strong> Port to C with manual memory management, compiler optimizations, and cache-aware data structures</li>
+                    <li><strong>Assembly Exploration:</strong> Hand-optimize critical sections in Assembly to understand hardware-level performance limits</li>
+                </ol>
+            </div>
+
+            <!-- Check Back Later Notice -->
+            <div class="content-section check-back">
+                <div class="check-back-content">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Project In Development</h3>
+                    <p>This algorithm optimization project is currently in progress. Check back later for detailed performance benchmarks, optimization techniques, and comparative analysis results!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- p5.js and VANTA TOPOLOGY libraries must load before project-bg.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+<script src="../js/project-bg.js"></script>
+<script src="../js/bike-stat.js"></script>
+<script src="../js/loading.js"></script>
+<script src="../js/script.js"></script>
+</body>
+</html>
+

@@ -151,7 +151,7 @@
                     Precise gene therapy requires delivering therapeutic genes to <em>specific cell types</em> without affecting surrounding tissues. Traditional approaches rely on viral vectors that integrate into the genome (raising safety concerns) or antibody-based targeting (which suffers from off-target binding and limited specificity). <strong>RADAR (RNA-Activated Detection And Recording)</strong> offers a fundamentally different approach: it uses <em>endogenous RNA molecules</em> as cell-type identifiers to control gene expression with unprecedented precision.
                 </p>
                 <p>
-                    The system leverages <strong>ADAR enzymes</strong> (Adenosine Deaminases Acting on RNA) that naturally edit specific adenosines in double-stranded RNA. By engineering a sensor RNA (sesRNA) that binds to a target mRNA, we recruit ADAR to edit a strategically placed stop codon—converting it to a "read-through" codon and enabling translation of a downstream effector gene. This occurs <em>only in cells expressing the target RNA</em>, providing cell-type specificity without genomic integration.
+                    The system leverages <strong>ADAR enzymes</strong> (Adenosine Deaminases Acting on RNA) that naturally edit specific adenosines in double-stranded RNA. By engineering a sensor RNA (sesRNA) that binds to a target mRNA, I recruit ADAR to edit a strategically placed stop codon-converting it to a "read-through" codon and enabling translation of a downstream effector gene. This occurs <em>only in cells expressing the target RNA</em>, providing cell-type specificity without genomic integration.
                 </p>
                 <div class="callout">
                     <strong>Key Innovation:</strong> RADAR enables transient, reversible gene expression control based on native cellular RNA signatures. Unlike CRISPR or viral integration, it leaves no permanent genomic footprint and can be delivered via lipid nanoparticles (LNPs) for safer therapeutic applications.
@@ -165,7 +165,7 @@
                 <h3>Limitations of Current Gene Therapy Approaches</h3>
 
                 <details open>
-                    <summary>Viral Vectors — Integration & Safety Concerns</summary>
+                    <summary>Viral Vectors - Integration & Safety Concerns</summary>
                     <p>
                         Lentivirus and adeno-associated virus (AAV) are workhorses of gene therapy, but they integrate into the host genome, creating permanent genetic modifications. This poses risks:
                     </p>
@@ -176,18 +176,18 @@
                         <li><strong>Off-target expression:</strong> Viral tropism provides tissue-level targeting but lacks single-cell-type precision</li>
                     </ul>
                     <p>
-                        While viral vectors excel at long-term expression, many therapeutic applications require <em>transient intervention</em>—correcting a disease state without permanent genomic alteration.
+                        While viral vectors excel at long-term expression, many therapeutic applications require <em>transient intervention</em>-correcting a disease state without permanent genomic alteration.
                     </p>
                 </details>
 
                 <details>
-                    <summary>Antibody-Based Targeting — Specificity & Scalability</summary>
+                    <summary>Antibody-Based Targeting - Specificity & Scalability</summary>
                     <p>
                         Antibody-targeted delivery systems (e.g., antibody-drug conjugates, immunoliposomes) rely on cell-surface proteins for targeting. However:
                     </p>
                     <ul class="project-list">
                         <li><strong>Surface marker limitations:</strong> Many cell types lack unique surface antigens; neuronal subtypes often share markers</li>
-                        <li><strong>Off-target binding:</strong> Antibody cross-reactivity causes unintended delivery to non-target cells. Companies like Alamar Biosciences and Abcam screen hundreds of antibodies per target, selecting the "best" performer—yet off-target effects persist</li>
+                        <li><strong>Off-target binding:</strong> Antibody cross-reactivity causes unintended delivery to non-target cells. Companies like Alamar Biosciences and Abcam screen hundreds of antibodies per target, selecting the "best" performer-yet off-target effects persist</li>
                         <li><strong>Manufacturing complexity:</strong> Custom antibodies for each target require extensive validation; scaling to hundreds of cell types is impractical</li>
                         <li><strong>Cost:</strong> High-quality antibodies are expensive; therapeutic-grade production adds further cost barriers</li>
                     </ul>
@@ -297,7 +297,7 @@
                 <details>
                     <summary>Pooling Strategy for Scalability</summary>
                     <p>
-                        Testing hundreds of sensors individually is impractical. Instead, we employ <strong>pooled cloning and next-generation sequencing (NGS)</strong> to screen entire sensor libraries simultaneously:
+                        Testing hundreds of sensors individually is impractical. Instead, I employ <strong>pooled cloning and next-generation sequencing (NGS)</strong> to screen entire sensor libraries simultaneously:
                     </p>
                     <ul class="project-list">
                         <li><strong>Twist Bioscience synthesis:</strong> Order all sensor sequences in a single tube as single-stranded DNA (ssDNA) oligonucleotides</li>
@@ -325,7 +325,7 @@
 
                 <h3>Overview</h3>
                 <p>
-                    Traditional molecular cloning requires individual plasmid construction for each sensor variant—an untenable approach for libraries containing hundreds of sequences. Pooled cloning circumvents this bottleneck by processing all sensors <em>simultaneously</em> in a single reaction vessel, then using NGS to track individual sensor performance in functional assays.
+                    Traditional molecular cloning requires individual plasmid construction for each sensor variant-an untenable approach for libraries containing hundreds of sequences. Pooled cloning circumvents this bottleneck by processing all sensors <em>simultaneously</em> in a single reaction vessel, then using NGS to track individual sensor performance in functional assays.
                 </p>
 
                 <details open>
@@ -340,7 +340,7 @@
                         <li><strong>Sensor domain (90-200 bp):</strong> Target-complementary sequence; varies between sensors</li>
                     </ul>
                     <p>
-                        All sequences are ordered from Twist Bioscience as single-stranded DNA (ssDNA) in one tube—eliminating need for individual oligonucleotide orders and dramatically reducing cost.
+                        All sequences are ordered from Twist Bioscience as single-stranded DNA (ssDNA) in one tube-eliminating need for individual oligonucleotide orders and dramatically reducing cost.
                     </p>
                 </details>
 
@@ -353,7 +353,7 @@
                         <strong>Challenge:</strong> PCR exponentially amplifies template DNA; even small differences in amplification efficiency between sensors compound over cycles, creating severe library skew (some sensors over-represented, others under-represented).
                     </p>
                     <p>
-                        <strong>Solution:</strong> Limit amplification to <strong>8 cycles</strong>—sufficient to generate dsDNA while minimizing bias accumulation. Use high-fidelity polymerase (e.g., Q5, Phusion) to reduce error rate.
+                        <strong>Solution:</strong> Limit amplification to <strong>8 cycles</strong>-sufficient to generate dsDNA while minimizing bias accumulation. Use high-fidelity polymerase (e.g., Q5, Phusion) to reduce error rate.
                     </p>
                     <p>
                         PCR primers bind to universal primer sites; all sensors amplify using same primer pair. Reaction conditions optimized for uniform amplification across GC content range.
@@ -369,7 +369,7 @@
                         <strong>Gel extraction:</strong> Run digested products on agarose gel; excise bands corresponding to sensor inserts and linearized plasmid backbone; purify using gel extraction kit. This step removes uncut plasmid and PCR primers.
                     </p>
                     <p>
-                        <strong>Critical consideration:</strong> Maintain equimolar ratios during gel extraction—do not preferentially recover certain sensor sizes, as this introduces additional skew.
+                        <strong>Critical consideration:</strong> Maintain equimolar ratios during gel extraction-do not preferentially recover certain sensor sizes, as this introduces additional skew.
                     </p>
                 </details>
 
@@ -385,14 +385,14 @@
                         <strong>Reaction conditions:</strong> 16°C overnight or room temperature 1 hour; ligation efficiency >80% ensures high library complexity.
                     </p>
                     <p>
-                        Pooled ligation contains mixture of plasmids, each encoding a different sensor. Relative abundance depends on PCR bias, digestion efficiency, and ligation kinetics—hence NGS quality control is essential.
+                        Pooled ligation contains mixture of plasmids, each encoding a different sensor. Relative abundance depends on PCR bias, digestion efficiency, and ligation kinetics-hence NGS quality control is essential.
                     </p>
                 </details>
 
                 <details>
                     <summary>Step 5: Transformation & Colony Scaling</summary>
                     <p>
-                        Transform ligated plasmids into electrocompetent bacteria (e.g., E. coli DH5α, DH10B). Electroporation provides higher transformation efficiency than heat shock—critical for large libraries.
+                        Transform ligated plasmids into electrocompetent bacteria (e.g., E. coli DH5α, DH10B). Electroporation provides higher transformation efficiency than heat shock-critical for large libraries.
                     </p>
                     <p>
                         <strong>Colony count targeting:</strong> Aim for <strong>500 colonies per sensor variant</strong>. For 200-sensor library, this requires 100,000 total colonies. Plate aliquots on LB agar + antibiotic; extrapolate transformation efficiency; scale up electroporation volume accordingly.
@@ -419,7 +419,7 @@
                 </details>
 
                 <div class="callout">
-                    <strong>Throughput Comparison:</strong> Traditional cloning requires ~2 weeks per sensor (design → synthesis → cloning → transformation → miniprep → sequencing). For 200 sensors: 400 weeks (7.7 years). Pooled cloning completes entire library in <strong>4 weeks</strong>—a 100× time savings.
+                    <strong>Throughput Comparison:</strong> Traditional cloning requires ~2 weeks per sensor (design → synthesis → cloning → transformation → miniprep → sequencing). For 200 sensors: 400 weeks (7.7 years). Pooled cloning completes entire library in <strong>4 weeks</strong>-a 100× time savings.
                 </div>
             </div>
 
@@ -429,7 +429,7 @@
 
                 <h3>Experimental Design</h3>
                 <p>
-                    To validate RADAR specificity before scaling to hundreds of neuromodulator sensors, we designed proof-of-concept experiments targeting two genes with known expression patterns:
+                    To validate RADAR specificity before scaling to hundreds of neuromodulator sensors, I designed proof-of-concept experiments targeting two genes with known expression patterns:
                 </p>
                 <ul class="project-list">
                     <li><strong>CTIP2 (BCL11B):</strong> Zinc-finger transcription factor expressed in corticospinal neurons of cerebral cortex; absent in HEK293T cells (human embryonic kidney cell line commonly used for in vitro testing)</li>
@@ -438,7 +438,7 @@
 
                 <h3>Cre-Reporter System</h3>
                 <p>
-                    We employed a Cre-lox reporter line to visualize RADAR activity:
+                    I employed a Cre-lox reporter line to visualize RADAR activity:
                 </p>
                 <ul class="project-list">
                     <li><strong>Baseline state (no Cre):</strong> Reporter construct expresses red fluorescent protein (RFP); sensor inactive</li>
@@ -469,7 +469,7 @@
 
                     <h4>Controls for Leakiness</h4>
                     <p>
-                        A critical metric is sensor <strong>leakiness</strong>—unintended activation in cells lacking the target RNA. We quantify leakiness as:
+                        A critical metric is sensor <strong>leakiness</strong>-unintended activation in cells lacking the target RNA. I quantify leakiness as:
                     </p>
                     <pre><code>Leakiness (%) = (GFP+ cells with CTIP2 sensor) / (GFP+ cells with positive control) × 100</code></pre>
                     <p>
@@ -537,7 +537,7 @@
 
                 <h3>Neuroscience Motivation</h3>
                 <p>
-                    Neuromodulators and neuropeptides regulate critical brain functions—mood, motivation, pain perception, arousal—yet their cell-type-specific roles remain poorly understood. Traditional genetic tools (e.g., transgenic mice with Cre lines for each gene) are time-intensive and limited to model organisms. RADAR enables <em>rapid, flexible interrogation</em> of neuromodulator function by targeting specific neuronal populations for optogenetic manipulation, calcium imaging, or gene knockdown.
+                    Neuromodulators and neuropeptides regulate critical brain functions-mood, motivation, pain perception, arousal-yet their cell-type-specific roles remain poorly understood. Traditional genetic tools (e.g., transgenic mice with Cre lines for each gene) are time-intensive and limited to model organisms. RADAR enables <em>rapid, flexible interrogation</em> of neuromodulator function by targeting specific neuronal populations for optogenetic manipulation, calcium imaging, or gene knockdown.
                 </p>
 
                 <h3>Gene Targets</h3>
@@ -600,7 +600,7 @@
                 </ol>
 
                 <div class="callout">
-                    <strong>Impact:</strong> Once validated, these sensor libraries will be made publicly available, enabling researchers worldwide to target neuromodulator populations without generating transgenic animals—dramatically accelerating neuroscience research.
+                    <strong>Impact:</strong> Once validated, these sensor libraries will be made publicly available, enabling researchers worldwide to target neuromodulator populations without generating transgenic animals-dramatically accelerating neuroscience research.
                 </div>
             </div>
 
@@ -610,7 +610,7 @@
 
                 <h3>Lipid Nanoparticle (LNP) Formulation</h3>
                 <p>
-                    While plasmid transfection suffices for proof-of-concept studies, therapeutic applications require <strong>non-viral delivery systems</strong>. LNPs—the same technology used in COVID-19 mRNA vaccines—offer several advantages:
+                    While plasmid transfection suffices for proof-of-concept studies, therapeutic applications require <strong>non-viral delivery systems</strong>. LNPs-the same technology used in COVID-19 mRNA vaccines-offer several advantages:
                 </p>
                 <ul class="project-list">
                     <li><strong>Safety:</strong> No viral genome integration; no immunogenic capsid proteins; biodegradable lipid components</li>
@@ -676,7 +676,7 @@
                 </ol>
 
                 <div class="callout">
-                    <strong>Vision:</strong> RADAR represents a paradigm shift in precision medicine—enabling cell-type-specific gene therapy without genome integration. By leveraging endogenous RNA signatures, we can target disease-relevant cells with unprecedented specificity, opening new therapeutic avenues for neurological and psychiatric disorders.
+                    <strong>Vision:</strong> RADAR represents a paradigm shift in precision medicine-enabling cell-type-specific gene therapy without genome integration. By leveraging endogenous RNA signatures, I can target disease-relevant cells with unprecedented specificity, opening new therapeutic avenues for neurological and psychiatric disorders.
                 </div>
             </div>
 
