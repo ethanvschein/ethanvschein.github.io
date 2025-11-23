@@ -193,9 +193,16 @@ body {
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--text-light);
     margin-bottom: 1rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: calc(1.4rem * 1.3 * 2); /* font-size * line-height * 2 lines */
 }
 
 .hero-description {
@@ -2292,7 +2299,7 @@ body.loading #loading-screen {
     top: 70px;
     left: 0;
     width: 100%;
-    height: 20px; /* ← INCREASED to fit the bike */
+    height: 24px; /* Increased to accommodate raised bike icon */
     background: transparent; /* ← No background on container */
     z-index: 998;
     pointer-events: none;
@@ -2301,7 +2308,7 @@ body.loading #loading-screen {
 
 .bike-scroll-track {
     position: absolute;
-    top: 2px; /* ← Position bar lower in the 20px container */
+    top: 4px; /* Adjusted to align with raised bike */
     left: 0;
     height: 3px; /* ← Actual bar is still 3px */
     background: linear-gradient(90deg, var(--accent), rgba(245, 158, 11, 0.8));
@@ -2313,7 +2320,7 @@ body.loading #loading-screen {
 
 .bike-icon {
     position: absolute;
-    top: -2px; /* ← Positioned from top of 20px container */
+    top: -4px; /* Raised higher to prevent clipping and center better */
     left: 0;
     transform: translateX(-8px); /* Centers the 16px icon */
     transition: left 0.1s ease;
@@ -2335,16 +2342,16 @@ body.loading #loading-screen {
 
 @media (max-width: 768px) {
     .bike-scroll-indicator {
-        height: 16px;
+        height: 20px;
     }
 
     .bike-scroll-track {
-        top: 6px;
+        top: 4px;
         height: 2px;
     }
 
     .bike-icon {
-        top: 1px;
+        top: -2px;
         width: 14px;
         height: 14px;
         transform: translateX(-7px);
