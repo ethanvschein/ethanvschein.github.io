@@ -169,10 +169,6 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
     position: relative;
     z-index: 1;
 }
@@ -180,7 +176,15 @@ body {
 .hero-title {
     font-size: 3.5rem;
     color: var(--text-white);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    white-space: nowrap;
+}
+
+.hero-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
 }
 
 .highlight {
@@ -1907,13 +1911,14 @@ body.loading #loading-screen {
         margin: 1rem 0;
     }
 
-    .hero-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
     .hero-title {
         font-size: 2.5rem;
+        white-space: normal;
+    }
+
+    .hero-content-wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
     }
 
     .hero-buttons {
