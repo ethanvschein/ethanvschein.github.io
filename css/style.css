@@ -2314,13 +2314,12 @@ body.loading #loading-screen {
     z-index: 998;
     pointer-events: none;
     overflow: visible;
-    padding-left: 8px; /* Prevent front wheel from being clipped */
 }
 
 .bike-scroll-track {
     position: absolute;
     top: 0; /* Track touches navbar bottom */
-    left: 8px; /* Start after padding to align with bike icon */
+    left: 0; /* Track touches left edge */
     height: 3px;
     background: linear-gradient(90deg, var(--accent), rgba(245, 158, 11, 0.8));
     width: 0%;

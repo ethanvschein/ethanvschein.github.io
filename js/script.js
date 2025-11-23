@@ -119,23 +119,16 @@ function updateBikePosition() {
     const clampedPercentage = Math.min(Math.max(scrollPercentage, 0), 100);
 
     // Update track width (orange bar grows)
-    // Account for 8px padding-left on container
     if (bikeTrack) {
         const containerWidth = bikeIndicator.offsetWidth;
-        const paddingLeft = 8; // Match CSS padding-left
-        const availableWidth = containerWidth - paddingLeft;
-        const trackWidth = (clampedPercentage / 100) * availableWidth;
+        const trackWidth = (clampedPercentage / 100) * containerWidth;
         bikeTrack.style.width = trackWidth + 'px';
-        bikeTrack.style.left = paddingLeft + 'px'; // Start track after padding
     }
 
     // Update bike position (rides at the end of the bar)
-    // Account for 8px padding-left on container
     if (bikeIcon) {
         const containerWidth = bikeIndicator.offsetWidth;
-        const paddingLeft = 8; // Match CSS padding-left
-        const availableWidth = containerWidth - paddingLeft;
-        const bikePosition = (clampedPercentage / 100) * availableWidth + paddingLeft;
+        const bikePosition = (clampedPercentage / 100) * containerWidth;
         bikeIcon.style.left = bikePosition + 'px';
     }
 }
