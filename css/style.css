@@ -2331,7 +2331,7 @@ body.loading #loading-screen {
 
 .bike-icon {
     position: absolute;
-    top: .5px; /* Centered on orange track */
+    top: -3.5px; /* Centered on orange track */
     left: 0;
     transform: translateX(-6px); /* Centers the 12px icon */
     transition: left 0.1s ease;
@@ -2362,7 +2362,7 @@ body.loading #loading-screen {
     }
 
     .bike-icon {
-        top: 0px; /* Centered on orange track */
+        top: -3px; /* Centered on orange track */
         width: 10px;
         height: 10px;
         transform: translateX(-5px);
