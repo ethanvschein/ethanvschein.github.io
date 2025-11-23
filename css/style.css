@@ -34,12 +34,26 @@
     box-sizing: border-box;
 }
 
+html {
+    /* Hide scrollbar but preserve scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari, and Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--dark-bg);
     color: var(--text-light);
     line-height: 1.6;
     overflow-x: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
 
 .container {
@@ -61,7 +75,7 @@ body {
     z-index: 1000;
     padding: 1rem 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+    border-bottom: none; /* Removed to eliminate faint line above bike scroll indicator */
 
     pointer-events: auto;         /* ← Navbar can be clicked */
     isolation: isolate;
@@ -2316,7 +2330,7 @@ body.loading #loading-screen {
 
 .bike-icon {
     position: absolute;
-    top: 2px; /* Moved down so it's not clipped by navbar */
+    top: -2.5px; /* Centered on orange track: track center (1.5px) - half icon height (8px) = -6.5px */
     left: 0;
     transform: translateX(-8px); /* Centers the 16px icon */
     transition: left 0.1s ease;
@@ -2347,7 +2361,7 @@ body.loading #loading-screen {
     }
 
     .bike-icon {
-        top: 2px; /* Moved down so it's not clipped by navbar */
+        top: -2px; /* Centered on orange track: track center (1px) - half icon height (7px) = -6px */
         width: 14px;
         height: 14px;
         transform: translateX(-7px);
