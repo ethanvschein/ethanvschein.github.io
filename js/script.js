@@ -83,11 +83,27 @@ bikeIndicator.innerHTML = `
 // Add to page AFTER body loads
 if (document.body) {
     document.body.appendChild(bikeIndicator);
+    // Position bike indicator directly below navbar (no gap)
+    positionBikeIndicator();
 } else {
     document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(bikeIndicator);
+        // Position bike indicator directly below navbar (no gap)
+        positionBikeIndicator();
     });
 }
+
+// Function to position bike indicator at navbar bottom
+function positionBikeIndicator() {
+    const navbar = document.querySelector('.navbar');
+    if (navbar && bikeIndicator) {
+        const navbarHeight = navbar.offsetHeight;
+        bikeIndicator.style.top = navbarHeight + 'px';
+    }
+}
+
+// Update position on window resize (in case navbar height changes)
+window.addEventListener('resize', positionBikeIndicator);
 
 const bikeTrack = bikeIndicator.querySelector('.bike-scroll-track');
 const bikeIcon = bikeIndicator.querySelector('.bike-icon');
