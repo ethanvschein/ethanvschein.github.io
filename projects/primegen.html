@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Prevent flash: Show loader immediately if transitioning -->
+    <script>
+        if (sessionStorage.getItem('pageTransition') === 'true') {
+            document.write('<style>body{overflow:hidden!important}#page-transition-loader{opacity:1!important;visibility:visible!important;display:flex!important;pointer-events:auto!important}</style>');
+        }
+    </script>
     <title>Prime Number Generation Optimization - Ethan Schein</title>
 
     <!-- Site styles & fonts -->
@@ -11,6 +17,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
+
+<!-- Page Transition Loader -->
+<div id="page-transition-loader" class="page-loader">
+    <div class="bike-cog-container">
+        <img src="../assets/svgs/loading/bike-cog.svg" alt="Loading" />
+    </div>
+</div>
 
 <!-- Loading Screen -->
 <div id="loading-screen">
@@ -83,52 +96,513 @@
 
         <div class="project-content">
 
-            <!-- Overview -->
-            <div id="overview" class="project-section">
-                <h2>Overview</h2>
+            <!-- Note -->
+            <div class="callout" style="margin-bottom: 2rem;">
+                <strong>Note:</strong> This is a continuous project without any end. Furthermore, the language used in the write-up is casual.
+            </div>
+
+            <!-- Introduction -->
+            <div id="introduction" class="project-section">
+                <h2>Introduction</h2>
                 <p>
-                    This project aims to identify the most efficient algorithm for generating prime numbers by systematically comparing three classical sieve algorithms: the <strong>Sieve of Eratosthenes</strong>, the <strong>Sieve of Atkin</strong>, and the <strong>Sieve of Sundaram</strong>. The goal is to understand their theoretical and practical performance characteristics, then optimize implementations across multiple programming languages—starting with Python for rapid prototyping, moving to C for performance gains, and finally exploring Assembly for maximum efficiency.
+                    How do we get programs to generate primes this fast? Is it possible to extend past these current algorithms into something even faster? The point of this project is to find out the feasibility. This project focuses not on finding specific prime numbers or recording them, but instead generating prime numbers. Especially later on in the log scale where I investigate ranges past 10<sup>10</sup> prime numbers generated, RAM becomes a limiting factor as it becomes impossible to store that many values. Instead, the point is to push the limits on creating an algorithm that generates prime numbers the fastest.
                 </p>
                 <p>
-                    Each sieve algorithm has distinct computational properties: Eratosthenes offers simplicity and good average-case performance, Atkin provides better asymptotic complexity for large ranges, and Sundaram offers an alternative approach with different memory trade-offs. By implementing and benchmarking all three, I'm analyzing their behavior across different input sizes and identifying optimization opportunities at each language level.
+                    But why focus on this? It's because since elementary school, when I was first introduced to prime numbers, I hated them. Their pattern appeared arbitrary and random. And yet they're so important to not just math but in cryptography and physics. This project represents my journey in combatting my angst against prime numbers and the larger imperfect beauty of the world.
                 </p>
-                <div class="callout">
-                    <strong>Current Status:</strong> This project is in active development. I'm currently implementing and benchmarking the initial Python versions of each algorithm, with plans to optimize and port to lower-level languages as the analysis progresses.
+                <p>
+                    To begin, we will start writing algorithms in Python. All mathematical optimizations of algorithms will be done in Python. C algorithms are then implemented upon pre-existing Python algorithms for memory, data structure, control flow, and micro optimizations. This is largely because writing, verifying, and testing mathematical changes is much simpler on Python (for small &lt;10<sup>9</sup> datasets).
+                </p>
+            </div>
+
+            <!-- Basic Implementation -->
+            <div id="basic" class="project-section">
+                <h2>Basic Implementation</h2>
+                <p>
+                    So let's start. We will first implement a very basic Python prime number generator that checks whether each number from 1 to n is prime. 
+                    It uses the isprime() function from sympy library which is a dynamic primality test that 
+                    uses 3 different strategies: trial division, Miller-Rabin, and Baille-SW primality tests based on the 
+                    size of the integer being checked. It runs on O(log<sup>3</sup>n) time complexity.
+                </p>
+                
+                <details>
+                    <summary class="code-summary">View Code</summary>
+                    <pre><code>
+    def simplest_generator(N):
+        i = 0
+        j = 2
+        while i < n:
+            if isprime(j):
+                i += 1
+                yield i
+            j += 1
+                    </code></pre>
+                </details>
+
+                <p>
+                    Running this simple generator for the first 10<sup>9</sup> prime numbers takes an incredible <strong>8h 52m 59.819s</strong>.
+                </p>
+            </div>
+
+            <!-- Sieves Overview -->
+            <div id="sieves" class="project-section">
+                <h2>Sieve Algorithms</h2>
+                <p>
+                    Many contemporary algorithms use sieves and segmentation in order to speed-up processing. For prime number generation, the 3 sieves currently used are Sieve of Atkin (SoA), Sieve of Eratosthenes (SoE), and Sieve of Sundaram (SoS).
+                </p>
+                <p>
+                    [PARAGRAPH]: explain how different sieves work [TO BE DONE]
+                </p>
+
+                <div class="project-images grid-3x1" style="margin: 2rem 0;">
+                    <figure class="figure">
+                        <img src="../assets/images/other/workinprogress.jpg" alt="Sieve visualization 1" class="project-img" />
+                        <figcaption class="caption">[IMG 1]</figcaption>
+                    </figure>
+                    <figure class="figure">
+                        <img src="../assets/images/other/workinprogress.jpg" alt="Sieve visualization 2" class="project-img" />
+                        <figcaption class="caption">[IMG 2]</figcaption>
+                    </figure>
+                    <figure class="figure">
+                        <img src="../assets/images/other/workinprogress.jpg" alt="Sieve visualization 3" class="project-img" />
+                        <figcaption class="caption">[IMG 3]</figcaption>
+                    </figure>
                 </div>
             </div>
 
-            <!-- Approach -->
-            <div id="approach" class="project-section">
-                <h2>Approach</h2>
-                <h3>Algorithm Comparison</h3>
+            <!-- Benchmarking Modern Algorithms -->
+            <div id="benchmarking" class="project-section">
+                <h2>Benchmarking Modern Algorithms</h2>
                 <p>
-                    The project involves implementing each sieve algorithm with careful attention to correctness and initial optimization. Key metrics being measured include:
+                    Our goal is to see if we can beat modern prime number generators. Specifically, we will be comparing against primegen, primesieve, YAFU, fastprimes, and perl/ntheory. Fastprimes, primesieve, YAFU, and perl/ntheory are based on an advanced SoE, while fastprimes uses SoA. Segmentation is incredibly important for these algorithms as when generating prime numbers on a log scale, RAM becomes a limiting factor. As a result, SoS which is based on one large array of size n is often unused in fast implementations as trying to implement segmentation trades off with its efficiency.
+                </p>
+                <p>
+                    First let's benchmark these algorithms. Algorithms were tested 500 times and averaged.
+                </p>
+
+                <div style="overflow-x: auto; margin: 2rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; background: var(--carbon-fiber); border-radius: 8px;">
+                        <thead>
+                            <tr style="background: var(--light-bg);">
+                                <th style="padding: 1rem; text-align: left; border-bottom: 2px solid var(--accent);">Algorithm</th>
+                                <th style="padding: 1rem; text-align: center; border-bottom: 2px solid var(--accent);">10<sup>9</sup> prime numbers</th>
+                                <th style="padding: 1rem; text-align: center; border-bottom: 2px solid var(--accent);">10<sup>10</sup> prime numbers</th>
+                                <th style="padding: 1rem; text-align: center; border-bottom: 2px solid var(--accent);">10<sup>11</sup> prime numbers</th>
+                                <th style="padding: 1rem; text-align: center; border-bottom: 2px solid var(--accent);">10<sup>12</sup> prime numbers</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid rgba(245, 158, 11, 0.1);">
+                                <td style="padding: 1rem;"><strong>primegen</strong></td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(245, 158, 11, 0.1);">
+                                <td style="padding: 1rem;"><strong>fastprimes</strong></td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(245, 158, 11, 0.1);">
+                                <td style="padding: 1rem;"><strong>primesieve</strong></td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(245, 158, 11, 0.1);">
+                                <td style="padding: 1rem;"><strong>YAFU</strong></td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem;"><strong>perl/ntheory</strong></td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                                <td style="padding: 1rem; text-align: center;">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Basic Sieve Implementations -->
+            <div id="basic-sieves" class="project-section">
+                <h2>Basic Sieve Implementations</h2>
+                <p>
+                    Let's start by implementing basic algorithms in Python for SoS and SoA.
+                </p>
+
+                <details>
+                                <!-- Example of side-by-side code dropdown -->
+                <details>
+                    <summary class="code-summary">View Code - SoS and SoA</summary>
+                    <div class="code-split-container">
+                        <div>
+                            <h4>SoS Implementation</h4>
+                            <pre><code>
+    def sieveofsundaram():
+        if n > 179424673:
+            return
+    
+        size = (n + 1) // 2
+        sieve_array = bytearray([1]) * (size + 1)
+    
+        for i in range(1, int(math.sqrt(size)) + 1):
+            j = i
+            idx = i + j + 2 * i * j
+            while idx <= size:
+                sieve_array[idx] = 0
+                j = j + 1
+                idx = i + j + 2 * i * j
+    
+        return
+
+                            </code></pre>
+                        </div>
+                        <div>
+                            <h4>SoA Implementation</h4>
+                            <pre><code>
+    def sieveofatkin():
+        if n > 179424673:
+            return
+    
+        check1 = [1, 13, 17, 29, 37, 41, 49, 53]
+        check2 = [7, 19, 31, 43]
+        check3 = [11, 23, 47, 59]
+    
+        sieve_array = bytearray(n+1)
+        sieve_array[2] = 1
+        sieve_array [3] = 1
+        limit = int(math.sqrt(n)) + 1
+    
+        for x in range(1, limit):
+            for y in range(1, limit):
+                #check 1
+                m = 4 * x ** 2 + y ** 2
+                if m <= n and (m % 60) in check1:
+                    sieve_array[m] ^= 1
+    
+                #check 2
+                m = 3 * x ** 2 + y ** 2
+                if m <= n and (y % 2 == 1) and (m % 60) in check2:
+                    sieve_array[m] ^= 1
+    
+                #check 3
+                m = 3 * x ** 2 - y ** 2
+                if m <= n and (x > y) and (m % 60) in check3:
+                    sieve_array[m] ^= 1
+    
+        for i in range(5, limit):
+            if sieve_array[i] == 1:
+                sq = i * i
+                for j in range(sq, n + 1, sq):
+                    sieve_array[j] = 0
+        return
+        
+                            </code></pre>
+                        </div>
+                    </div>
+                </details>
+
+                <p>
+                    Testing only up to the first 10<sup>7</sup> prime numbers generated, we find that SoS takes <strong>44.880s</strong> and SoA takes <strong>2m 56.464s</strong>. Currently, SoA and SoS are limited by RAM and segmentation for these algorithms is incredibly difficult, so I'll ignore them for now (we'll get back to them later).
+                </p>
+                <p>
+                    So now let's implement a basic SoE algorithm.
+                </p>
+
+                <details>
+                    <summary class="code-summary">View Code - Basic SoE</summary>
+                    <pre><code>
+    def sieveoferatosthenes():
+
+        squaren = int(math.sqrt(n))
+        limit = squaren
+        segment = [True] * (limit + 1)
+        prime = []
+
+        #initial segment
+        segment[0], segment[1] = False, False
+        val = 2
+        while val < squaren + 1:
+            if segment[val]:
+                prime.append(val)
+                mul_elim(val, val**2, limit + 1, segment)
+            val += 1
+
+        #segments all the way to N
+        low = limit + 1
+        high = low + limit
+        while low <= n:
+            if high > n + 1:
+                high = n + 1
+            segment = [True] * (high - low)
+            for i in prime:
+                start = ((low + i -1) // i)*i
+                mul_elim(i, start, high, segment, low)
+
+            low = high
+            high = low + limit
+
+        return
+
+    def mul_elim(p, start, high, segment, low = 0):
+        if start < p*p:
+            start = p*p
+        while start < high:
+            segment[start - low] = False
+            start += p
+                    </code></pre>
+                </details>
+
+                <p>
+                    Testing the first 10<sup>9</sup> numbers, we find it takes [BLANK]. Now let's implement this in C.
+                </p>
+
+                <details>
+                    <summary class="code-summary">View Code - SoE in C</summary>
+                    <pre><code>[CODE - SoE C implementation]</code></pre>
+                </details>
+
+                <p>
+                    Testing the first 10<sup>9</sup> numbers, we find it takes [BLANK]. So compared to modern algorithms, we're still quite a ways away. But for now, it's time to optimize an SoE algorithm.
+                </p>
+            </div>
+
+            <!-- Wheel Factorization -->
+            <div id="wheel-factorization" class="project-section">
+                <h2>Algorithm 1: SoE with Wheel Factorization 30</h2>
+                <p>
+                    The first algorithm we will try and push to its limit will be an SoE with wheel factorization. The goal of wheel factorization is to skip all numbers that are guaranteed composite because they share small prime factors. For example, using the small primes {2, 3, 5} produces a mod-30 wheel, since only 8 residue classes modulo 30 are coprime to 30 (1, 7, 11, 13, 17, 19, 23, 29). All primes ≥ 7 fall into these residues.
+                </p>
+                <p>
+                    Instead of sieving every integer, we now consider only these 8 wheel positions and completely ignore numbers divisible by 2, 3, or 5. When crossing off multiples of a prime, we "turn the wheel": jumping directly from one valid residue class to the next, skipping all positions that are known to be composite. This reduces both memory and work by roughly a factor of 3.75x.
+                </p>
+                <p>
+                    So now let's implement an SoE w/ wheel factorization. For now we'll keep on implementing a segment size of sqrt(n). But now it's time to implement wheel factorization. Let's look at 3 different factorizations. WF(30) = {2, 3, 5}, WF(210) = {2, 3, 5, 7}, WF(2310) = {2, 3, 5, 7, 11}. A key issue is that larger wheel factorizations are algorithmically faster; however, due to the size of these larger wheels, caches and CPU can no longer fit them leading to larger slowdowns.
+                </p>
+
+                <details>
+                    <summary class="code-summary">View Code - SoE with Wheel Factorization</summary>
+                    <pre><code>
+    n = 22801763489
+    wheel = [1, 7, 11, 13, 17, 19, 23, 29]
+    residue = 8
+    wheel_size = 30
+    RES_TO_INDEX = {r: i for i, r in enumerate(wheel)}
+    
+    def compute_wheel_increments(p):
+        increments = []
+        next_indices = []
+    
+        for current_res in wheel:
+            res = current_res
+            steps = 0
+            while True:
+                res = (res + p) % wheel_size
+                steps += 1
+                if res in RES_TO_INDEX:
+                    break
+            increments.append(steps * p)
+            next_indices.append(RES_TO_INDEX[res])
+    
+        return increments, next_indices
+    
+    
+    def sieveoferatosthenes_check():
+        limit = int(math.sqrt(n))
+        segment = [True] * (limit + 1)
+        prime = []
+        count = 0
+    
+        # Initial segment
+        segment[0], segment[1] = False, False
+        val = 2
+        while val < limit + 1:
+            if segment[val]:
+                prime.append(val)
+                count += 1
+                start = val**2
+                while start < limit + 1:
+                    segment[start] = False
+                    start += val
+            val += 1
+    
+        small_primes = [p for p in prime if p >= 7]
+    
+        prime_data = {p: compute_wheel_increments(p) for p in small_primes}
+    
+        low = limit + 1
+        high = low + limit
+        while low <= n:
+            if high > n + 1:
+                high = n + 1
+    
+            first_block = low // wheel_size
+            last_block = (high - 1) // wheel_size
+            num_blocks = last_block - first_block + 1
+            segment = [True] * (num_blocks * residue)
+    
+            for p in small_primes:
+                increments, next_indices = prime_data[p]
+    
+                start = max(p*p, ((low + p - 1) // p) * p)
+                if start >= high:
+                    continue
+    
+                start_residue = start % wheel_size
+                if start_residue in RES_TO_INDEX:
+                    wheel_idx = RES_TO_INDEX[start_residue]
+                    j = start
+                else:
+                    j = start
+                    while j % wheel_size not in RES_TO_INDEX:
+                        j += p
+                        if j >= high:
+                            break
+                    if j >= high:
+                        continue
+                    wheel_idx = RES_TO_INDEX[j % wheel_size]
+    
+                while j < high:
+                    block_num = j // wheel_size
+                    block_idx = block_num - first_block
+                    idx = block_idx * residue + wheel_idx
+                    if 0 <= idx < len(segment):
+                        segment[idx] = False
+    
+                    j += increments[wheel_idx]
+                    wheel_idx = next_indices[wheel_idx]
+    
+            low = high
+            high = low + limit
+    
+        return
+                    </code></pre>
+                </details>
+
+                <p>
+                    To verify that our code is properly generating the correct prime numbers we will implement 2 checks:
                 </p>
                 <ul class="project-list">
-                    <li><strong>Time Complexity:</strong> Theoretical vs. actual runtime performance across different input ranges</li>
-                    <li><strong>Space Complexity:</strong> Memory usage patterns and scalability</li>
-                    <li><strong>Cache Performance:</strong> How each algorithm interacts with CPU cache hierarchies</li>
-                    <li><strong>Scalability:</strong> Performance degradation as input size increases</li>
+                    <li>A count variable to count every prime (and verify exactly 10<sup>9</sup> primes were generated)</li>
+                    <li>Use sympy's isprime function to verify every number found to be prime, is actually prime</li>
                 </ul>
-
-                <h3>Language Optimization Path</h3>
                 <p>
-                    The optimization journey follows a systematic progression:
+                    This took way to long to run in Python and I regret my decision to test this with 10<sup>9</sup> numbers. Fortunately, it worked!
                 </p>
-                <ol>
-                    <li><strong>Python Implementation:</strong> Prototype each algorithm with clear, readable code; establish baseline performance metrics</li>
-                    <li><strong>C Optimization:</strong> Port to C with manual memory management, compiler optimizations, and cache-aware data structures</li>
-                    <li><strong>Assembly Exploration:</strong> Hand-optimize critical sections in Assembly to understand hardware-level performance limits</li>
-                </ol>
+                <p>
+                    Anyways, here are the times it takes to generate using 3 different wheel versions:
+                </p>
+
+                <div style="overflow-x: auto; margin: 2rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; background: var(--carbon-fiber); border-radius: 8px;">
+                        <thead>
+                            <tr style="background: var(--light-bg);">
+                                <th style="padding: 1rem; text-align: left; border-bottom: 2px solid var(--accent);">Wheel Version</th>
+                                <th style="padding: 1rem; text-align: center; border-bottom: 2px solid var(--accent);">Time for 10<sup>9</sup> prime numbers</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid rgba(245, 158, 11, 0.1);">
+                                <td style="padding: 1rem;"><strong>WF 30</strong></td>
+                                <td style="padding: 1rem; text-align: center;">58m 49.937s</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(245, 158, 11, 0.1);">
+                                <td style="padding: 1rem;"><strong>WF 210</strong></td>
+                                <td style="padding: 1rem; text-align: center;">1h 4m 44.914s</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem;"><strong>WF 2310</strong></td>
+                                <td style="padding: 1rem; text-align: center;">1h 14m 32.624s</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <details>
+                    <summary class="code-summary">Details for 3 different wheels tested</summary>
+                    <div style="padding: 1rem;">
+                        <p>
+        WF(30) = [1, 7, 11, 13, 17, 19, 23, 29] <br>
+        {2, 3, 5} multiples eliminated => 30 = 2 * 3 * 5 <br>
+        <br>
+        WF(210) = [1, 11, 13, 17, 19, 23, 29, 31,
+                    37, 41, 43, 47, 53, 59, 61, 67,
+                    71, 73, 79, 83, 89, 97, 101, 103,
+                    107, 109, 113, 121, 127, 131, 137, 139,
+                    143, 149, 151, 157, 163, 167, 169, 173,
+                    179, 181, 187, 191, 193, 197, 199, 209] <br>
+        {2, 3, 5, 7} multiples eliminated => 210 = 2 * 3 * 5 * 7 <br>
+        <br>
+        WF(2310) = [1, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+                    73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 121, 127, 131, 137,
+                    139, 149, 151, 157, 163, 167, 169, 173, 179, 181, 191, 193, 197,
+                    199, 209, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269,
+                    271, 277, 281, 283, 289, 293, 299, 301, 307, 311, 313, 317, 319,
+                    323, 331, 337, 341, 347, 349, 353, 359, 361, 367, 373, 379, 383,
+                    389, 391, 397, 401, 403, 409, 419, 421, 431, 433, 439, 443, 449,
+                    457, 461, 463, 467, 473, 479, 487, 491, 493, 499, 503, 509, 511,
+                    521, 523, 529, 533, 539, 541, 547, 551, 557, 563, 569, 571, 577,
+                    581, 587, 593, 599, 601, 607, 611, 613, 617, 619, 623, 631, 641,
+                    643, 647, 653, 659, 661, 667, 673, 677, 679, 683, 689, 691, 697,
+                    701, 703, 709, 713, 719, 727, 731, 733, 739, 743, 751, 757, 761,
+                    763, 769, 773, 779, 787, 793, 797, 799, 809, 811, 817, 821, 823,
+                    827, 829, 833, 839, 841, 847, 853, 857, 859, 863, 869, 871, 877,
+                    881, 883, 887, 889, 893, 899, 901, 907, 911, 913, 919, 923, 929,
+                    937, 941, 943, 947, 953, 961, 967, 971, 973, 977, 983, 989, 991,
+                    1001, 1003, 1007, 1013, 1019, 1021, 1027, 1031, 1033, 1037, 1039, 1049,
+                    1051, 1057, 1061, 1063, 1067, 1069, 1073, 1081, 1087, 1091, 1093, 1097,
+                    1103, 1109, 1117, 1121, 1123, 1129, 1133, 1139, 1141, 1147, 1151, 1153,
+                    1157, 1159, 1163, 1171, 1181, 1183, 1187, 1193, 1199, 1201, 1207, 1213,
+                    1217, 1219, 1223, 1229, 1231, 1237, 1241, 1243, 1249, 1253, 1259, 1261,
+                    1271, 1273, 1279, 1283, 1289, 1291, 1297, 1301, 1303, 1307, 1309, 1319,
+                    1321, 1327, 1331, 1333, 1337, 1339, 1343, 1351, 1361, 1363, 1367, 1373,
+                    1379, 1381, 1387, 1391, 1393, 1399, 1403, 1409, 1411, 1417, 1421, 1423,
+                    1427, 1429, 1433, 1441, 1451, 1453, 1457, 1463, 1469, 1471, 1477, 1483,
+                    1487, 1489, 1493, 1499, 1501, 1507, 1511, 1513, 1519, 1523, 1529, 1531,
+                    1541, 1543, 1549, 1553, 1559, 1561, 1567, 1571, 1573, 1577, 1579, 1589,
+                    1591, 1597, 1601, 1603, 1607, 1609, 1613, 1621, 1627, 1631, 1633, 1637,
+                    1643, 1649, 1657, 1661, 1663, 1669, 1673, 1679, 1681, 1687, 1691, 1693,
+                    1697, 1699, 1703, 1711, 1721, 1723, 1727, 1733, 1739, 1741, 1747, 1753,
+                    1757, 1759, 1763, 1769, 1771, 1777, 1781, 1783, 1789, 1793, 1799, 1801,
+                    1811, 1813, 1819, 1823, 1829, 1831, 1837, 1841, 1843, 1847, 1849, 1859,
+                    1861, 1867, 1871, 1873, 1877, 1879, 1883, 1891, 1897, 1901, 1903, 1907,
+                    1913, 1919, 1927, 1931, 1933, 1939, 1943, 1949, 1951, 1957, 1961, 1963,
+                    1967, 1969, 1973, 1981, 1991, 1993, 1997, 2003, 2009, 2011, 2017, 2021,
+                    2023, 2027, 2029, 2039, 2041, 2047, 2051, 2053, 2059, 2063, 2069, 2071,
+                    2077, 2081, 2083, 2087, 2089, 2099, 2101, 2107, 2111, 2113, 2117, 2119,
+                    2123, 2129, 2131, 2137, 2141, 2143, 2147, 2149, 2153, 2161, 2171, 2173,
+                    2177, 2183, 2189, 2191, 2197, 2201, 2203, 2207, 2209, 2213, 2219, 2221,
+                    2227, 2231, 2233, 2237, 2239, 2243, 2249, 2251, 2257, 2261, 2263, 2267,
+                    2269, 2273, 2281, 2291, 2293, 2297, 2303, 2309] <br>
+        {2, 3, 5, 7, 11} multiples eliminated => 2310 = 2 * 3 * 5 * 7 * 11
+                        </p>
+                    </div>
+                </details>
             </div>
 
-            <!-- Check Back Later Notice -->
-            <div class="content-section check-back">
-                <div class="check-back-content">
-                    <i class="fa-solid fa-code"></i>
-                    <h3>Project In Development</h3>
-                    <p>This algorithm optimization project is currently in progress. Check back later for detailed performance benchmarks, optimization techniques, and comparative analysis results!</p>
-                </div>
+            <!-- C Implementation -->
+            <div id="c-implementation" class="project-section">
+                <h2>Moving to C</h2>
+                <p>
+                    Now that we've implemented a basic SoE with WF30 we will now transfer over entirely to C. Of course, there are some more mathematical optimizations that can be done; however, the time has come for a faster program to be enlisted. Goodbye Python.
+                </p>
+                <p>
+                    So now, let's write the WF30 algorithm in C and check: [BLANK] seconds. An improvement for sure, but still far off.
+                </p>
+
+                <details>
+                    <summary class="code-summary">View Code - WF30 in C</summary>
+                    <pre><code>[CODE - WF30 C implementation]</code></pre>
+                </details>
             </div>
 
         </div>
@@ -141,6 +615,7 @@
 <script src="../js/project-bg.js"></script>
 <script src="../js/bike-stat.js"></script>
 <script src="../js/loading.js"></script>
+<script src="../js/page-transition.js"></script>
 <script src="../js/script.js"></script>
 </body>
 </html>

@@ -35,9 +35,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Add scroll effect to navbar - keep original color
 window.addEventListener('scroll', () => {
+    // Don't modify navbar during page transitions
+    const loader = document.getElementById('page-transition-loader');
+    if (loader && loader.classList.contains('active')) {
+        return; // Skip if page transition loader is active
+    }
+    
     const navbar = document.querySelector('.navbar');
-    // Keep the original navbar color regardless of scroll position
-    navbar.style.backgroundColor = 'rgba(26, 26, 26, 1)';
+    if (navbar) {
+        // Keep the original navbar color regardless of scroll position
+        navbar.style.backgroundColor = 'rgba(26, 26, 26, 1)';
+    }
 });
 
 // Animate elements on scroll

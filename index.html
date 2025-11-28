@@ -3,12 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Prevent flash: Show loader immediately if transitioning -->
+    <script>
+        if (sessionStorage.getItem('pageTransition') === 'true') {
+            document.write('<style>' +
+                'body{overflow:hidden!important;background-color:#1a1a1a!important}' +
+                '#page-transition-loader{opacity:1!important;visibility:visible!important;display:flex!important;pointer-events:auto!important;background-color:#1a1a1a!important;z-index:99999!important}' +
+                '.navbar{background-color:#1a1a1a!important}' +
+                '.nav-container{background-color:transparent!important}' +
+                '.nav-menu{background-color:transparent!important}' +
+                '.nav-menu li{background-color:transparent!important}' +
+            '</style>');
+        }
+    </script>
     <title>Ethan Schein - Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+<!-- Page Transition Loader -->
+<div id="page-transition-loader" class="page-loader">
+    <div class="bike-cog-container">
+        <img src="assets/svgs/loading/bike-cog.svg" alt="Loading" />
+    </div>
+</div>
 
 <!-- Loading Screen - ONLY ON INDEX.HTML -->
 <div id="loading-screen">
@@ -171,6 +191,7 @@
 
 <script src="js/bike-stat.js"></script>
 <script src="js/loading.js"></script>
+<script src="js/page-transition.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>

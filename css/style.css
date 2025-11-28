@@ -48,7 +48,7 @@ body::-webkit-scrollbar {
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--dark-bg);
+    background-color: #1a1a1a;
     color: var(--text-light);
     line-height: 1.6;
     overflow-x: hidden;
@@ -79,6 +79,13 @@ body {
 
     pointer-events: auto;         /* ← Navbar can be clicked */
     isolation: isolate;
+}
+
+/* Prevent navbar transitions during page transitions to avoid white flash */
+body.loading .navbar,
+#page-transition-loader.active ~ * .navbar {
+    transition: none !important;
+    background-color: rgba(26, 26, 26, 1) !important;
 }
 
 .nav-container {
@@ -917,7 +924,7 @@ body {
     height: 100vh;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.15;
 }
 
 /* Ensure VANTA canvas fills container */
@@ -928,7 +935,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.5;
+    opacity: 1;
     mix-blend-mode: screen;
 }
 
@@ -1537,6 +1544,7 @@ a.toc-card:hover {
     height: 100vh;
     z-index: 0;
     pointer-events: none;
+    opacity: 0.4;
 }
 
 /* Ensure VANTA canvas fills the container */
@@ -1547,6 +1555,7 @@ a.toc-card:hover {
     position: absolute;
     top: 0;
     left: 0;
+    opacity: 1;
 }
 
 .edu-page .container {
@@ -1718,6 +1727,103 @@ a.toc-card:hover {
     color: var(--accent);
 }
 
+/* Code summary/details styling */
+.code-summary {
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    background: var(--carbon-fiber);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 6px;
+    color: var(--accent);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.code-summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+details[open] .code-summary::before {
+    transform: rotate(90deg);
+}
+
+.code-summary:hover {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: var(--accent);
+}
+
+details pre {
+    margin: 0;
+    padding: 1.5rem;
+    background: var(--matte-black);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    overflow-x: auto;
+    color: var(--text-light);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+details pre code {
+    color: var(--text-light);
+}
+
+/* Side-by-side code dropdown */
+.code-split-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 0;
+    padding: 1.5rem;
+    background: var(--matte-black);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+}
+
+.code-split-container > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.code-split-container h4 {
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.code-split-container pre {
+    margin: 0;
+    padding: 1rem;
+    background: var(--carbon-fiber);
+    border: 1px solid rgba(245, 158, 11, 0.1);
+    border-radius: 4px;
+    overflow-x: auto;
+    flex: 1;
+}
+
+.code-split-container pre code {
+    color: var(--text-light);
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .code-split-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 details:not([open]) .coursework-header::before {
     transform: rotate(-90deg);
 }
@@ -1792,6 +1898,57 @@ details:not([open]) .coursework-header::before {
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     pointer-events: auto;
+}
+
+/* Secondary loading screen for page transitions */
+#page-transition-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+}
+
+#page-transition-loader.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transition: none !important;
+    background-color: #1a1a1a !important;
+    z-index: 99999 !important;
+}
+
+.bike-cog-container {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bike-cog-container svg,
+.bike-cog-container img {
+    width: 100%;
+    height: 100%;
+    animation: rotateCog 1.5s linear infinite;
+}
+
+@keyframes rotateCog {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 #loading-screen.active {
