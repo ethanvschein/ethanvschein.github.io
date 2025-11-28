@@ -5,7 +5,7 @@
 (function() {
     'use strict';
     
-    const MIN_DISPLAY_TIME_AFTER_LOAD = 500; // 0.5 seconds after page loads
+    const MIN_DISPLAY_TIME_AFTER_LOAD = 300; // 0.3 seconds after page loads
     let loaderStartTime = null;
     let pageLoadTime = null;
     
@@ -24,6 +24,8 @@
             // Loader is already shown by inline script, ensure active class is set
             // Apply robust styling to prevent white flash during transition
             loader.classList.add('active');
+            // Add class to body to prevent navbar white flash via CSS
+            document.body.classList.add('page-transitioning');
             // Remove transitions to prevent any flashing during the transition
             loader.style.transition = 'none';
             loader.style.backgroundColor = '#1a1a1a';
@@ -33,11 +35,22 @@
             document.body.style.overflow = 'hidden';
             document.body.style.backgroundColor = '#1a1a1a';
             
-            // Ensure navbar has dark background and no transitions to prevent white flash
+            // Ensure navbar and all child elements have dark background and no transitions to prevent white flash
             const navbar = document.querySelector('.navbar');
             if (navbar) {
                 navbar.style.backgroundColor = '#1a1a1a';
                 navbar.style.transition = 'none';
+                navbar.style.backdropFilter = 'none';
+                
+                // Also ensure nav-menu and nav-container have dark backgrounds
+                const navMenu = navbar.querySelector('.nav-menu');
+                const navContainer = navbar.querySelector('.nav-container');
+                if (navMenu) {
+                    navMenu.style.backgroundColor = 'transparent';
+                }
+                if (navContainer) {
+                    navContainer.style.backgroundColor = 'transparent';
+                }
             }
             
             // Track time
@@ -76,16 +89,29 @@
                     }
                 });
                 
+                // Remove body class to allow navbar to return to normal styling
+                document.body.classList.remove('page-transitioning');
+                
                 // Restore body overflow and background
                 document.documentElement.style.overflow = '';
                 document.body.style.overflow = '';
                 document.body.style.backgroundColor = '';
                 
-                // Restore navbar background (CSS will handle it)
+                // Restore navbar background and child elements (CSS will handle it)
                 const navbar = document.querySelector('.navbar');
                 if (navbar) {
                     navbar.style.backgroundColor = '';
                     navbar.style.transition = '';
+                    navbar.style.backdropFilter = '';
+                    
+                    const navMenu = navbar.querySelector('.nav-menu');
+                    const navContainer = navbar.querySelector('.nav-container');
+                    if (navMenu) {
+                        navMenu.style.backgroundColor = '';
+                    }
+                    if (navContainer) {
+                        navContainer.style.backgroundColor = '';
+                    }
                 }
                 
                 loaderStartTime = null;
@@ -117,6 +143,8 @@
         function showLoaderAndNavigate(url) {
             // Show loader immediately and set background colors to prevent white flash
             loader.classList.add('active');
+            // Add class to body to prevent navbar white flash via CSS
+            document.body.classList.add('page-transitioning');
             // Remove transitions to prevent any flashing
             loader.style.transition = 'none';
             loader.style.backgroundColor = '#1a1a1a';
@@ -126,11 +154,22 @@
             document.body.style.overflow = 'hidden';
             document.body.style.backgroundColor = '#1a1a1a';
             
-            // Ensure navbar has dark background and no transitions
+            // Ensure navbar and all child elements have dark background and no transitions
             const navbar = document.querySelector('.navbar');
             if (navbar) {
                 navbar.style.backgroundColor = '#1a1a1a';
                 navbar.style.transition = 'none';
+                navbar.style.backdropFilter = 'none';
+                
+                // Also ensure nav-menu and nav-container have dark backgrounds
+                const navMenu = navbar.querySelector('.nav-menu');
+                const navContainer = navbar.querySelector('.nav-container');
+                if (navMenu) {
+                    navMenu.style.backgroundColor = 'transparent';
+                }
+                if (navContainer) {
+                    navContainer.style.backgroundColor = 'transparent';
+                }
             }
             
             loaderStartTime = Date.now();

@@ -83,9 +83,15 @@ body {
 
 /* Prevent navbar transitions during page transitions to avoid white flash */
 body.loading .navbar,
-#page-transition-loader.active ~ * .navbar {
+body.page-transitioning .navbar {
     transition: none !important;
-    background-color: rgba(26, 26, 26, 1) !important;
+    background-color: #1a1a1a !important;
+    backdrop-filter: none !important;
+}
+
+body.page-transitioning .nav-menu,
+body.page-transitioning .nav-container {
+    background-color: transparent !important;
 }
 
 .nav-container {
@@ -764,9 +770,11 @@ body.loading .navbar,
     border: 1px solid rgba(245, 158, 11, 0.1);
     position: relative;
     margin: 20px 0 15px 20px;
-
-    isolation: isolate;           /* ← Isolates the card */
+    isolation: isolate;
     outline: none;
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
 
 .project-card:focus,
@@ -1743,14 +1751,38 @@ a.toc-card:hover {
     gap: 0.5rem;
 }
 
+/* Hide default details marker */
+details summary {
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Code sections: show east arrow (▶) when closed, rotate to south (▼) when open */
 .code-summary::before {
     content: '▶';
     font-size: 0.7rem;
     transition: transform 0.3s ease;
+    margin-right: 0.5rem;
+    display: inline-block;
 }
 
+/* When code details is open, rotate arrow 90deg to point south (▼) */
 details[open] .code-summary::before {
     transform: rotate(90deg);
+}
+
+/* Details snippet boxes: show south arrow (▼) when closed, stay south when open */
+details.details-snippet .code-summary::before {
+    content: '▼';
+    transform: rotate(0deg);
+}
+
+details.details-snippet[open] .code-summary::before {
+    content: '▼';
+    transform: rotate(0deg);
 }
 
 .code-summary:hover {
@@ -1900,7 +1932,7 @@ details:not([open]) .coursework-header::before {
     pointer-events: auto;
 }
 
-/* Secondary loading screen for page transitions */
+/* Page transition loader - animation ALWAYS runs */
 #page-transition-loader {
     position: fixed;
     top: 0;
@@ -1908,45 +1940,47 @@ details:not([open]) .coursework-header::before {
     width: 100%;
     height: 100%;
     background-color: #1a1a1a;
-    display: flex;
+    display: flex !important; /* Always flex, never changes */
     justify-content: center;
     align-items: center;
     z-index: 99999;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
     pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 #page-transition-loader.active {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    transition: none !important;
-    background-color: #1a1a1a !important;
-    z-index: 99999 !important;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .bike-cog-container {
     width: 80px;
     height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 }
 
+/* The cog ALWAYS rotates - we never stop the animation */
 .bike-cog-container svg,
 .bike-cog-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     animation: rotateCog 1.5s linear infinite;
+    animation-play-state: running; /* Always running */
+    backface-visibility: hidden;
+    transform-origin: center center;
 }
 
 @keyframes rotateCog {
-    from {
+    0% {
         transform: rotate(0deg);
     }
-    to {
+    100% {
         transform: rotate(360deg);
     }
 }
